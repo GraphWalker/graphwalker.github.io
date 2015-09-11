@@ -1,0 +1,5 @@
+# Site settings
+name: GraphWalker
+title: GraphWalker
+baseurl: ""
+markdown: kramdown
