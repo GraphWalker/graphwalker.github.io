@@ -91,15 +91,15 @@ a_star(reached_edge(e_SomeEdge))
 random(requirement_coverage(100))
 
 // Walk randomly for 500 seconds.
-random(time(500))
+random(time_duration(500))
 
 // Walk randomly until the path sequence has reached a length of 24 elements of edges and vertices.
 random(length(24))
 
 // Walk randomly, until the edge coverage has reached 100% **or** we have executed for 500 seconds.
-random(edge_coverage(100) or time(500))
+random(edge_coverage(100) or time_duration(500))
 
-// Walk randomly, until the edge coverage has reached 100% **or** we have executed for 500 seconds. (same as above) random(edge_coverage(100) || time(500))
+// Walk randomly, until the edge coverage has reached 100% **or** we have executed for 500 seconds. (same as above) random(edge_coverage(100) || time_duration(500))
 
 // Walk randomly, until the edge coverage has reached 100% **and** we have reached the vertex **v_SomeVertex**.
 random(reached_vertex(v_SomeVertex) && edge_coverage(100))
@@ -108,8 +108,8 @@ random(reached_vertex(v_SomeVertex) && edge_coverage(100))
 random(reached_vertex(v_SomeVertex) and edge_coverage(100))
 
 // Walk randomly, until we have executed for 500 seconds **or** we have **both** reached vertex **v_SomeVertex** **and**  reached 100% vertex coverage.
-random((reached_vertex(v_SomeVertex) and vertex_coverage(100)) || time(5000))
+random((reached_vertex(v_SomeVertex) and vertex_coverage(100)) || time_duration(5000))
 
 // Walk randomly, until the edge coverage has reached 100% **and** we have reached the vertex **v_SomeVertex**. Then we will start using the next strategy. Walk randomly for 1 hour
-random(reached_vertex(v_SomeVertex) and edge_coverage(100)) random(time(3600))
+random(reached_vertex(v_SomeVertex) and edge_coverage(100)) random(time_duration(3600))
 ~~~
