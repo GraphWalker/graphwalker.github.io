@@ -1,0 +1,89 @@
+# This is your sidebar TOC. The sidebar code loops through sections here and provides the appropriate formatting.
+
+entries:
+- title: sidebar
+  product: GraphWalker
+  folders:
+
+  - title: Overview
+    output: web
+    folderitems:
+
+    - title: Get started
+      url: /
+      type: homepage
+      output: web
+
+    - title: Change Log
+      url: /changelog
+      output: web
+
+    - title: Introduction
+      url: /introduction
+      output: web
+
+    - title: Supported features
+      url: /features
+      output: web
+
+    - title: Support
+      url: /contact
+      output: web
+
+  - title: Documentation
+    output: web
+    folderitems:
+
+    - title: Create a small test from scratch
+      url: /create_a_small_test
+      output: web
+    
+    - title: Create a test using Maven
+      url: /create_a_test_using_maven
+      output: web
+    
+    - title: The ruleset of modelling
+      url: /yed_model_syntax
+      output: web
+    
+    - title: The command line
+      url: /cli
+      output: web
+    
+    - title: Generators and Stop Conditions
+      url: /generators_and_stop_conditions
+      output: web
+    
+    - title: The Websocket API
+      url: /websocket_api
+      output: web
+    
+  - title: Examples
+    output: web
+    folderitems:
+
+    - title: PetClinic
+      url: /petclinic
+      output: web
+    
+
+  - title: Download
+    output: web
+    folderitems:
+
+    - title: Source code
+      url: /source_code
+      output: web
+
+    - title: Download
+      url: /download
+      output: web
+    
+
+  - title: License
+    output: web
+    folderitems:
+
+    - title: The MIT License
+      url: /license
+      output: web
