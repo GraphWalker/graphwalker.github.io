@@ -17,7 +17,6 @@ toc: false
  * [cli - The command line interface for GraphWalker](https://github.com/GraphWalker/graphwalker-project/tree/master/graphwalker-cli)
  * [core -The core functionality](https://github.com/GraphWalker/graphwalker-project/tree/master/graphwalker-core)
  * [dsl - The text parsing logic](https://github.com/GraphWalker/graphwalker-project/tree/master/graphwalker-dsl)
- * [gradle plugin](https://github.com/GraphWalker/graphwalker-project/tree/master/graphwalker-gradle-plugin)
  * [io - Handles input and output](https://github.com/GraphWalker/graphwalker-project/tree/master/graphwalker-io)
  * [java - GraphWalker annotation and source code generation](https://github.com/GraphWalker/graphwalker-project/tree/master/graphwalker-java)
  * [maven-plugin-archetype - Create graphalker boilerplate maven projects](https://github.com/GraphWalker/graphwalker-project/tree/master/graphwalker-maven-archetype)
