@@ -16,7 +16,7 @@ bundle update
 jekyll serve
 ```
 
-5) Do all your changes.
+5) Do all your changes. The site uses the Jekyll Documentation Theme. See appendix below.
 
 6) Commit and push
 
@@ -27,4 +27,5 @@ jekyll serve
 * [Jekyll](https://jekyllrb.com/)
 * [Jekyll on GitHub Pages](https://jekyllrb.com/docs/github-pages/)
 * [Setting up your GitHub Pages site locally with Jekyll](https://help.github.com/articles/setting-up-your-github-pages-site-locally-with-jekyll/)
+* [Jekyll Documentation Theme](http://idratherbewriting.com/documentation-theme-jekyll/)
 * [Pull Request Tutorial](https://yangsu.github.io/pull-request-tutorial/)
