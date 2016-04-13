@@ -5,7 +5,6 @@ keywords: example
 sidebar: sidebar
 permalink: /websocket_api/
 toc: false
-summary: This is a summary
 ---
 
 
