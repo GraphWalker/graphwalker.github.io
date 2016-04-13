@@ -3,6 +3,7 @@ title: Getting started overview
 tags: [getting_started]
 sidebar: sidebar
 type: homepage
+toc: false
 ---
 
 ## Overview 
