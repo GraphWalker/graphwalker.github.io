@@ -151,7 +151,7 @@ Using Maven and the complete model above create all the stub code needed.
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <!-- Set graphwalker.version below to the version you wish to use. We recommend the latest stable version -->
-        <graphwalker.version>3.3.0</graphwalker.version>
+        <graphwalker.version>3.4.0</graphwalker.version>
     </properties>
 
     <build>

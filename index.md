@@ -23,13 +23,13 @@ Given the graph, GraphWalker generates a path from the graph. This path is then 
 
 ## How to get it
 
-Either download the standalone jar file, or include it directly in your java project. The latest release version is 3.3.0. In your maven project, add this to your pom.xml file:
+Either download the standalone jar file, or include it directly in your java project. The latest release version is 3.4.0. In your maven project, add this to your pom.xml file:
 
 ```xml
 <dependency>
    <groupId>org.graphwalker</groupId>
    <artifactId>graphwalker-core</artifactId>
-   <version>3.3.0</version>
+   <version>3.4.0</version>
 </dependency>
 ```
 
