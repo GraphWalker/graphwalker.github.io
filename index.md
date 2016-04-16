@@ -19,7 +19,7 @@ A model can look like the one to the right. The model is collection of arrows an
 
 ## What it does
 
-Given the graph, GraphWalker generates a path from the graph. This path is then feed to the tool of your choice to execute the test.
+Given the graph, GraphWalker generates a path from the graph. This path is then provided to the tool of your choice to execute the test.
 
 Have a look at what features [GraphWalker offers](/features/).
 
