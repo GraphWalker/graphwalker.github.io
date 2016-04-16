@@ -11,16 +11,88 @@ toc: false
 
 ### Path generation
 
-* From a given set of graphs, generators and stop conditions, GraphWalker will generate a path through the graphs.
-* The path represents your test, or test case if you will. 
-* The path consists of pairs of edges and vertices.
-* An egde represents an action, a transition.
-* A vertex represents a point of verification(s).
+* From a given set of graphs, generators and stop conditions, GraphWalker will generate a path through the graphs.<br>{: style=""}
+
+  Your Model-Based test design consists of 1 or many graphs. Each graph will have it's own set of generator(s) and stop conditions(s). Only when all stop conditions for all generators in all graphs are fulfilled, the generation of the path is done.
+  {: style="color:gray; font-size: 80%"}
+  
+* The path represents your test, or test case if you will.<br>{: style=""}
+
+  The path is used by your test, to call the corresponding methods or functions in the order that is determined by the path.
+  {: style="color:gray; font-size: 80%"}
+
+* The path is series of elements, the elements are pairs of edges and vertices.<br>{: style=""}
+
+  It's like a test script, where an action is always followed by a verification. The path is like:<br>  
+  {: style="color:gray; font-size: 80%"}
+
+  |Step|Label           |Element|
+  |----|----------------|-------|
+  |1   |Do something    |Edge   |
+  |2   |Verify something|Vertex |
+  |3   |Do something    |Edge   |
+  |4   |Verify something|Vertex |
+  |5   |Do something    |Edge   |
+  |6   |Verify something|Vertex |
+  |:   |:               |:      |
+  {: style="color:gray; font-size: 80%"}
+
+
+* An edge represents an action, a transition.<br>{: style=""}
+
+  An action could be an API call, a button clicked, a timeout. Anything that moves your System Under Test into a new state that you want to verify. But remember, there is no verification going on in the edge. That happens only in the vertex. 
+  {: style="color:gray; font-size: 80%"}
+
+* A vertex represents verification(s).<br>{: style=""}
+
+  A verification is where you would have assertions in your code. It' here where you verify that an API call returns the correct values. Or that a button click actually did close a dialog. Or that when the timeout should have occurred, the System Under Test triggered the expected event.*
+  {: style="color:gray; font-size: 80%"}
 
 
 ### Offline
 
-The path generation can be generated from command line, and the output stored on file. The content of the file is then used to drive your test.
+<a href="/content/resources/example_1.graphml" download="example_1.graphml"><img src="/images/example_1.png" alt="Model" align="right"/></a>
+
+The path generation is done once. It's not directly connected to any test automation code. The path needs to be stored in some intermediate format, like on a file. Typically, the path is generated from command line, and the output stored on file. The content of the file is then used to drive your test.
+
+**Example**
+
+Given following model [example_1.graphml](/content/resources/example_1.graphml). Let's generate an offline path from it using a random generator and an edge coverage stop condition. The test will start at the element `app_closed`
+
+
+```
+java -jar graphwalker-cli-3.4.0.jar offline --start-element app_closed --model example_1.graphml "random(edge_coverage(100))"
+{"currentElementName":"app_closed"}
+{"currentElementName":"start_app"}
+{"currentElementName":"app_running"}
+{"currentElementName":"close_app"}
+{"currentElementName":"app_closed"}
+{"currentElementName":"start_app"}
+{"currentElementName":"app_running"}
+{"currentElementName":"open_preferences"}
+{"currentElementName":"display_preference"}
+{"currentElementName":"close_preferences"}
+{"currentElementName":"app_running"}
+
+```
+
+To make the output only print out the element names, we can use the [jq](https://stedolan.github.io/jq/) command, and run following instead:
+
+```
+java -jar graphwalker-cli-3.4.0.jar offline --start-element app_closed --model example_1.graphml "random(edge_coverage(100))" | jq -r '.currentElementName'
+app_closed
+start_app
+app_running
+close_app
+app_closed
+start_app
+app_running
+open_preferences
+display_preference
+close_preferences
+app_running
+
+```
 
 ### Online
 
