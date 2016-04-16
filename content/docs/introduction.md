@@ -25,7 +25,7 @@ The feature is suppose to work  like this:
 * In a freshly installed client, and the client is started, the Login dialog is expected to be displayed.
 * The user enters valid credentials and the client is expected to start.
 * If the user quits, or logs out, the Login dialog is displayed once again.
-* If the user checks the **Remember Me** checkbox, and logs in (using valid creds), the client starts, and, next time the user starts the client, it will start without asking the client for credentials.
+* If the user checks the **Remember Me** checkbox, and logs in (using valid credentials), the client starts, and, next time the user starts the client, it will start without asking the client for credentials.
 
 Just designing a test for the 2 first steps, a model would look something like this:
 
@@ -259,8 +259,8 @@ If you check your folder, it willl contain following files and folders:
                         └── Login.java
 ```
 
-Your job is now to implement that interface, which means filling in the missing code into the methods in the class that implements the interface. First you have to find the right tool for the job. Dependeing on you System Under Test(SUT) , it could typically be::
- * [Selenium Web Driver](http://www.seleniumhq.org/): if your SUT is a web broser
+Your job is now to implement that interface, which means filling in the missing code into the methods in the class that implements the interface. First you have to find the right tool for the job. Depending on you System Under Test(SUT) , it could typically be::
+ * [Selenium Web Driver](http://www.seleniumhq.org/): if your SUT is a web browser
  * [Sikuli](http://www.sikuli.org/): if your SUT is a desktop native GUI client, where you dont have access to it's source code.
 
 ### Implementing a test

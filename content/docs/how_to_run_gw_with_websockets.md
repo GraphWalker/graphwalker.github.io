@@ -5,7 +5,7 @@ toc: false
 ---
 
 
-The GraphWalker WebSocket Server enables a user to launch and interact with GraphWalker and inplement your tests in a very dynamic way. Any programming language that has an implementation of WebSocket will be able to use this feature.
+The GraphWalker WebSocket Server enables a user to launch and interact with GraphWalker and implement your tests in a very dynamic way. Any programming language that has an implementation of WebSocket will be able to use this feature.
 
 
 ## Establishing a connection to the GraphWalker WebSocket Server
@@ -31,7 +31,7 @@ When disconnected, the server will destroy the machine.
 
 ## Spefification by Example and MBT test for the WebSocket Server
 
-The graph below is an actual test where GraphWalker is testing itself. The graph also serves as a [Specifaction by Example](http://en.wikipedia.org/wiki/Specification_by_example). The specification dictates what API calls can be made given the current status. The test verifies that the implementation follows the design.
+The graph below is an actual test where GraphWalker is testing itself. The graph also serves as a [Specification by Example](http://en.wikipedia.org/wiki/Specification_by_example). The specification dictates what API calls can be made given the current status. The test verifies that the implementation follows the design.
 
 The test is run as one of the Unit tests in the CLI module. See [WebSocketServerTest.java](https://github.com/GraphWalker/graphwalker-project/blob/master/graphwalker-cli/src/test/java/org/graphwalker/cli/WebSocketServerTest.java)
 

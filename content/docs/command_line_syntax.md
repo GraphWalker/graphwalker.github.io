@@ -73,7 +73,7 @@ Default is false.
 gw3 offline -m model.graphml "random(edge_coverage(100))"
 ```
 
-The abose is readlike: Use the model ***model.graphml***, and generate a path using the random path generator, and stop when the edge coverage is 100%
+The above should be read like: Use the model ***model.graphml***, and generate a path using the random path generator, and stop when the edge coverage is 100%
 
 
 ## online
