@@ -21,9 +21,13 @@ A model can look like the one to the right. The model is collection of arrows an
 
 Given the graph, GraphWalker generates a path from the graph. This path is then feed to the tool of your choice to execute the test.
 
+Have a look at what features [GraphWalker offers](/features/).
+
 ## How to get it
 
-Either download the standalone jar file, or include it directly in your java project. The latest release version is 3.4.0. In your maven project, add this to your pom.xml file:
+Either [download the standalone jar file](/download/), or include GraphWalker in your java project. The latest release version is 3.4.0.
+
+In your maven project, add this to your pom.xml file:
 
 ```xml
 <dependency>
