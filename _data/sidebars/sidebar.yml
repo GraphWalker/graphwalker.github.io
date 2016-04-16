@@ -70,6 +70,10 @@ entries:
       url: /petclinic
       output: web
     
+    - title: Amazon Shopping Cart
+      url: /amazonShoppingCart
+      output: web
+    
 
   - title: Download
     output: web

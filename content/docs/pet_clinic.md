@@ -15,7 +15,7 @@ This is an example on how to implement a test using the [PetClinic Sample Applic
 * Java JDK version 8 installed
 * Maven installed (version equal or greater than 3.2.3)
 * git installed
-* Firefox installed
+* Latest Firefox installed
 
 ## Get and start the PetClinic Sample Application
 
