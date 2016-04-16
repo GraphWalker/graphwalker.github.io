@@ -26,15 +26,15 @@ toc: false
   It's like a test script, where an action is always followed by a verification. The path is like:<br>  
   {: style="color:gray; font-size: 80%"}
 
-  |Step|Label           |Element|
-  |----|----------------|-------|
-  |1   |Do something    |Edge   |
-  |2   |Verify something|Vertex |
-  |3   |Do something    |Edge   |
-  |4   |Verify something|Vertex |
-  |5   |Do something    |Edge   |
-  |6   |Verify something|Vertex |
-  |:   |:               |:      |
+  |Step|Label           |Element type|
+  |----|----------------|------------|
+  |1   |Do something    |Edge        |
+  |2   |Verify something|Vertex      |
+  |3   |Do something    |Edge        |
+  |4   |Verify something|Vertex      |
+  |5   |Do something    |Edge        |
+  |6   |Verify something|Vertex      |
+  |:   |:               |:           |
   {: style="color:gray; font-size: 80%"}
 
 
@@ -51,7 +51,7 @@ toc: false
 
 ### Offline
 
-<a href="/content/resources/example_1.graphml" download="example_1.graphml"><img src="/images/example_1.png" alt="Model" align="right"/></a>
+<a download="example_1.graphml" href="/content/resources/example_1.graphml"><img src="/images/example_1.png" alt="Model" align="right"/></a>
 
 The path generation is done once. It's not directly connected to any test automation code. The path needs to be stored in some intermediate format, like on a file. Typically, the path is generated from command line, and the output stored on file. The content of the file is then used to drive your test.
 
