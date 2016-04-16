@@ -12,6 +12,8 @@ site_title: GraphWalker for testers
 # this appears in the html browser tab for the site title (seen mostly by search engines, not users)
 company_name: graphwalker.org
 # this appears in the footer
+google_analytics: UA-67286726-1
+# google analytics tracker
 github_editme_path: 
 # if you're using Github, provide the basepath to the branch you've created for reviews, following the sample here. if not, leave this value blank.
 disqus_shortname: GraphWalker
