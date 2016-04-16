@@ -58,6 +58,10 @@ entries:
       url: /websocket_api
       output: web
     
+    - title: GrapWalker Java API
+      url: /content/apidocs/index.html
+      output: web
+    
   - title: Examples
     output: web
     folderitems:
