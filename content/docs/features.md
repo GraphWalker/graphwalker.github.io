@@ -14,17 +14,17 @@ toc: false
 * From a given set of graphs, generators and stop conditions, GraphWalker will generate a path through the graphs.<br>{: style=""}
 
   Your Model-Based test design consists of 1 or many graphs. Each graph will have it's own set of generator(s) and stop conditions(s). Only when all stop conditions for all generators in all graphs are fulfilled, the generation of the path is done.
-  {: style="color:gray; font-size: 80%"}
+  {: style="color:gray; font-size: 90%"}
   
 * The path represents your test, or test case if you will.<br>{: style=""}
 
   The path is used by your test, to call the corresponding methods or functions in the order that is determined by the path.
-  {: style="color:gray; font-size: 80%"}
+  {: style="color:gray; font-size: 90%"}
 
 * The path is series of elements, the elements are pairs of edges and vertices.<br>{: style=""}
 
   It's like a test script, where an action is always followed by a verification. The path is like:<br>  
-  {: style="color:gray; font-size: 80%"}
+  {: style="color:gray; font-size: 90%"}
 
   |Step|Label           |Element type|
   |----|----------------|------------|
@@ -35,18 +35,18 @@ toc: false
   |5   |Do something    |Edge        |
   |6   |Verify something|Vertex      |
   |:   |:               |:           |
-  {: style="color:gray; font-size: 80%"}
+  {: style="color:gray; font-size: 90%"}
 
 
 * An edge represents an action, a transition.<br>{: style=""}
 
   An action could be an API call, a button clicked, a timeout. Anything that moves your System Under Test into a new state that you want to verify. But remember, there is no verification going on in the edge. That happens only in the vertex. 
-  {: style="color:gray; font-size: 80%"}
+  {: style="color:gray; font-size: 90%"}
 
 * A vertex represents verification(s).<br>{: style=""}
 
   A verification is where you would have assertions in your code. It' here where you verify that an API call returns the correct values. Or that a button click actually did close a dialog. Or that when the timeout should have occurred, the System Under Test triggered the expected event.*
-  {: style="color:gray; font-size: 80%"}
+  {: style="color:gray; font-size: 90%"}
 
 
 ### Offline
@@ -96,7 +96,22 @@ app_running
 
 ### Online
 
-The path generation is done during the execution of the test, run-time.
+<a download="ShoppingCart.graphml" href="/content/resources/ShoppingCart.graphml"><img src="/images/amazonShoppingCart_small.png" alt="Model" align="right"/></a>
+
+The path generation is done during the execution of the test, run-time. This means that GraphWalker needs to be embedded in your test automation code. This adds a bit of complexity, but the advantages are:
+
+* No need to handle the intermediate path sequences in files.<br>{: style=""}
+
+  GraphWalker 
+  {: style="color:gray; font-size: 90%"}
+  
+* Your test automation code has direct access to the graphs execution context.<br>{: style=""}
+
+  When GraphWalker generates paths, it keeps all data regarding the generation in an [execution context](https://github.com/GraphWalker/graphwalker-project/blob/b604d282087db9776ebf9c4887a1224dcb642567/graphwalker-core/src/main/java/org/graphwalker/core/machine/ExecutionContext.java). Your test can query for data in your model, and it can even change data in your model.
+  {: style="color:gray; font-size: 90%"}
+  
+  An example is the [Amazon example](https://github.com/GraphWalker/graphwalker-example/tree/master/java-amazon). The code at [ShoppingCartTest.java line 65](https://github.com/GraphWalker/graphwalker-example/blob/1c66dc315fd37ca362e66704d26f194bf3acc6bd/java-amazon/src/main/java/org/graphwalker/ShoppingCartTest.java#L65) shows how the current value for the property `num_of_books` is fetched from the model.
+  {: style="color:gray; font-size: 90%"}
 
 ## What GraphWalker does not do
 
