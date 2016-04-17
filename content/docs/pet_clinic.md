@@ -22,6 +22,7 @@ This is an example on how to implement a test using the [PetClinic Sample Applic
 ```
 git clone https://github.com/SpringSource/spring-petclinic.git
 cd spring-petclinic
+git reset --hard 482eeb1c217789b5d772f5c15c3ab7aa89caf279
 mvn tomcat7:run
 ```
 
