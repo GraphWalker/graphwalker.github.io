@@ -1,5 +1,6 @@
 ---
 title: The GraphWalker command line syntax
+summary: "GraphWalker is a open source Model-based testing tool for test automation. The command line interface, cli, syntax, options and commands are explained here."
 tags: [cli]
 keywords: cli, documentation, command line, syntax
 sidebar: sidebar
