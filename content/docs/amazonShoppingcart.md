@@ -1,5 +1,6 @@
 ---
 title: Amazon Shopping Cart
+summary: "GraphWalker is a open source Model-based testing tool for test automation. This page is an example where a test is designed using a Use Case document, and where requirement tracking is used. It's a working example."
 tags: [example]
 keywords: example
 sidebar: sidebar
