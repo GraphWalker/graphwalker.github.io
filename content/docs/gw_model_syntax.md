@@ -1,5 +1,6 @@
 ---
 title: GraphWalker modeling syntax when using yEd
+summary: "GraphWalker is a open source Model-based testing tool for test automation. When modelling for GraphWalker using the yEd editor, there's a special syntax and rule set to follow, this pages explains how."
 tags: [documentation]
 keywords: documentation
 sidebar: sidebar
