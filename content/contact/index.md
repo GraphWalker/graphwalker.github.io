@@ -1,5 +1,6 @@
 ---
 title: Contact
+summary: "GraphWalker is a Model-based testing tool for test automation. This page conatins information when you need to ask questions or to get support on GraphWalker."
 tags: [contact]
 keywords: contact
 sidebar: sidebar
