@@ -1,6 +1,6 @@
 ---
 title: Change Log for all releases
-summary: "GraphWalker is a Model-based testing tool for test automation. Latest release is 3.4.0, the change log and release notes is found here."
+summary: "GraphWalker is a open source Model-based testing tool for test automation. Latest release is 3.4.0, the change log and release notes is found here."
 tags: [change_log]
 keywords: changelog, release, notes
 sidebar: sidebar
