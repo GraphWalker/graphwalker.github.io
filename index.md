@@ -1,5 +1,6 @@
 ---
 title: Getting started overview
+description: GraphWalker is a Model-based testing tool for test automation. It's designed to make it easy to design your tests using graphs.
 tags: [getting_started]
 sidebar: sidebar
 type: homepage
