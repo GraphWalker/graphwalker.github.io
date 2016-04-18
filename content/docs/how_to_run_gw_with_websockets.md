@@ -1,5 +1,5 @@
 ---
-title: GraphWalker WebSopcket API
+title: GraphWalker WebSocket API
 keywords: websocket, example
 toc: false
 ---
@@ -13,7 +13,7 @@ Start GraphWalker from the command line using the standalone jar, using the **on
 ~~~
 java -jar graphwalker-<LATEST>.jar -d ALL online -p 8887
 ~~~
-Starts the WebSocker server, with full debug logging, on localhost, listing on port 8887<br>
+Starts the WebSocket server, with full debug logging, on localhost, listing on port 8887<br>
 See [Download](/download) how to get the latest version of GraphWalker.
 
 A client may connect to ws://localhost:8887. Try [Echo Test](http://www.websocket.org/echo.html).
@@ -29,7 +29,7 @@ A client may connect to ws://localhost:8887. Try [Echo Test](http://www.websocke
 When connected, a GraphWalker machine will be created on the server, which will serve this client only.
 When disconnected, the server will destroy the machine.
 
-## Spefification by Example and MBT test for the WebSocket Server
+## Specification by Example and MBT test for the WebSocket Server
 
 The graph below is an actual test where GraphWalker is testing itself. The graph also serves as a [Specification by Example](http://en.wikipedia.org/wiki/Specification_by_example). The specification dictates what API calls can be made given the current status. The test verifies that the implementation follows the design.
 

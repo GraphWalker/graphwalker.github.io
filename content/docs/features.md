@@ -1,7 +1,7 @@
 ---
 title: Features of GraphWalker
 summary: "GraphWalker is a open source Model-based testing tool for test automation. The features of GraphWalker are path generation both offline and online."
-tags: [introduction, workflow]
+tags: [introduction, work flow]
 keywords: features
 sidebar: sidebar
 permalink: /features/
@@ -133,5 +133,5 @@ GraphWalker does not interact with your system under test. You need some other t
 
 Today, the graphs are edited using an external tool called [yEd from yWorks](https://www.yworks.com/products/yed).
 
-A webeditor supporting editing of directed graphs is underway, and is expected to be included in the 4.0 release of GraphWalker.
+A web editor supporting editing of directed graphs is underway, and is expected to be included in the 4.0 release of GraphWalker.
 

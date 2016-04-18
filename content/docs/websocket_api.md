@@ -1,5 +1,5 @@
 ---
-title: GraphWalker WebSopcket API
+title: GraphWalker WebSocket API
 tags: [example]
 keywords: example
 sidebar: sidebar

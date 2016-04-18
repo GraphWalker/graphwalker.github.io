@@ -12,7 +12,7 @@ The message type is **loadModel**. Message types defines what type of informatio
 ### model.name
 The name of the model
 ### model.generator
-The generator(s) and the stop condition(s) asscoiated with this model. See also: [Path generators and stop conditions](/docs/path_generators_and_stop_conditions)
+The generator(s) and the stop condition(s) associated with this model. See also: [Path generators and stop conditions](/docs/path_generators_and_stop_conditions)
 ### model.vertices
 A list of the vertices in the model.
 #### model.vertices[].name
@@ -34,9 +34,9 @@ The destination vertex id of the edge. The id must exist in the model.vertices[]
 #### model.edges[].startElement
 This sets the current edge as the starting element in the graph. This is where the execution starts.
 #### model.edges[].actions
-A list of actiona that should be executed when the edge is visited. The default is javascript.
+A list of action's that should be executed when the edge is visited. The default is java script.
 #### model.edges[].actions[].action
-The actions. It represents 1 javascript statement. The statement must be terminated with a semicolon
+The actions. It represents 1 java script statement. The statement must be terminated with a semicolon
 
 # Example
 ~~~

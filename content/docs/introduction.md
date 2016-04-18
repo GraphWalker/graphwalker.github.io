@@ -1,8 +1,8 @@
 ---
 title: Introduction to using GraphWalker
-summary: "GraphWalker is a open source Model-based testing tool for test automation. This is an introduction to GraphWalker. It explains the workflow and process designing a test."
-tags: [introduction, workflow]
-keywords: introduction, workflow
+summary: "GraphWalker is a open source Model-based testing tool for test automation. This is an introduction to GraphWalker. It explains the work flow and process designing a test."
+tags: [introduction, work flow]
+keywords: introduction, work flow
 sidebar: sidebar
 permalink: /introduction/
 toc: false
@@ -36,7 +36,7 @@ Just designing a test for the 2 first steps, a model would look something like t
 
 2. In **e_Init**, we remove all cache, and kill any previous client processes. Since the test might be restarted, stored credentials on the disk might still lie around, so we need to get rid of it. Also, restarted tests could have stopped in a state, where the client still is running.
 
-3. **v_ClientNotRunning** will assert that there is no spotify client process running.
+3. **v_ClientNotRunning** will assert that there is no Spotify client process running.
 
 4. **e_Start** starts the client.
 
@@ -229,7 +229,7 @@ Using Maven and the complete model above create all the stub code needed.
 
 The last command will automatically generate an interface of the model in Login.graphml.The interface is found in the folder **target/generated-sources/graphwalker/**. 
 
-If you check your folder, it willl contain following files and folders:
+If you check your folder, it will contain following files and folders:
 
 ```
 %> tree
@@ -262,11 +262,11 @@ If you check your folder, it willl contain following files and folders:
 
 Your job is now to implement that interface, which means filling in the missing code into the methods in the class that implements the interface. First you have to find the right tool for the job. Depending on you System Under Test(SUT) , it could typically be::
  * [Selenium Web Driver](http://www.seleniumhq.org/): if your SUT is a web browser
- * [Sikuli](http://www.sikuli.org/): if your SUT is a desktop native GUI client, where you dont have access to it's source code.
+ * [Sikuli](http://www.sikuli.org/): if your SUT is a desktop native GUI client, where you don't have access to it's source code.
 
 ### Implementing a test
 
-The code below is a stub. It does not interact with any real system under test. The lines containing the **System.out.println** inidicates where code that interacts with a system under test should end up.
+The code below is a stub. It does not interact with any real system under test. The lines containing the **System.out.println** indicates where code that interacts with a system under test should end up.
 
 Copy and paste following and save it as **src/test/java/org/myorg/testautomation/SimpleTest.java**:
 

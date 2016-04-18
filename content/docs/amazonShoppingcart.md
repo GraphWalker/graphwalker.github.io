@@ -74,7 +74,7 @@ The annotation does following 3 things:
 
 ## Always dry run your models!
 
-You should alway verify your graphs before running your tests. You need to check that they don't misbehave, and doing that is very easy. 
+You should always verify your graphs before running your tests. You need to check that they don't misbehave, and doing that is very easy. 
 
 * [Download the standalone jar file](/download/)
 * From your command line, run:

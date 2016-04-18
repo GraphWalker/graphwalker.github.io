@@ -73,7 +73,7 @@ When opened in yEd, the models will look like this:
 
 <img src="https://raw.githubusercontent.com/GraphWalker/graphwalker-example/master/java-petclinic/src/main/resources/com/company/FindOwnersSharedState.png" alt="FindOwners">
 
-### The Veterinariens model
+### The Veterinarians model
 
 <img src="https://raw.githubusercontent.com/GraphWalker/graphwalker-example/master/java-petclinic/src/main/resources/com/company/VeterinariensSharedState.png" alt="Veterinariens">
 

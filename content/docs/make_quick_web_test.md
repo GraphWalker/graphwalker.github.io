@@ -28,7 +28,7 @@ The developers tool chain we will be using for this example is:
  * Latest FireFox installed
  * Java JDK 7
  * [Maven](http://lmgtfy.com/?q=how+to+install+maven)
- * Use you favorite Java IDE, perhaps Eclipse or Intellij
+ * Use you favorite Java IDE, perhaps Eclipse or IntelliJ
  * Selenium Web Driver, to interact with our System Under Test, *SUT*.
 
 ### Initiate the maven project
@@ -43,7 +43,7 @@ The run the test:
 %> mvn org.graphwalker:graphwalker-maven-plugin:3.0.0-RC1:test
 ~~~
 
-So we made a test run. But nothing really happend... So we need to add Selenium to the soup. Add
+So we made a test run. But nothing really happened... So we need to add Selenium to the soup. Add
 ~~~
 <dependency>
   <groupId>org.seleniumhq.selenium</groupId>

@@ -1,12 +1,12 @@
 ---
 title: What is a FSM and a EFSM?
-keywords: fsm, efsm, finit state machine
+keywords: fsm, efsm, finite state machine
 toc: false
 ---
 
 
 
-GraphWalker uses 2 different state machines. The **finite** and the **extended finte state machine**.
+GraphWalker uses 2 different state machines. The **finite** and the **extended finite state machine**.
 The difference is that the EFSM has the capabilities to add "if-statements" for the edges.
 
 ## FSM - Finite State Machine

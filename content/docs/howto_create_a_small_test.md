@@ -292,10 +292,10 @@ The code explained row by row:
 7. Name the start vertex to: **vertex1**.
 8. Create a new vertex, and set that as the target for the edge.
 9. Name the vertex: **vertex2**.
-10. Add an action the the edge. The action is javascript code that will execute when the edge is executed.
+10. Add an action the the edge. The action is java script code that will execute when the edge is executed.
 11. Build the model (make it immutable), and give it to the execution context.
 12. Create a path generator, and it's stop condition, and give it to the execution context.
-13. Set the start vertex as the starting point of the excution of the model.
+13. Set the start vertex as the starting point of the execution of the model.
 14. Create the machine that will control the execution.
 15. As long as the stop condition of the path generator is not fulfilled, **hasNext** will return **true**.
 16. Execute the next step of the model.

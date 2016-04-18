@@ -16,7 +16,7 @@ Adding prefixes on labels for edges and vertices is a practice that helps the im
 
 ### Aspect Oriented Programming using [AspectJ](https://eclipse.org/aspectj/)
 
-*[GraphWalker has an implemententation of the Observer pattern](https://github.com/GraphWalker/graphwalker-project/blob/master/graphwalker-core/src/test/java/org/graphwalker/core/event/ObserverTest.java), which essentially removes the need of using AspectJ for edges and vertices*
+*[GraphWalker has an implementation of the Observer pattern](https://github.com/GraphWalker/graphwalker-project/blob/master/graphwalker-core/src/test/java/org/graphwalker/core/event/ObserverTest.java), which essentially removes the need of using AspectJ for edges and vertices*
 
 Using AspectJ when programming in Java can be very helpful. An example could be logging results or taking screen shots. These actions could be performed in various ways:
 * Take a screen shot just before a call to a vertex.
