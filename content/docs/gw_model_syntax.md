@@ -64,7 +64,7 @@ The guard is a conditional expression enclosed between square brackets:
 The above means that if the attribute loggedIn equals to true, the edge is accessible.
 
 ### Action - Only for an edge
-Action is a mechanism only associated to edges. This is java script code that we want to execute in the model. It's placed after a forward slash. Each statement must be ended with a semicolon.
+Action is a mechanism only associated to edges. This is javascript code that we want to execute in the model. It's placed after a forward slash. Each statement must be ended with a semicolon.
 ~~~
 /loggedIn=false; rememberMe=true;
 ~~~

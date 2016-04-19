@@ -34,9 +34,9 @@ The destination vertex id of the edge. The id must exist in the model.vertices[]
 #### model.edges[].startElement
 This sets the current edge as the starting element in the graph. This is where the execution starts.
 #### model.edges[].actions
-A list of action's that should be executed when the edge is visited. The default is java script.
+A list of action's that should be executed when the edge is visited. The default is javascript.
 #### model.edges[].actions[].action
-The actions. It represents 1 java script statement. The statement must be terminated with a semicolon
+The actions. It represents 1 javascript statement. The statement must be terminated with a semicolon
 
 # Example
 ~~~
