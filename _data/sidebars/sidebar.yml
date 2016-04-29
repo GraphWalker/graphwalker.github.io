@@ -82,7 +82,6 @@ entries:
       url: /websocket-getdata
       output: web
 
-
     - title: visitedElement
       url: /websocket-visitedelement
       output: web
@@ -103,7 +102,10 @@ entries:
       url: /c-sharp-example
       output: web
     
-
+    - title: Appium example
+      url: /appium-example
+      output: web
+    
   - title: Download
     output: web
     folderitems:
