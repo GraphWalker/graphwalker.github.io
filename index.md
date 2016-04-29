@@ -11,7 +11,7 @@ toc: false
 
 GraphWalker is a [Model-Based testing](https://en.wikipedia.org/wiki/Model-based_testing) tool. It reads models in the shape of [directed graphs](https://en.wikipedia.org/wiki/Directed_graph), and generate [test] paths from these graphs.
 
-<img src="images/Login-small.png" alt="Model" align="right">
+<img src="/images/Login-small.png" alt="Model" align="right">
 
 A model can look like the one to the right. The model is collection of arrows and nodes and together they create a graph.
 
