@@ -63,7 +63,12 @@ sudo npm install -g appium
 ```
 
 2. Start android emulator.<br>
-The test is only verified running the Android emulator using Nexus 7, 2012 with API 19.
+The test is only verified running the Android emulator using Nexus 7, 2012 with API 19. From command line on a linux box:
+
+```
+emulator -avd Nexus_5X_API_23
+```
+
 3. Start appium
 4. To run the test:
 
