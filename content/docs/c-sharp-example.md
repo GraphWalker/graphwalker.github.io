@@ -57,7 +57,7 @@ hasNext returned true
 
 <img src="/images/SmallModel.png" alt="SmallModel">
 
-When executed, the SmallModel program will connect to the GraphWalker service, load and start running a [model in JSON notation](https://github.com/GraphWalker/graphwalker-example/blob/b24d6fe35c04cf2ee6b9fbad2f06b9d2c72e0358/c-sharp-websocket/SmallModel/SmallModel/Program.cs#L144-L191).
+When executed, the SmallModel program will connect to the GraphWalker service, load and start running a [model in JSON notation](https://github.com/GraphWalker/graphwalker-example/blob/eaf01de97a1c2ef28eed404ef78d30eb959f7959/c-sharp-websocket/SmallModel/SmallModel/Program.cs#L144-L212).
 
 The GraphWalker Websocket service will get messages from [Program.cs](https://github.com/GraphWalker/graphwalker-example/blob/b24d6fe35c04cf2ee6b9fbad2f06b9d2c72e0358/c-sharp-websocket/SmallModel/SmallModel/Program.cs), and query the service for steps to execute. The steps are implemented in C# code in [SmallModel.cs](https://github.com/GraphWalker/graphwalker-example/blob/b24d6fe35c04cf2ee6b9fbad2f06b9d2c72e0358/c-sharp-websocket/SmallModel/SmallModel/SmallModel.cs)
 
