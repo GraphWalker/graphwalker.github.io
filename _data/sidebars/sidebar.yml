@@ -46,16 +46,48 @@ entries:
       url: /yed_model_syntax
       output: web
     
-    - title: The command line
-      url: /cli
-      output: web
-    
     - title: Generators and Stop Conditions
       url: /generators_and_stop_conditions
       output: web
     
     - title: GrapWalker Java API
       url: /content/apidocs/index.html
+      output: web
+    
+  - title: The Command Line Interface
+    output: web
+    folderitems:
+
+    - title: Overview and Global Options
+      url: /cli-overview
+      output: web
+    
+    - title: offline
+      url: /cli-offline
+      output: web
+    
+    - title: online
+      url: /cli-online
+      output: web
+    
+    - title: methods
+      url: /cli-methods
+      output: web
+    
+    - title: requirements
+      url: /cli-requirements
+      output: web
+    
+    - title: source
+      url: /cli-source
+      output: web
+    
+    - title: convert
+      url: /cli-convert
+      output: web
+    
+    - title: check
+      url: /cli-check
       output: web
     
   - title: Websocket API
