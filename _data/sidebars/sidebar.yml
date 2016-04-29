@@ -54,14 +54,39 @@ entries:
       url: /generators_and_stop_conditions
       output: web
     
-    - title: The Websocket API
-      url: /websocket_api
-      output: web
-    
     - title: GrapWalker Java API
       url: /content/apidocs/index.html
       output: web
     
+  - title: Websocket API
+    output: web
+    folderitems:
+
+    - title: Overview
+      url: /websocket-overview
+      output: web
+
+    - title: start
+      url: /websocket-start
+      output: web
+
+    - title: getNext
+      url: /websocket-getnext
+      output: web
+
+    - title: hasNext
+      url: /websocket-hasnext
+      output: web
+
+    - title: getData
+      url: /websocket-getdata
+      output: web
+
+
+    - title: visitedElement
+      url: /websocket-visitedelement
+      output: web
+      
   - title: Examples
     output: web
     folderitems:
