@@ -74,5 +74,5 @@ mvn graphwalker:test
 ```
 
 
-<img src="/main/resources/org/graphwalker/appium/NotesList.png" alt="Model">
+<img src="/images/NotesList.png" alt="Model">
 
