@@ -74,6 +74,10 @@ entries:
       url: /amazonShoppingCart
       output: web
     
+    - title: Simple C# example using Websocket
+      url: /c-sharp-example
+      output: web
+    
 
   - title: Download
     output: web
