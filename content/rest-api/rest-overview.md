@@ -31,7 +31,7 @@ java -jar graphwalker-cli-3.4.0.jar online --service RESTFUL --port 9999
 Start GraphWalker REST, using default port, full debug, and a graphml model
 
 ```
-java -jar graphwalker-cli-3.4.0.jar -d all online --service RESTFUL -m ShoppingCart.graphml "random(edge_coverage(100))"
+java -jar graphwalker-cli-3.4.0.jar -d all online -s RESTFUL -m ShoppingCart.graphml "random(edge_coverage(100))"
 ```
 
 See more about [command line options here](/cli-online/).
