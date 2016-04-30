@@ -17,7 +17,7 @@ Create a file in `/usr/local/bin/gw3` with following content:
 
 ```
 #!/bin/bash
-java -jar /home/krikar/dev/mbt/gw3/graphwalker-cli/target/graphwalker-cli-3.N.N-SNAPSHOT.jar "$@"
+java -jar /home/krikar/dev/mbt/gw3/graphwalker-cli/target/graphwalker-cli-3.4.0.jar "$@"
 ```
 
 Set the execution flag

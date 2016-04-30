@@ -90,6 +90,46 @@ entries:
       url: /cli-check
       output: web
     
+  - title: REST API
+    output: web
+    folderitems:
+
+    - title: Overview
+      url: /rest-overview
+      output: web
+
+    - title: load
+      url: /rest-load
+      output: web
+
+    - title: hasNext
+      url: /rest-hasnext
+      output: web
+
+    - title: getNext
+      url: /rest-getnext
+      output: web
+
+    - title: getData
+      url: /rest-getdata
+      output: web
+
+    - title: setData
+      url: /rest-setdata
+      output: web
+
+    - title: restart
+      url: /rest-restart
+      output: web
+
+    - title: fail
+      url: /rest-fail
+      output: web
+
+    - title: getStatistics
+      url: /rest-getstatistics
+      output: web
+
   - title: Websocket API
     output: web
     folderitems:

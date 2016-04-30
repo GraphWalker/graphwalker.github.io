@@ -12,7 +12,7 @@ toc: false
 
 
 ## getData
-The Websocket message command `getData` is used to ask GraphWalker for the current data contents of the current model.
+The Websocket message command `getData` is used to ask GraphWalker for the current data values of the current model.
  
 **Request**
 
