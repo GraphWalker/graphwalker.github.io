@@ -16,16 +16,22 @@ or loaded on command line.
 
 ## Command line example
 
-Start GraphWalker Restful service on default port 8887 and debug level set to ALL.
+Start GraphWalker REST service on default port 8887 and debug level set to ALL.
 
 ```
 java -jar graphwalker-cli-3.4.0.jar --debug all online --service RESTFUL
 ```
 
-Start GraphWalker Websocket service on port 9999 with no debug level.
+Start GraphWalker REST service on port 9999 with no debug level.
 
 ```
 java -jar graphwalker-cli-3.4.0.jar online --service RESTFUL --port 9999
+```
+
+Start GraphWalker REST, using default port, full debug, and a graphml model
+
+```
+java -jar graphwalker-cli-3.4.0.jar -d all online --service RESTFUL -m ShoppingCart.graphml "random(edge_coverage(100))"
 ```
 
 See more about [command line options here](/cli-online/).
