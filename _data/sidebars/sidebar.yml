@@ -158,6 +158,30 @@ entries:
       url: /websocket-visitedelement
       output: web
       
+  - title: File formats
+    output: web
+    folderitems:
+
+    - title: JSON - overview
+      url: /json-overview
+      output: web
+
+    - title: JSON - model
+      url: /json-model
+      output: web
+
+    - title: JSON - edge
+      url: /json-edge
+      output: web
+
+    - title: JSON - vertex
+      url: /json-vertex
+      output: web
+
+    - title: JSON - action
+      url: /json-action
+      output: web
+
   - title: Examples
     output: web
     folderitems:
@@ -165,7 +189,7 @@ entries:
     - title: PetClinic
       url: /petclinic
       output: web
-    
+
     - title: Amazon Shopping Cart
       url: /amazonShoppingCart
       output: web
