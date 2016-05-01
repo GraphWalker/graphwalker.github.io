@@ -54,7 +54,7 @@ entries:
       url: /content/apidocs/index.html
       output: web
     
-  - title: The Command Line Interface
+  - title: Command Line Interface
     output: web
     folderitems:
 
