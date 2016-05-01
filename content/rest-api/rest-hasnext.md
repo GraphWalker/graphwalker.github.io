@@ -14,7 +14,7 @@ toc: false
 The Rest call `hasNext` queries the service if there is anymore elements to fetch. If yes, then the fulfilment
   of the stop conditions has not yet been reached.
  
-**POST Request**
+**GET Request**
 
 http://service-host:8887/graphwalker/hasNext
 
