@@ -1,5 +1,5 @@
 ---
-title: C-Sharp Example
+title: C-Sharp Websocket Example
 tags: [example]
 keywords: example
 sidebar: sidebar

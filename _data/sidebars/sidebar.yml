@@ -194,10 +194,14 @@ entries:
       url: /amazonShoppingCart
       output: web
     
+    - title: Simple C# example using REST
+      url: /c-sharp-rest-example
+      output: web
+
     - title: Simple C# example using Websocket
       url: /c-sharp-example
       output: web
-    
+
     - title: Appium example
       url: /appium-example
       output: web
