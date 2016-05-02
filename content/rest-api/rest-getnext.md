@@ -15,7 +15,7 @@ The `getNext` is used to get the next element from the path generation. GraphWal
 given the path generator, calculate what the next element should be, and step one step forward in the execution of
 the model. The element name is returned in the response.
  
-**POST Request**
+**GET Request**
 
 http://service-host:8887/graphwalker/getNext
 
