@@ -36,3 +36,8 @@ java -jar graphwalker-cli-3.4.0.jar -d all online -s RESTFUL -m ShoppingCart.gra
 
 See more about [command line options here](/cli-online/).
 
+
+## Example code
+
+There is an example at [C Sharp REST Small Model example](https://github.com/GraphWalker/graphwalker-example/tree/master/c-sharp-rest/SmallModel)
+
