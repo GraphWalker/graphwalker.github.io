@@ -29,7 +29,7 @@ cd graphwalker-project
 mvn package -pl graphwalker-cli -am
 ```
 
-You will fine the jar in:
+The location of the jar file is:
 
 ```
 graphwalker-cli/target/graphwalker-cli-3.4.0.jar
