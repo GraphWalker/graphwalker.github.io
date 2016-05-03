@@ -26,6 +26,10 @@ entries:
       url: /features
       output: web
 
+    - title: How to build it
+      url: /how-to-build-it
+      output: web
+
     - title: Support
       url: /contact
       output: web
