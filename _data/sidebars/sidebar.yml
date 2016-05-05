@@ -162,6 +162,34 @@ entries:
       url: /websocket-visitedelement
       output: web
       
+  - title: Maven plugins
+    output: web
+    folderitems:
+
+    - title: graphwalker:generate-sources
+      url: /maven-generate-sources
+      output: web
+
+    - title: graphwalker:generate-test-sources
+      url: /maven-generate-test-sources
+      output: web
+
+    - title: graphwalker:test
+      url: /maven-test
+      output: web
+
+    - title: graphwalker:validate-models
+      url: /maven-validate-models
+      output: web
+
+    - title: graphwalker:validate-test-models
+      url: /maven-validate-test-models
+      output: web
+
+    - title: graphwalker:watch
+      url: /maven-watch
+      output: web
+
   - title: File formats
     output: web
     folderitems:
