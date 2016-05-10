@@ -226,11 +226,15 @@ entries:
       url: /amazonShoppingCart
       output: web
     
-    - title: Simple C# example using REST
+    - title: PetClinic using C# and REST
+      url: /example-c-sharp-pet-clinic
+      output: web
+
+    - title: C#  REST and a Small Model
       url: /c-sharp-rest-example
       output: web
 
-    - title: Simple C# example using Websocket
+    - title: C# using Websocket
       url: /c-sharp-example
       output: web
 
