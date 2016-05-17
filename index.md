@@ -26,7 +26,7 @@ Have a look at what features [GraphWalker offers](/features/).
 
 ## How to get it
 
-Either [download the standalone jar file](/download/), or include GraphWalker in your java project. The latest release version is 3.4.0.
+Either [download the standalone jar file](/download/), or include GraphWalker in your java project. The latest release version is 3.4.1.
 
 In your maven project, add this to your pom.xml file:
 
@@ -34,7 +34,7 @@ In your maven project, add this to your pom.xml file:
 <dependency>
    <groupId>org.graphwalker</groupId>
    <artifactId>graphwalker-core</artifactId>
-   <version>3.4.0</version>
+   <version>3.4.1</version>
 </dependency>
 ```
 

@@ -19,13 +19,13 @@ The models has to be uploaded using the [Websocket start API call](/websocket-st
 Start GraphWalker Websocket service on default port 8887 and debug level set to ALL.
 
 ```
-java -jar graphwalker-cli-3.4.0.jar --debug all online
+java -jar graphwalker-cli-3.4.1.jar --debug all online
 ```
 
 Start GraphWalker Websocket service on port 9999 with no debug level.
 
 ```
-java -jar graphwalker-cli-3.4.0.jar online --port 9999 --service WEBSOCKET
+java -jar graphwalker-cli-3.4.1.jar online --port 9999 --service WEBSOCKET
 ```
 
 See more about [command line options here](/cli-online/).

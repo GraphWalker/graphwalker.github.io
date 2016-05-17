@@ -32,5 +32,5 @@ mvn package -pl graphwalker-cli -am
 The location of the jar file is:
 
 ```
-graphwalker-cli/target/graphwalker-cli-3.4.0.jar
+graphwalker-cli/target/graphwalker-cli-3.4.1.jar
 ```

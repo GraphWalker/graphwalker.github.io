@@ -12,7 +12,7 @@ This is an example on how to use GraphWalker's Websocket in order to run tests w
 
 ## Pre-requisites
 
-* Download [latest GraphWalker standalone jar](http://graphwalker.github.io/content/archive/graphwalker-cli-3.4.0.jar) 
+* Download [latest GraphWalker standalone jar](http://graphwalker.github.io/content/archive/graphwalker-cli-.jar) 
 * Java JRE version 8 installed
 * C# installed
 * git installed
@@ -29,7 +29,7 @@ cd graphwalker-example/c-sharp-websocket/SmallModel
 In a terminal, start GraphWalker as a Websocket service
 
 ```
-java -jar graphwalker-cli-3.4.0.jar -d all online
+java -jar graphwalker-cli-3.4.1.jar -d all online
 ```
 
 In the folder of `graphwalker-example/c-sharp-websocket/SmallModel` build the C# project, on linux:

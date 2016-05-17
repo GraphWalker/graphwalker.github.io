@@ -8,8 +8,33 @@ permalink: /changelog/
 toc: false
 ---
 
-## [3.4.0](https://github.com/GraphWalker/graphwalker-project/tree/3.4.0) (2016-04-15)
-[Full Changelog](https://github.com/GraphWalker/graphwalker-project/compare/3.3.0...3.4.0)
+## [3.4.1](https://github.com/graphwalker/graphwalker-project/tree/3.4.1) (2016-05-17)
+[Full Changelog](https://github.com/graphwalker/graphwalker-project/compare/3.4.0...3.4.1)
+
+**Implemented enhancements:**
+
+- Simplify model creation for tests [\#52](https://github.com/GraphWalker/graphwalker-project/issues/52)
+
+**Fixed bugs:**
+
+- The REST API call getStatistics does not return correct stats [\#60](https://github.com/GraphWalker/graphwalker-project/issues/60)
+
+**Closed issues:**
+
+- Redirect graphwalker.org [\#50](https://github.com/GraphWalker/graphwalker-project/issues/50)
+- Create appium demo [\#41](https://github.com/GraphWalker/graphwalker-project/issues/41)
+- Update examples for 3.4.0 release [\#40](https://github.com/GraphWalker/graphwalker-project/issues/40)
+- Add detaild statistics method to org.graphwalker.java.test.Result [\#61](https://github.com/GraphWalker/graphwalker-project/issues/61)
+
+**Merged pull requests:**
+
+- Bug fixes for 3.4.1 [\#68](https://github.com/GraphWalker/graphwalker-project/pull/68) ([KristianKarl](https://github.com/KristianKarl))
+- Add a helper class for test models [\#67](https://github.com/GraphWalker/graphwalker-project/pull/67) ([nilols](https://github.com/nilols))
+- refactor core [\#66](https://github.com/GraphWalker/graphwalker-project/pull/66) ([nilols](https://github.com/nilols))
+- Updated version label to 4.0.0-SNAPSHOT [\#63](https://github.com/GraphWalker/graphwalker-project/pull/63) ([KristianKarl](https://github.com/KristianKarl))
+
+## [3.4.0](https://github.com/graphwalker/graphwalker-project/tree/3.4.0) (2016-04-15)
+[Full Changelog](https://github.com/graphwalker/graphwalker-project/compare/3.3.0...3.4.0)
 
 **Implemented enhancements:**
 
@@ -18,10 +43,10 @@ toc: false
 - New CLI command: convert [\#47](https://github.com/GraphWalker/graphwalker-project/issues/47)
 - Adding CLI command: source [\#45](https://github.com/GraphWalker/graphwalker-project/issues/45)
 - Added BLOCKED feature [\#44](https://github.com/GraphWalker/graphwalker-project/issues/44)
-- Added model checking, cli command: check [\#43](https://github.com/GraphWalker/graphwalker-project/issues/43)
+- Added modelchecking, cli command: check [\#43](https://github.com/GraphWalker/graphwalker-project/issues/43)
 - Added tests [\#42](https://github.com/GraphWalker/graphwalker-project/issues/42)
 - Remove tests from CLI in favor for IO [\#21](https://github.com/GraphWalker/graphwalker-project/issues/21)
-- Moving some tests to the maven verify build lifecycle  [\#16](https://github.com/GraphWalker/graphwalker-project/issues/16)
+- Moving some tests to the maven verify buildlifecycle  [\#16](https://github.com/GraphWalker/graphwalker-project/issues/16)
 - Bumping antlr to 4.5 fails unit tests in graphwalker-dsl [\#15](https://github.com/GraphWalker/graphwalker-project/issues/15)
 
 **Fixed bugs:**
@@ -51,8 +76,8 @@ toc: false
 - Refactor websocket and rest into separate  modules [\#18](https://github.com/GraphWalker/graphwalker-project/pull/18) ([KristianKarl](https://github.com/KristianKarl))
 - Fixed typo in README,'Floyd-Warshall algorithm' [\#14](https://github.com/GraphWalker/graphwalker-project/pull/14) ([SH4DY](https://github.com/SH4DY))
 
-## [3.3.0](https://github.com/GraphWalker/graphwalker-project/tree/3.3.0) (2015-04-14)
-[Full Changelog](https://github.com/GraphWalker/graphwalker-project/compare/3.2.1...3.3.0)
+## [3.3.0](https://github.com/graphwalker/graphwalker-project/tree/3.3.0) (2015-04-14)
+[Full Changelog](https://github.com/graphwalker/graphwalker-project/compare/3.2.1...3.3.0)
 
 **Closed issues:**
 
@@ -64,10 +89,9 @@ toc: false
 
 - 10 seconds not enough when running on Windows VM. [\#12](https://github.com/GraphWalker/graphwalker-project/pull/12) ([KristianKarl](https://github.com/KristianKarl))
 - overloading TestBuilder.execute with boolean flag [\#11](https://github.com/GraphWalker/graphwalker-project/pull/11) ([samarthgupta437](https://github.com/samarthgupta437))
-- Make QuickRandomPath start with currently unvisited elements [\#8](https://github.com/GraphWalker/graphwalker-project/pull/8) ([sedovmik](https://github.com/sedovmik))
 
-## [3.2.1](https://github.com/GraphWalker/graphwalker-project/tree/3.2.1) (2015-01-14)
-[Full Changelog](https://github.com/GraphWalker/graphwalker-project/compare/3.2.0...3.2.1)
+## [3.2.1](https://github.com/graphwalker/graphwalker-project/tree/3.2.1) (2015-01-14)
+[Full Changelog](https://github.com/graphwalker/graphwalker-project/compare/3.2.0...3.2.1)
 
 **Closed issues:**
 
@@ -75,25 +99,24 @@ toc: false
 - java: TestBuilder::execute returns null [\#6](https://github.com/GraphWalker/graphwalker-project/issues/6)
 - Need to be abled to exclude models from source generation [\#1](https://github.com/GraphWalker/graphwalker-project/issues/1)
 
-## [3.2.0](https://github.com/GraphWalker/graphwalker-project/tree/3.2.0) (2014-12-20)
-[Full Changelog](https://github.com/GraphWalker/graphwalker-project/compare/3.1.1...3.2.0)
+## [3.2.0](https://github.com/graphwalker/graphwalker-project/tree/3.2.0) (2014-12-20)
+[Full Changelog](https://github.com/graphwalker/graphwalker-project/compare/3.1.1...3.2.0)
 
 **Closed issues:**
 
 - Build error for java 8 [\#3](https://github.com/GraphWalker/graphwalker-project/issues/3)
 - Build error for java 8 [\#2](https://github.com/GraphWalker/graphwalker-project/issues/2)
 
-## [3.1.1](https://github.com/GraphWalker/graphwalker-project/tree/3.1.1) (2014-10-22)
-[Full Changelog](https://github.com/GraphWalker/graphwalker-project/compare/3.1.0...3.1.1)
+## [3.1.1](https://github.com/graphwalker/graphwalker-project/tree/3.1.1) (2014-10-22)
+[Full Changelog](https://github.com/graphwalker/graphwalker-project/compare/3.1.0...3.1.1)
 
-## [3.1.0](https://github.com/GraphWalker/graphwalker-project/tree/3.1.0) (2014-10-03)
-[Full Changelog](https://github.com/GraphWalker/graphwalker-project/compare/3.0.0...3.1.0)
+## [3.1.0](https://github.com/graphwalker/graphwalker-project/tree/3.1.0) (2014-10-03)
+[Full Changelog](https://github.com/graphwalker/graphwalker-project/compare/3.0.0...3.1.0)
 
-## [3.0.0](https://github.com/GraphWalker/graphwalker-project/tree/3.0.0) (2014-09-16)
-[Full Changelog](https://github.com/GraphWalker/graphwalker-project/compare/3.0.0-RC1...3.0.0)
+## [3.0.0](https://github.com/graphwalker/graphwalker-project/tree/3.0.0) (2014-09-16)
+[Full Changelog](https://github.com/graphwalker/graphwalker-project/compare/3.0.0-RC1...3.0.0)
 
-## [3.0.0-RC1](https://github.com/GraphWalker/graphwalker-project/tree/3.0.0-RC1) (2014-09-07)
+## [3.0.0-RC1](https://github.com/graphwalker/graphwalker-project/tree/3.0.0-RC1) (2014-09-07)
 
 
 \* *This Change Log was automatically generated by [github_changelog_generator](https://github.com/skywinder/Github-Changelog-Generator)*
-

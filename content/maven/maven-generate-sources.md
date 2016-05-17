@@ -32,10 +32,10 @@ user@host:~/graphwalker-project/graphwalker-cli$ mvn graphwalker:generate-source
 [INFO] Scanning for projects...
 [INFO]
 [INFO] ------------------------------------------------------------------------
-[INFO] Building GraphWalker Command Line Interface 3.4.0
+[INFO] Building GraphWalker Command Line Interface 3.4.1
 [INFO] ------------------------------------------------------------------------
 [INFO]
-[INFO] --- graphwalker-maven-plugin:3.4.0:generate-sources (default-cli) @ graphwalker-cli ---
+[INFO] --- graphwalker-maven-plugin:3.4.1:generate-sources (default-cli) @ graphwalker-cli ---
 [ERROR] No suitable context factory found
 [INFO] ------------------------------------------------------------------------
 [INFO] BUILD SUCCESS

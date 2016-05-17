@@ -80,7 +80,7 @@ You should always verify your graphs before running your tests. You need to chec
 * From your command line, run:
 
 ```
-java -jar graphwalker-cli-3.4.0.jar offline --start-element e_StartBrowser --model ShoppingCart.graphml "random(edge_coverage(100))"
+java -jar graphwalker-cli-3.4.1.jar offline --start-element e_StartBrowser --model ShoppingCart.graphml "random(edge_coverage(100))"
 {"currentElementName":"e_StartBrowser"}
 {"currentElementName":"v_BrowserStarted"}
 {"currentElementName":"e_EnterBaseURL"}
@@ -99,7 +99,7 @@ java -jar graphwalker-cli-3.4.0.jar offline --start-element e_StartBrowser --mod
 You can ask GraphWalker to be more verbose, and expose more data.
 
 ```
-java -jar graphwalker-cli-3.4.0.jar offline --verbose --start-element e_StartBrowser --model ShoppingCart.graphml "random(edge_coverage(100))"
+java -jar graphwalker-cli-3.4.1.jar offline --verbose --start-element e_StartBrowser --model ShoppingCart.graphml "random(edge_coverage(100))"
 {"modelName":"ShoppingCart","data":[{"num_of_books":"0"}],"currentElementID":"e0","currentElementName":"e_StartBrowser","properties":[{"description":"\n        \n          \n          \n          \n          e_StartBrowser\n          \n          \n        \n      "}]}
 {"modelName":"ShoppingCart","data":[{"num_of_books":"0"}],"currentElementID":"n1","currentElementName":"v_BrowserStarted","properties":[{"x":118.94031187996033},{"description":"Verify that the web browser is upp running. "},{"y":77.962890625}]}
 {"modelName":"ShoppingCart","data":[{"num_of_books":"0"}],"currentElementID":"e1","currentElementName":"e_EnterBaseURL","properties":[{"description":"\n        \n          \n          \n          \n          e_EnterBaseURL\n          \n          \n        \n      "}]}
@@ -116,7 +116,7 @@ java -jar graphwalker-cli-3.4.0.jar offline --verbose --start-element e_StartBro
 If you only want to see the element name, and the value of the `num_of_books`, you can try:
 
 ```
-java -jar graphwalker-cli-3.4.0.jar offline --verbose --start-element e_StartBrowser --model ShoppingCart.graphml "random(edge_coverage(100)) | jq -r '.currentElementName + ", " + (.data[] | .num_of_books) | tostring'"
+java -jar graphwalker-cli-3.4.1.jar offline --verbose --start-element e_StartBrowser --model ShoppingCart.graphml "random(edge_coverage(100)) | jq -r '.currentElementName + ", " + (.data[] | .num_of_books) | tostring'"
 e_StartBrowser, 0
 v_BrowserStarted, 0
 e_EnterBaseURL, 0

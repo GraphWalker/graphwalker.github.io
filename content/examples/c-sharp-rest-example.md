@@ -12,7 +12,7 @@ This example will run simulated test using GraphWalker started as a WebSocket RE
 
 ## Pre-requisites
 
-* Download [latest GraphWalker standalone jar](http://graphwalker.github.io/content/archive/graphwalker-cli-3.4.0.jar) 
+* Download [latest GraphWalker standalone jar](http://graphwalker.github.io/content/archive/graphwalker-cli-3.4.1.jar) 
 * Java JRE version 8 installed
 * C# installed
 * git installed
@@ -30,7 +30,7 @@ In a terminal, start GraphWalker as a REST service
 
 ```
 cd SmallModel
-java -jar graphwalker-cli-3.4.0.jar -d all online -s RESTFUL -m SmallModel.graphml "random(edge_coverage(100))"`
+java -jar graphwalker-cli-3.4.1.jar -d all online -s RESTFUL -m SmallModel.graphml "random(edge_coverage(100))"`
 May 02, 2016 3:02:55 PM com.sun.jersey.server.impl.application.WebApplicationImpl _initiate
 INFO: Initiating Jersey application, version 'Jersey: 1.18.3 12/01/2014 08:23 AM'
 May 02, 2016 3:02:55 PM org.glassfish.grizzly.http.server.NetworkListener start

@@ -62,7 +62,7 @@ Given the following graph [example_1.graphml](/content/resources/example_1.graph
 
 
 ```
-java -jar graphwalker-cli-3.4.0.jar offline --start-element app_closed --model example_1.graphml "random(edge_coverage(100))"
+java -jar graphwalker-cli-3.4.1.jar offline --start-element app_closed --model example_1.graphml "random(edge_coverage(100))"
 {"currentElementName":"app_closed"}
 {"currentElementName":"start_app"}
 {"currentElementName":"app_running"}
@@ -80,7 +80,7 @@ java -jar graphwalker-cli-3.4.0.jar offline --start-element app_closed --model e
 To make the output only print out the element names, we can use the [jq](https://stedolan.github.io/jq/) command, and run following instead:
 
 ```
-java -jar graphwalker-cli-3.4.0.jar offline --start-element app_closed --model example_1.graphml "random(edge_coverage(100))" | jq -r '.currentElementName'
+java -jar graphwalker-cli-3.4.1.jar offline --start-element app_closed --model example_1.graphml "random(edge_coverage(100))" | jq -r '.currentElementName'
 app_closed
 start_app
 app_running

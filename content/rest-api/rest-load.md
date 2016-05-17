@@ -33,7 +33,7 @@ Loading the Amazon shopping cart test to the REST service. All command are done 
 In a terminal, start the service:
 
 ```
-java -jar graphwalker-cli-3.4.0.jar --debug all online --service RESTFUL
+java -jar graphwalker-cli-3.4.1.jar --debug all online --service RESTFUL
 ```
 
 In some other terminal, assuming we have a file ShoppingCart.json containing:

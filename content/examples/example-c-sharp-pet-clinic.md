@@ -12,7 +12,7 @@ This is an example on how to implement a test using the [PetClinic Sample Applic
 
 ## Pre-requisites
 
-* Download [latest GraphWalker standalone jar](http://graphwalker.github.io/content/archive/graphwalker-cli-3.4.0.jar)
+* Download [latest GraphWalker standalone jar](http://graphwalker.github.io/content/archive/graphwalker-cli-3.4.1.jar)
 * Java JRE version 8 installed
 * Maven installed (version equal or greater than 3.2.3)
 * C# installed
@@ -42,7 +42,7 @@ cd graphwalker-example/c-sharp-rest/PetClinic/
 In a terminal, start GraphWalker as a REST service
 
 ```
-java -jar graphwalker-cli-3.4.0.jar -debug all online --verbose --service RESTFUL
+java -jar graphwalker-cli-3.4.1.jar -debug all online --verbose --service RESTFUL
 May 10, 2016 1:59:23 PM com.sun.jersey.server.impl.application.WebApplicationImpl _initiate
 INFO: Initiating Jersey application, version 'Jersey: 1.18.3 12/01/2014 08:23 AM'
 May 10, 2016 1:59:24 PM org.glassfish.grizzly.http.server.NetworkListener start
