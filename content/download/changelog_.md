@@ -8,6 +8,21 @@ permalink: /changelog/
 toc: false
 ---
 
+# Change Log
+
+## [Unreleased](https://github.com/graphwalker/graphwalker-project/tree/HEAD)
+
+[Full Changelog](https://github.com/graphwalker/graphwalker-project/compare/3.4.1...HEAD)
+
+**Fixed bugs:**
+
+- Conversion to json is not correct [\#65](https://github.com/GraphWalker/graphwalker-project/issues/65)
+
+**Merged pull requests:**
+
+- 3.4.2 [\#70](https://github.com/GraphWalker/graphwalker-project/pull/70) ([KristianKarl](https://github.com/KristianKarl))
+- Fix for issue \#60 [\#69](https://github.com/GraphWalker/graphwalker-project/pull/69) ([KristianKarl](https://github.com/KristianKarl))
+
 ## [3.4.1](https://github.com/graphwalker/graphwalker-project/tree/3.4.1) (2016-05-17)
 [Full Changelog](https://github.com/graphwalker/graphwalker-project/compare/3.4.0...3.4.1)
 
@@ -15,12 +30,9 @@ toc: false
 
 - Simplify model creation for tests [\#52](https://github.com/GraphWalker/graphwalker-project/issues/52)
 
-**Fixed bugs:**
-
-- The REST API call getStatistics does not return correct stats [\#60](https://github.com/GraphWalker/graphwalker-project/issues/60)
-
 **Closed issues:**
 
+- Create Model from RuntimeModel [\#59](https://github.com/GraphWalker/graphwalker-project/issues/59)
 - Redirect graphwalker.org [\#50](https://github.com/GraphWalker/graphwalker-project/issues/50)
 - Create appium demo [\#41](https://github.com/GraphWalker/graphwalker-project/issues/41)
 - Update examples for 3.4.0 release [\#40](https://github.com/GraphWalker/graphwalker-project/issues/40)
@@ -89,6 +101,7 @@ toc: false
 
 - 10 seconds not enough when running on Windows VM. [\#12](https://github.com/GraphWalker/graphwalker-project/pull/12) ([KristianKarl](https://github.com/KristianKarl))
 - overloading TestBuilder.execute with boolean flag [\#11](https://github.com/GraphWalker/graphwalker-project/pull/11) ([samarthgupta437](https://github.com/samarthgupta437))
+- Make QuickRandomPath start with currently unvisited elements [\#8](https://github.com/GraphWalker/graphwalker-project/pull/8) ([sedovmik](https://github.com/sedovmik))
 
 ## [3.2.1](https://github.com/graphwalker/graphwalker-project/tree/3.2.1) (2015-01-14)
 [Full Changelog](https://github.com/graphwalker/graphwalker-project/compare/3.2.0...3.2.1)
