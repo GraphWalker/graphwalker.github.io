@@ -19,19 +19,19 @@ or loaded on command line.
 Start GraphWalker REST service on default port 8887 and debug level set to ALL.
 
 ```
-java -jar graphwalker-cli-3.4.1.jar --debug all online --service RESTFUL
+java -jar graphwalker-cli-3.4.2.jar --debug all online --service RESTFUL
 ```
 
 Start GraphWalker REST service on port 9999 with no debug level.
 
 ```
-java -jar graphwalker-cli-3.4.1.jar online --service RESTFUL --port 9999
+java -jar graphwalker-cli-3.4.2.jar online --service RESTFUL --port 9999
 ```
 
 Start GraphWalker REST, using default port, full debug, and a graphml model
 
 ```
-java -jar graphwalker-cli-3.4.1.jar -d all online -s RESTFUL -m ShoppingCart.graphml "random(edge_coverage(100))"
+java -jar graphwalker-cli-3.4.2.jar -d all online -s RESTFUL -m ShoppingCart.graphml "random(edge_coverage(100))"
 ```
 
 See more about [command line options here](/cli-online/).

@@ -23,7 +23,7 @@ This command requires an input model file, and an input template.
 Generate python source code for the Login.graphml model,
 
 ```
-java -jar graphwalker-3.4.1-jar source -i Login.graphml python.template
+java -jar graphwalker-3.4.2-jar source -i Login.graphml python.template
 ```
 
 * [Login.graphml](https://raw.githubusercontent.com/GraphWalker/graphwalker-project/b604d282087db9776ebf9c4887a1224dcb642567/graphwalker-cli/src/test/resources/graphml/shared_state/Login.graphml)
@@ -68,10 +68,10 @@ HEADER<{{"{{"}}
 import requests,json
 ##
 ## 1) Generate python stub source code:
-##    java -jar graphwalker-3.4.1-jar source -i model.graphml python.template > model.py
+##    java -jar graphwalker-3.4.2-jar source -i model.graphml python.template > model.py
 ##
 ## 2) Start graphwalker:
-##    java -jar graphwalker-3.4.1.jar online --service RESTFUL -m model.graphml "random(edge_coverage(100))"
+##    java -jar graphwalker-3.4.2.jar online --service RESTFUL -m model.graphml "random(edge_coverage(100))"
 ##
 ## 3) Run the per program:
 ##    python model.py
@@ -103,10 +103,10 @@ use warnings;
 
 ##
 ## 1) Generate perl stub source code:
-##    java -jar graphwalker-3.4.1.jar source -i model.graphml perl.template > model.perl
+##    java -jar graphwalker-3.4.2.jar source -i model.graphml perl.template > model.perl
 ##
 ## 2) Start graphwalker:
-##    java -jar graphwalker-3.4.1.jar online -s RESTFUL -m model.graphml "random(edge_coverage(100))"
+##    java -jar graphwalker-3.4.2.jar online -s RESTFUL -m model.graphml "random(edge_coverage(100))"
 ##
 ## 3) Run the per program:
 ##    perl login.perl http://localhost:8887/graphwalker

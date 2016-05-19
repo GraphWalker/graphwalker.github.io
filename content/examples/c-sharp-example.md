@@ -29,7 +29,7 @@ cd graphwalker-example/c-sharp-websocket/SmallModel
 In a terminal, start GraphWalker as a Websocket service
 
 ```
-java -jar graphwalker-cli-3.4.1.jar -d all online
+java -jar graphwalker-cli-3.4.2.jar -d all online
 ```
 
 In the folder of `graphwalker-example/c-sharp-websocket/SmallModel` build the C# project, on linux:

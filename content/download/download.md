@@ -8,5 +8,5 @@ toc: false
 ---
 
 ## Standalone jar
-* [Latest stable standalone CLI - 3.4.1](/content/archive/graphwalker-cli-3.4.1.jar)
+* [Latest stable standalone CLI - 3.4.2](/content/archive/graphwalker-cli-3.4.2.jar)
 * [Latest development standalone CLI - 4.0.0-SNAPSHOT](/content/archive/graphwalker-cli-4.0.0-SNAPSHOT.jar)

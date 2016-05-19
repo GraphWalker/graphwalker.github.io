@@ -166,11 +166,11 @@ mvn graphwalker:test
 [INFO] Building GraphWalker Example 1.0-SNAPSHOT
 [INFO] ------------------------------------------------------------------------
 [INFO] 
-[INFO] >>> graphwalker-maven-plugin:3.4.1:test (default-cli) @ myProject >>>
+[INFO] >>> graphwalker-maven-plugin:3.4.2:test (default-cli) @ myProject >>>
 [INFO] 
-[INFO] --- graphwalker-maven-plugin:3.4.1:validate-models (default-cli) @ myProject ---
+[INFO] --- graphwalker-maven-plugin:3.4.2:validate-models (default-cli) @ myProject ---
 [INFO] 
-[INFO] --- graphwalker-maven-plugin:3.4.1:generate-sources (default-cli) @ myProject ---
+[INFO] --- graphwalker-maven-plugin:3.4.2:generate-sources (default-cli) @ myProject ---
 SLF4J: Failed to load class "org.slf4j.impl.StaticLoggerBinder".
 SLF4J: Defaulting to no-operation (NOP) logger implementation
 SLF4J: See http://www.slf4j.org/codes.html#StaticLoggerBinder for further details.
@@ -183,11 +183,11 @@ SLF4J: See http://www.slf4j.org/codes.html#StaticLoggerBinder for further detail
 [INFO] Changes detected - recompiling the module!
 [INFO] Compiling 2 source files to /home/krikar/Downloads/tmp/myProject/target/classes
 [INFO] 
-[INFO] --- graphwalker-maven-plugin:3.4.1:generate-test-sources (generate-test-sources) @ myProject ---
+[INFO] --- graphwalker-maven-plugin:3.4.2:generate-test-sources (generate-test-sources) @ myProject ---
 [INFO] 
-[INFO] --- graphwalker-maven-plugin:3.4.1:validate-test-models (default-cli) @ myProject ---
+[INFO] --- graphwalker-maven-plugin:3.4.2:validate-test-models (default-cli) @ myProject ---
 [INFO] 
-[INFO] --- graphwalker-maven-plugin:3.4.1:generate-test-sources (default-cli) @ myProject ---
+[INFO] --- graphwalker-maven-plugin:3.4.2:generate-test-sources (default-cli) @ myProject ---
 [INFO] 
 [INFO] --- maven-resources-plugin:2.3:testResources (default-testResources) @ myProject ---
 [INFO] Using 'UTF-8' encoding to copy filtered resources.
@@ -196,15 +196,15 @@ SLF4J: See http://www.slf4j.org/codes.html#StaticLoggerBinder for further detail
 [INFO] --- maven-compiler-plugin:3.1:testCompile (default-testCompile) @ myProject ---
 [INFO] Nothing to compile - all classes are up to date
 [INFO] 
-[INFO] <<< graphwalker-maven-plugin:3.4.1:test (default-cli) @ myProject <<<
+[INFO] <<< graphwalker-maven-plugin:3.4.2:test (default-cli) @ myProject <<<
 [INFO] 
-[INFO] --- graphwalker-maven-plugin:3.4.1:test (default-cli) @ myProject ---
+[INFO] --- graphwalker-maven-plugin:3.4.2:test (default-cli) @ myProject ---
 [INFO] ------------------------------------------------------------------------
 [INFO]   _____             _   _ _ _     _ _                                   
 [INFO]  |   __|___ ___ ___| |_| | | |___| | |_ ___ ___                         
 [INFO]  |  |  |  _| .'| . |   | | | | .'| | '_| -_|  _|                        
 [INFO]  |_____|_| |__,|  _|_|_|_____|__,|_|_,_|___|_|                          
-[INFO]                |_|         (3.4.1)                            
+[INFO]                |_|         (3.4.2)                            
 [INFO] ------------------------------------------------------------------------
 SLF4J: Failed to load class "org.slf4j.impl.StaticLoggerBinder".
 SLF4J: Defaulting to no-operation (NOP) logger implementation

@@ -19,10 +19,10 @@ user@host:~/graphwalker-project/graphwalker-cli$ mvn graphwalker:validate-models
 [INFO] Scanning for projects...
 [INFO]
 [INFO] ------------------------------------------------------------------------
-[INFO] Building GraphWalker Command Line Interface 3.4.1
+[INFO] Building GraphWalker Command Line Interface 3.4.2
 [INFO] ------------------------------------------------------------------------
 [INFO]
-[INFO] --- graphwalker-maven-plugin:3.4.1:validate-models (default-cli) @ graphwalker-cli ---
+[INFO] --- graphwalker-maven-plugin:3.4.2:validate-models (default-cli) @ graphwalker-cli ---
 [INFO] ------------------------------------------------------------------------
 [INFO] BUILD SUCCESS
 [INFO] ------------------------------------------------------------------------
