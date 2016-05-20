@@ -10,9 +10,9 @@ toc: false
 
 # Change Log
 
-## [Unreleased](https://github.com/graphwalker/graphwalker-project/tree/HEAD)
+## [3.4.2](https://github.com/graphwalker/graphwalker-project/tree/3.4.2) (2016-05-19)
 
-[Full Changelog](https://github.com/graphwalker/graphwalker-project/compare/3.4.1...HEAD)
+[Full Changelog](https://github.com/graphwalker/graphwalker-project/compare/3.4.1...3.4.2)
 
 **Fixed bugs:**
 
