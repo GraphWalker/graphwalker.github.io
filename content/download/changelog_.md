@@ -12,7 +12,7 @@ toc: false
 
 ## [3.4.2](https://github.com/graphwalker/graphwalker-project/tree/3.4.2) (2016-05-19)
 
-[Full Changelog](https://github.com/graphwalker/graphwalker-project/compare/3.4.1...3.4.2)
+[Full Changelog](https://github.com/graphwalker/graphwalker-project/compare/5fa5c7b28019f377e0cf7fbf3c913961c3c93ee4...56bbe6ffa80efa11140fcac5a844df95dad03118)
 
 **Fixed bugs:**
 
