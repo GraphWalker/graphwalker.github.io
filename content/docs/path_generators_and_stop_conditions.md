@@ -70,6 +70,10 @@ both models will stop executing after 60 seconds. Even if one of the models have
 
 This special stop condition will never halt the generator.
 
+### dependency_edge_coverage( an integer representing dependency treshold )
+
+The stop criteria is a percentage number. When, during execution, all of traversed edges with dependency higher or equal to the dependency treshold are reached, the test is stopped. If an edge is traversed more than one time, it still counts as 1, when calculating the percentage coverage.
+
 ## ***Examples***
 
 ```java
@@ -162,4 +166,9 @@ random((reached_vertex(v_SomeVertex) and vertex_coverage(100)) || time(5000))
  * Then we will start using the next strategy. Walk randomly for 1 hour
 /*
 random(reached_vertex(v_SomeVertex) and edge_coverage(100)) random(time(3600))
+
+/*
+ * Walk randomly, until all the edges with dependency higher or equal to 85% are reached
+/*
+random(dependency_edge_coverage(85))
 ```
