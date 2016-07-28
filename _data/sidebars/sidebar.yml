@@ -241,7 +241,8 @@ entries:
     - title: Appium example
       url: /appium-example
       output: web
-    - title: Dependency edge coverage example
+
+    - title: Dependency Edge Coverage Example
       url: /dependency-edge-coverage-example
       output: web
     
