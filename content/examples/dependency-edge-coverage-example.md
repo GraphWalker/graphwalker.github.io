@@ -80,10 +80,11 @@ cd graphwalker-example/c-sharp-websocket/SmallModel
 
 ## Run the test
 
-In a terminal, start GraphWalker as a Websocket service
+In a terminal, start GraphWalker as a REST service
 
 ```
-java -jar graphwalker-cli-3.4.2.jar -d all online
+java -jar graphwalker-cli-3.4.2.jar -d all online --service RESTFUL
+
 ```
 
 In the folder of `graphwalker-example/c-sharp-websocket/SmallModel` build the C# project, on linux:
