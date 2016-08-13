@@ -87,6 +87,13 @@ java -jar graphwalker-cli-3.4.2.jar -d all online --service RESTFUL
 
 ```
 
+Upload the model 'DependencyModel.json' to the service using curl (or you can use any tool to make a http post request to the REST service):
+
+```
+curl -vH "Content-Type: text/plain" --data @DependencyModel.json http://localhost:8887/graphwalker/load
+{"result":"ok"}
+```
+
 In the folder of `graphwalker-example/c-sharp-websocket/SmallModel` build the C# project, on linux:
 
 ```
@@ -97,81 +104,56 @@ Then run the test, on linux:
 
 ```
 mono SmallModel/bin/Debug/SmallModel.exe
-Will connect to GraphWalker server...                                                                                                   
-Connected!                                                                                                                              
-Receiving message: {"success":true,"command":"start"}                                                                                   
-GraphWalker machine started ok                                                                                                          
-Receiving message: {"success":true,"hasNext":true,"command":"hasNext"}                                                                  
-hasNext returned true
-:
-:
-:
 ```
 
 ## What happened
 
-<img src="/images/SmallModel.png" alt="SmallModel">
-
-When executed, the SmallModel program will connect to the GraphWalker service, load and start running a [model in JSON notation](https://github.com/GraphWalker/graphwalker-example/blob/eaf01de97a1c2ef28eed404ef78d30eb959f7959/c-sharp-websocket/SmallModel/SmallModel/Program.cs#L144-L212).
-
-The GraphWalker Websocket service will get messages from [Program.cs](https://github.com/GraphWalker/graphwalker-example/blob/b24d6fe35c04cf2ee6b9fbad2f06b9d2c72e0358/c-sharp-websocket/SmallModel/SmallModel/Program.cs), and query the service for steps to execute. The steps are implemented in C# code in [SmallModel.cs](https://github.com/GraphWalker/graphwalker-example/blob/b24d6fe35c04cf2ee6b9fbad2f06b9d2c72e0358/c-sharp-websocket/SmallModel/SmallModel/SmallModel.cs)
-
-The psuedo code would look something like the:
+After running the test we expect that graphwalker [follow this link to find out how does the SmallModel behave](http://graphwalker.github.io/c-sharp-example/) will stop running after visiting the edges that have dependency higher or equal to the one set in the model: random(dependency_edge_coverage(80))". The results below  show that only the edges with dependency higher or equal to 80%, such as e_FirstAction, e_AnotherAction, and e_SomeOtherAction have been visited. 
 
 ```
-while hasNext()
-  step = getNext()
-  "Call method step in C# SmallModel class"
-  invoke SmallModel.'step'
-  print getData()
-```
-
-The actual C# code that queries the Websocket service:
-
-```cs
-public void run ()
+SmallModel.e_FirstAction
+{}
+SmallModel.v_VerifySomeAction
+{}
+SmallModel.e_AnotherAction
+{}
+SmallModel.v_VerifySomeOtherAction
+{}
+SmallModel.e_SomeOtherAction
+{}
+SmallModel.v_VerifySomeOtherAction
+{}
 {
-  // Create the thread object, passing in the
-  // GraphWalkerClientWorker.connect method via a ThreadStart delegate.
-  // This does not start the thread.
-  GraphWalkerClientWorker worker = new GraphWalkerClientWorker ();
-  Thread workerThread = new Thread (worker.connect);
-
-  // Start the thread
-  workerThread.Start ();
-
-  // Spin for a while waiting for the started thread to become
-  // alive:
-  while (!workerThread.IsAlive)
-    ;
-
-  worker.connectedEvent.WaitOne ();
-
-  worker.start (model);
-  worker.startEvent.WaitOne ();
-
-  Type smallModelType = typeof(SmallModel);
-  ConstructorInfo ctor = smallModelType.GetConstructor(System.Type.EmptyTypes);
-
-  while (true) {
-    worker.hasNext ();
-    worker.hasNextEvent.WaitOne ();
-    if (!worker.isHasNext)
-      break;
-
-    worker.getNext ();
-    worker.getNextEvent.WaitOne ();
-    string methodName = (string)worker.getMessage();
-
-    object instance = ctor.Invoke(null);
-    MethodInfo methodInfo = smallModelType.GetMethod(methodName);
-    methodInfo.Invoke(instance, new object[]{});
-
-    worker.getData ();
-    worker.getDataEvent.WaitOne ();
-    Console.WriteLine("Data: " + worker.getDataObject().ToString());
-  }
-  worker.disconnect();
-  workerThread.Join ();
+  "totalFailedNumberOfModels": 0,
+  "totalNotExecutedNumberOfModels": 0,
+  "totalNumberOfUnvisitedVertices": 0,
+  "verticesNotVisited": [],
+  "totalNumberOfModels": 1,
+  "totalCompletedNumberOfModels": 1,
+  "totalNumberOfVisitedEdges": 3,
+  "totalIncompleteNumberOfModels": 0,
+  "edgesNotVisited": [
+    {
+      "modelName": "Dependency model",
+      "edgeId": "e3",
+      "edgeName": "e_SomeOtherAction"
+    }
+  ],
+  "result": "ok",
+  "vertexCoverage": 100,
+  "totalNumberOfEdges": 4,
+  "totalNumberOfVisitedVertices": 2,
+  "edgeCoverage": 75,
+  "totalNumberOfVertices": 2,
+  "totalNumberOfUnvisitedEdges": 1
 }
+
+```
+
+Moreover, in the summary part next to the detailed results,is concluded that the total number of completed models is 1, which is expected, the total number of visited edges is 3, and the total number of unvisited edges is 1 and that is:  
+
+```
+"modelName": "Dependency model",
+"edgeId": "e3",
+"edgeName": "e_SomeOtherAction"
 ```
