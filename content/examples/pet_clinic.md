@@ -56,6 +56,17 @@ Another video that uses [Graphstream](http://graphstream-project.org/) to visual
 <iframe width="420" height="315" src="https://www.youtube.com/embed/Ufe4XbaBe1o" frameborder="0" allowfullscreen></iframe>
 
 
+## Docker
+Another way of running the same test, is using [docker](https://www.docker.com/). The advantage is that Firefox with a specific version 47.0.1 is pre-installed, eliminating conflicts with newer versions of firefox and versions of selenium. Also, the petclinic webserver is installed and launched at startup automatically.
+You need to have docker installled on you machine. At this time, this is only confirmed to work on linux.
+
+```
+docker pull graphwalker/petclinic
+docker run -ti --rm -e DISPLAY -v /tmp/.X11-unix:/tmp/.X11-unix \
+    -v $HOME/.Xauthority:/home/developer/.Xauthority \
+    --net=host --pid=host --ipc=host graphwalker/petclinic
+```
+
 ## The Models - The Test Design
 The models can be found in folder:
 
