@@ -33,6 +33,17 @@ cd graphwalker-example/java-amazon
 mvn graphwalker:test
 ```
 
+## Docker
+Another way of running the same test, is using [docker](https://www.docker.com/). The advantage is that Firefox with a specific version 47.0.1 is pre-installed, eliminating conflicts with newer versions of firefox and versions of selenium. 
+You need to have docker installled on you machine. At this time, this is only confirmed to work on linux.
+
+```
+docker pull graphwalker/amazon
+docker run -ti --rm -e DISPLAY -v /tmp/.X11-unix:/tmp/.X11-unix \
+    -v $HOME/.Xauthority:/home/developer/.Xauthority \
+    --net=host --pid=host --ipc=host graphwalker/amazon
+```
+
 ## The graph
 
 The tests is designed using [yEd](http://www.yworks.com/en/products/yfiles/yed/). If you click on the graph to the right and save the file as ShoppingCart.graphml, you can open it in yEd and have a closer look at it.
