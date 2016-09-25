@@ -13,7 +13,7 @@ toc: false
 
  * Install Java JDK 7 or 8
  * Install [Maven](http://maven.apache.org/download.cgi)
- * Download [graphwalker-cli](http://graphwalker.org/archive/graphwalker.jar)
+ * Download [graphwalker-cli](http://graphwalker.github.io/download/)
 
 ## Test idea and design
 The purpose of the test design is to describe the **expected behavior of the system under test**. The way it works, is that you in a finite state diagram [model], express an action as a directed edge. An edge is also known as an arrow, arc or transition. The edge points to a vertex. Also known as a node or state, where the results or the consequence of the previous action is verified/asserted.
@@ -60,7 +60,7 @@ The complete model could look something like below:
 
 ### Verifying the correctness of the model
 
-Before venturing into the test coding part, we need to verify whether the model is correct according to GraphWalker syntax rules. [See GraphWalker modeling syntax](/docs/gw_model_syntax)
+Before venturing into the test coding part, we need to verify whether the model is correct according to GraphWalker syntax rules. [See GraphWalker modeling syntax](/yed_model_syntax)
 
 Download the model above by right-clicking on it, then select "Save link as...". Save it as Login.graphml.
 
