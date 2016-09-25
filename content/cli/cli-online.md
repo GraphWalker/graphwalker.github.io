@@ -12,7 +12,7 @@ toc: false
 
 Online testing means that a model-based testing tool connects directly to an SUT and tests it dynamically. GraphWalker will start as a WebSocket (default) or a HTTP REST server.
 
-[Read more about the difference between using GraphWalker as a RESTFUL or a WebSocket service](/docs/restful_vs_websocket)
+[Read more about the difference between using GraphWalker as a RESTFUL or a WebSocket service](/content/docs/restful_vs_websocket)
 
 Options
 
