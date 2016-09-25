@@ -12,7 +12,7 @@ This is an example on how to use GraphWalker's Websocket in order to run tests w
 
 ## Pre-requisites
 
-* Download [latest GraphWalker standalone jar](http://graphwalker.github.io/content/archive/graphwalker-cli-.jar) 
+* Download [latest GraphWalker standalone jar](/download) 
 * Java JRE version 8 installed
 * C# installed
 * git installed
