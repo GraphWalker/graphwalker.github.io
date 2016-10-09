@@ -44,4 +44,46 @@ Default is false.
 gw3 offline -m model.graphml "random(edge_coverage(100))"
 ```
 
-The above should be read like: Use the model ***model.graphml***, and generate a path using the random path generator, and stop when the edge coverage is 100%
+The above should be read like: Use the model ***model.graphml***, and generate a path using the random path generator,
+and stop when the edge coverage is 100%
+
+**Example:**<br>
+
+Using an offline sequence in a test,where the model used in this example is from the [Introduction](/introduction) page.
+
+```
+gw3 offline -m Login.graphml "a_star(reached_vertex(v_Browse))"
+{"currentElementName":"e_Init"}
+{"currentElementName":"v_ClientNotRunning"}
+{"currentElementName":"e_StartClient"}
+{"currentElementName":"v_LoginPrompted"}
+{"currentElementName":"e_ValidPremiumCredentials"}
+{"currentElementName":"v_Browse"}
+```
+
+To get the element names only, run:<br>
+_The jq program is form here: [https://stedolan.github.io/jq/](https://stedolan.github.io/jq/)_ 
+
+```
+gw3 offline -m Login.graphml "a_star(reached_vertex(v_Browse)) | jq -r '.currentElementName'"
+e_Init
+v_ClientNotRunning
+e_StartClient
+v_LoginPrompted
+e_ValidPremiumCredentials
+v_Browse
+```
+
+If your test was written in java, you could put the sequence in a unit test like this:
+
+```java
+@Test
+public void Login_Smoke_Test() {
+  e_Init();
+  v_ClientNotRunning();
+  e_StartClient();
+  v_LoginPrompted();
+  e_ValidPremiumCredentials();
+  v_Browse
+}
+```
