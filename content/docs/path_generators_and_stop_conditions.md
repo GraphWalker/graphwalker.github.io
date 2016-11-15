@@ -8,7 +8,7 @@ toc: false
 ---
 
 
-Path generators together with stop conditions will decide what strategy to use when generating a path through a model, and when to stop generating that path. Path generators can be daisy chained after each other. Multiple stop conditions can be used using logical OR and AND.
+Path generators together with stop conditions will decide what strategy to use when generating a path through a model, and when to stop generating that path. Path generators can be daisy chained after each other. Multiple stop conditions can be used using logical OR, AND, \|\|, &&.
 
 ## Generators
 
@@ -46,6 +46,10 @@ The stop criteria is a percentage number. When, during execution, the percentage
 
 The stop criteria is a percentage number. When, during execution, the percentage of traversed states is reached, the test is stopped. If vertex is traversed more than one time, it still counts as 1, when calculating the percentage coverage.
 
+### requirement_coverage( an integer representing percentage of desired requirement coverage )
+
+The stop criteria is a percentage number. When, during execution, the percentage of traversed requirements is reached, the test is stopped. If requirement is traversed more than one time, it still counts as 1, when calculating the percentage coverage.
+
 ### reached_vertex( the name of the vertex to reach )
 
 The stop criteria is a named vertex. When, during execution, the vertex is reached, the test is stopped.
@@ -76,7 +80,7 @@ The stop criteria is a percentage number. When, during execution, all of travers
 
 ## ***Examples***
 
-```java
+```
 /*
  * Will never stop generating a path sequence. Executes for ever in a random fashion.
 /*
@@ -117,7 +121,7 @@ random(requirement_coverage(100))
  * Walk randomly, until the vertex coverage has reached 100%
 /*
 // Walk randomly for 500 seconds.
-random(time(500))
+random(time_duration(500))
 
 
 /*
@@ -130,14 +134,14 @@ random(length(24))
  * Walk randomly, until the edge coverage has reached 100%,
  * or we have executed for 500 seconds.
 /*
-random(edge_coverage(100) or time(500))
+random(edge_coverage(100) or time_duration(500))
 
 
 /*
  * Walk randomly, until the edge coverage has reached 100%,
  * or we have executed for 500 seconds. (same as above) random(edge_coverage(100) || time(500))
 /*
-random(edge_coverage(100) || time(500))
+random(edge_coverage(100) || time_duration(500))
 
 
 /*
@@ -158,14 +162,14 @@ random(reached_vertex(v_SomeVertex) and edge_coverage(100))
  * Walk randomly, until we have executed for 500 seconds,
  * or we have both reached vertex v_SomeVertex and  reached 100% vertex coverage.
 /*
-random((reached_vertex(v_SomeVertex) and vertex_coverage(100)) || time(5000))
+random((reached_vertex(v_SomeVertex) and vertex_coverage(100)) || time_duration(500))
 
 
 /*
  * Walk randomly, until the edge coverage has reached 100% and we have reached the vertex v_SomeVertex.
  * Then we will start using the next strategy. Walk randomly for 1 hour
 /*
-random(reached_vertex(v_SomeVertex) and edge_coverage(100)) random(time(3600))
+random(reached_vertex(v_SomeVertex) and edge_coverage(100)) random(time_duration(3600))
 
 /*
  * Walk randomly, until all the edges with dependency higher or equal to 85% are reached
