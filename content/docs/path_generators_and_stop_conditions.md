@@ -117,7 +117,7 @@ random(requirement_coverage(100))
  * Walk randomly, until the vertex coverage has reached 100%
 /*
 // Walk randomly for 500 seconds.
-random(time(500))
+random(time_duration(500))
 
 
 /*
