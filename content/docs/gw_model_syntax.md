@@ -47,7 +47,7 @@ This section will talk about the modeling rules using yEd with ***GraphWalker***
 The name is the first word, on the first line in a label for an edge or vertex.
 
 ### Label
-A label is all the text associated to and edge or a vertex.
+A label is all the text associated to an edge or a vertex.
 
 <figure>
   <img src="/images/names.png" alt="Vertex and edge names">
@@ -57,17 +57,21 @@ A label is all the text associated to and edge or a vertex.
 ### Guards - Only for an edge
 Guards are a mechanism only associated with edges. Their roles are the same as an if-statement, and makes an edge eligible or not for being walked.
 
-The guard is a conditional expression enclosed between square brackets:
-~~~
+The guard is a conditional expression enclosed between square brackets:  
+
+```
 [loggedIn == true]
-~~~ 
+```  
+
 The above means that if the attribute loggedIn equals to true, the edge is accessible.
 
 ### Action - Only for an edge
-Action is a mechanism only associated to edges. This is javascript code that we want to execute in the model. It's placed after a forward slash. Each statement must be ended with a semicolon.
-~~~
+Action is a mechanism only associated to edges. This is javascript code that we want to execute in the model. It's placed after a forward slash. Each statement must be ended with a semicolon.  
+
+```
 /loggedIn=false; rememberMe=true;
-~~~
+```  
+
 The purpose of the action code, is to serve as data to the guards.
 
 #### Example
@@ -75,10 +79,12 @@ The purpose of the action code, is to serve as data to the guards.
 
 This example illustrates how actions and guards work.
 
-**1)**  Lets start with the out-edge from the Start vertex:
-~~~
+**1)**  Lets start with the out-edge from the Start vertex:  
+
+```
 e_Init/validLogin=false;rememberMe=false;
-~~~
+```  
+
 The name of the edge is ***e_Init***, followed by a forward slash, denoting that text from that point until end-of-line is [action] code. The action initializes 2 attributes: ***validLogin*** and ***rememberMe***.
 
 **2)**  When we have walked the edge above, we arrive at the ***v_ClientNotRunning*** vertex. This vertex has 2 out-edges, which both have guards. Since both ***validLogin*** and ***rememberMe*** are at this point initialized to false, only 1 edge is accessible for walking: the edge ***e_Start*** that has the vertex ***v_LoginPrompted*** as destination.
@@ -94,17 +100,17 @@ Keywords are used in the models to increase functionality and usability.
 
 * ***BLOCKED*** - A vertex or an edge containing this keyword, will be exclude when a path is generated. If it's an edge, it will simply be removed from the graph. If it's a vertex, the vertex will be removed with its in- and out-edges.
 
-* ***SHARED*** - This keyword is only for vertices. It means that ***GraphWalker*** can jump out of the current model, to any other model to a vertex with the same SHARED name. The syntax is:
-~~~
-SHARED:SOME_NAME
-~~~
+* ***SHARED*** - This keyword is only for vertices. It means that ***GraphWalker*** can jump out of the current model, to any other model to a vertex with the same SHARED name.  
+The syntax is:  
+SHARED:SOME_NAME  
+* ***INIT*** - Only a vertex can have this keyword. When using data in a model, the data needs to be initialized. That is what this keyword does. INIT is allowed in more vertices than just one.  
+The syntax is:  
+INIT:loggedIn=false; rememberMe=true;  
 
-* ***INIT*** - Only a vertex can have this keyword. When using data in a model, the data needs to be initialized. That is what this keyword does. The syntax is:
-~~~
-INIT:loggedIn=false; rememberMe=true;
-~~~
-INIT is allowed in more vertices than just one.
-
+* ***REQTAG*** - Only a vertex can have this keyword.
+Called up to mark verteces by requirements.  
+The syntax is:  
+REQTAG:String
 
 ### Multiple models
 
