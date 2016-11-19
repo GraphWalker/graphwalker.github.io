@@ -1,6 +1,7 @@
 ---
 title: Getting started overview
-summary: "GraphWalker is a open source Model-based testing tool for test automation. It's designed to make it easy to design your tests using graphs."
+summary: "GraphWalker is an open source Model-based testing tool for test automation. 
+It's designed to make it easy to design your tests using graphs."
 tags: [getting_started]
 sidebar: sidebar
 type: homepage
@@ -9,7 +10,9 @@ toc: false
 
 ## Overview 
 
-GraphWalker is a [Model-Based testing](https://en.wikipedia.org/wiki/Model-based_testing) tool. It reads models in the shape of [directed graphs](https://en.wikipedia.org/wiki/Directed_graph), and generate [test] paths from these graphs.
+GraphWalker is a [Model-Based testing](https://en.wikipedia.org/wiki/Model-based_testing) tool. 
+It reads models in the shape of [directed graphs](https://en.wikipedia.org/wiki/Directed_graph), 
+and generate [test] paths from these models.
 
 <img src="/images/Login-small.png" alt="Model" align="right">
 
@@ -17,16 +20,22 @@ A model can look like the one to the right. The model is collection of arrows an
 
 * An arrow represents an action.
 * A node represents a verification.
+  
 
-## What it does
+## What GraphWalker does
 
-Given the graph, GraphWalker generates a path from the graph. This path is then provided to the tool of your choice to execute the test.
+Given a model and a generator rule, GraphWalker by mathematical algorithms generates a path which corresponds to your test idea.  
+This path is then provided to the tool of your choice to execute the test.  
+In another words GraphWalker is a test generation tool.
+  
+<img src="/images/WhatGWDoes.png" alt="WhatGWDoes">  
 
-Have a look at what features [GraphWalker offers](/features/).
+For a short practical introduction have a look on a sample [use case](/introduction/).
 
 ## How to get it
 
-Either [download the standalone jar file](/download/), or include GraphWalker in your java project. The latest release version is 3.4.2.
+Either can [download the standalone jar file](/download/), or include GraphWalker in your java project. 
+The latest release version is 3.4.2.
 
 In your maven project, add this to your pom.xml file:
 
