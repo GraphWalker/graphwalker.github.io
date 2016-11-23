@@ -16,16 +16,10 @@ toc: false
  * Download [graphwalker-cli](http://graphwalker.github.io/download/)
 
 ## Test idea and design
-The purpose of the test design is to describe the **expected behavior of the system under test**
-in the [Model-Based testing style](https://en.wikipedia.org/wiki/Model-based_testing). 
-The way it works, is that you in a finite state diagram [model], express an action as a directed edge. 
-An edge is also known as an arrow, arc or transition. 
-The edge points to a vertex, also known as a node or a state, where the results or the consequence of the 
-previous action is verified/asserted.
+The purpose of the test design is to describe the **expected behavior of the system under test**. The way it works, is that you in a finite state diagram [model], express an action as a directed edge. An edge is also known as an arrow, arc or transition. The edge points to a vertex. Also known as a node or state, where the results or the consequence of the previous action is verified/asserted.
 
 ### Test idea
-Our test idea, is to write a regression test for the Spotify Desktop Client, more specifically, the feature **login**. 
-(<a href="http://en.wikipedia.org/wiki/Spotify">Spotify is a music streaming business</a>)
+Our test idea, is to write a regression test for the Spotify Desktop Client, more specifically, the feature **login**. (<a href="http://en.wikipedia.org/wiki/Spotify">Spotify is a music streaming business</a>)
 
 The feature is suppose to work  like this:
 
@@ -127,19 +121,21 @@ A test sequence is generated. This is an offline generated test. No errors or ot
 ## Creating the test code
 Using Maven and the complete model above create all the stub code needed.
 
-1 Create the folder structure:
+
+1. Create the folder structure:
 
 ```sh
 %> mkdir -p login/src/main/java/org/myorg/testautomation
 %> mkdir -p login/src/main/resources/org/myorg/testautomation
 %> mkdir -p login/src/test/java/org/myorg/testautomation
 ```
-2 Move the saved model:
+2. Move the saved model:
 
 ```sh
 %> mv Login.graphml login/src/main/resources/org/myorg/testautomation
 ```
-3 Copy and paste following and save it as pom.xml in **login** folder.
+
+3. Copy and paste following and save it as pom.xml in **login** folder.
 
 ```xml
 <project xmlns="http://maven.apache.org/POM/4.0.0"
@@ -224,7 +220,7 @@ Using Maven and the complete model above create all the stub code needed.
 </project>
 ```
 
-4 CD into the login folder, and run following:
+4. CD into the login folder, and run following:
 
 ```sh
 %> cd login
