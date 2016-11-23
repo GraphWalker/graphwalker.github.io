@@ -26,6 +26,10 @@ entries:
       url: /how-to-build-it
       output: web
 
+    - title: MBT how to
+      url: /MBT_How_to
+      output: web
+
     - title: Support
       url: /contact
       output: web
