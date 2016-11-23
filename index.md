@@ -38,3 +38,8 @@ In your maven project, add this to your pom.xml file:
 </dependency>
 ```
 
+## Announcements
+
+If you are a user of the project, please follow the announcements made on our [forum](https://groups.google.com/forum/?utm_medium=email&utm_source=footer#!forum/graphwalker-3)
+
+There important information regarding new upcoming version and deprecation of old ones will be published.
