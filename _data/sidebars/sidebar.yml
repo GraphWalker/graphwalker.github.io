@@ -14,11 +14,7 @@ entries:
       type: homepage
       output: web
 
-    - title: Change Log
-      url: /changelog
-      output: web
-
-    - title: Introduction
+    - title: Usage example
       url: /introduction
       output: web
 
@@ -32,6 +28,10 @@ entries:
 
     - title: Support
       url: /contact
+      output: web
+
+    - title: Change Log
+      url: /changelog
       output: web
 
   - title: Documentation
