@@ -14,7 +14,7 @@ Convert a graph in file format, to some other format.
 
 Options
 
-* --input, -i<br>
+* `--input`, `-i`<br>
 This command requires an input file, and an output file.
 
 **Example:**
@@ -205,10 +205,10 @@ In version 4 new functionality changed from writing to file, into printing to st
 
 Options
 
-* --input, -i<br>
+* `--input`, `-i`<br>
 This command requires an input file.
 
-* --format, -f<br>
+* `--format`, `-f`<br>
 Which format to convert into. Valid key words are: JSON [default],
 GRAPHML, DOT or JAVA<br>
 Default: JSON
