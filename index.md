@@ -11,16 +11,21 @@ toc: false
 
 GraphWalker is a [Model-Based testing](https://en.wikipedia.org/wiki/Model-based_testing) tool. It reads models in the shape of [directed graphs](https://en.wikipedia.org/wiki/Directed_graph), and generate [test] paths from these graphs.
 
-<img src="/images/Login-small.png" alt="Model" align="right">
+A model can look like the one to the next. The model is collection of arrows and nodes and together they create a graph.
 
-A model can look like the one to the right. The model is collection of arrows and nodes and together they create a graph.
+<img src="/images/Login.png" alt="Model">  
 
 * An arrow represents an action.
 * A node represents a verification.
 
-## What it does
+## What GraphWalker does
 
-Given the graph, GraphWalker generates a path from the graph. This path is then provided to the tool of your choice to execute the test.
+Given a model and a generator rule, GraphWalker by mathematical algorithms generates a path which corresponds to your test idea. Next image illustrate such result.
+  
+<img src="/images/LoginWithPath.png" alt="LoginWithPath">  
+
+Then this path would be provided to the tool of your choice to execute the test.  
+In another words GraphWalker is a test generation tool.  
 
 Have a look at what features [GraphWalker offers](/features/).
 
