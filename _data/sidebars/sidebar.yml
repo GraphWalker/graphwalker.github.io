@@ -14,8 +14,8 @@ entries:
       type: homepage
       output: web
 
-    - title: Change Log
-      url: /changelog
+    - title: MBT How to
+      url: /MBT_How_to
       output: web
 
     - title: Introduction
@@ -30,12 +30,36 @@ entries:
       url: /how-to-build-it
       output: web
 
-    - title: MBT how to
-      url: /MBT_How_to
+    - title: Change Log
+      url: /changelog
       output: web
 
     - title: Support
       url: /contact
+      output: web
+
+  - title: General workflow
+    output: web
+    folderitems:
+
+    - title: Introduction
+      url: /General_workflow_intro
+      output: web
+
+    - title: Model design
+      url: /Model_design
+      output: web
+
+    - title: Tests selection
+      url: /Tests_selection
+      output: web
+
+    - title: Test paths generation
+      url: /Test_paths_generation
+      output: web
+
+    - title: Tests execution
+      url: /Tests_execution
       output: web
 
   - title: Documentation

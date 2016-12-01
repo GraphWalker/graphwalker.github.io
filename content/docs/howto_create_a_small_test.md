@@ -255,7 +255,7 @@ Tests run: 3, Failures: 0, Errors: 0, Skipped: 0
 [INFO] ------------------------------------------------------------------------
 ```
 
-## What the tests(s) does
+## What the test(s) does
 First of all, we extend the `class ExecutionContext`, this gives us access to the execution context GraphWalker needs. The context is then passed on to the constructor of `SimpleMachine`.
 
 ```
