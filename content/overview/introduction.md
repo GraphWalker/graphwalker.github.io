@@ -260,7 +260,8 @@ If you check your folder, it will contain following files and folders:
                         └── Login.java
 ```
 
-Your job is now to implement that interface, which means filling in the missing code into the methods in the class that implements the interface. First you have to find the right tool for the job. Depending on you System Under Test(SUT) , it could typically be::
+Your job is now to implement that interface, which means filling in the missing code into the methods in the class that implements the interface. First you have to find the right tool for the job. Depending on you System Under Test(SUT) , it could typically be:
+
  * [Selenium Web Driver](http://www.seleniumhq.org/): if your SUT is a web browser
  * [Sikuli](http://www.sikuli.org/): if your SUT is a desktop native GUI client, where you don't have access to it's source code.
 
@@ -410,7 +411,7 @@ public void runFunctionalTest() {
 ```
 
 ### Stability test example
-We ask GraphWalker to randomly walk the model, until the stop condition is fulfilled. That will happen when 30 seconds has passed. of course, in a real test, that might be 30 minutes, or why not hours.
+We ask GraphWalker to randomly walk the model, until the stop condition is fulfilled. That will happen when 30 seconds has passed. Of course, in a real test, that might be 30 minutes, or why not hours.
 
 ```java
 @Test

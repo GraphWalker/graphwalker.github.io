@@ -22,20 +22,20 @@ Please note that the ***"GENERATOR(STOP_CONDITION)"*** should be enclosed with d
 
 Options
 
-* --json, -j<br>
+* `--json`, `-j`<br>
 Returns data formatted as json.<br>
 Default is true
 
-* --model, -m <br>
+* `--model`, `-m`<br>
 The model, as a graphml file followed by generator with stop condition.<br>
 This options can occur multiple times.<br>
 [Read more about path generators and stop conditions](/generators_and_stop_conditions)
 
-* --unvisited, -u<br>
+* `--unvisited`, `-u`<br>
 Will also print the remaining unvisited elements in the model.<br>
 Default is false.
 
-* --verbose, -o<br>
+* `--verbose`, `-o`<br>
 Will print more details<br>
 Default is false.
 
