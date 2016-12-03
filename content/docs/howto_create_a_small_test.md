@@ -16,7 +16,7 @@ toc: false
 ## Create folder structure
 From the command line, run:
 
-```
+```sh
 mkdir -p gw_test/src/test/java/
 cd gw_test
 ```
@@ -206,7 +206,7 @@ tree
 
 To make GraphWalker generate a path run the following on the command line:
 
-```
+```sh
 mvn test
 [INFO] Scanning for projects...
 [INFO]                                                                         
