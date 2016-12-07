@@ -18,10 +18,6 @@ entries:
       url: /MBT_How_to
       output: web
 
-    - title: Introduction
-      url: /introduction
-      output: web
-
     - title: Supported features
       url: /features
       output: web
