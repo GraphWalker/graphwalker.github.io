@@ -81,7 +81,15 @@ entries:
     - title: GrapWalker Java API
       url: /content/apidocs/index.html
       output: web
-    
+
+    - title: How to use fixtures
+      url: /fixtures
+      output: web
+
+    - title: How to parametrise a test
+      url: /tests_parametrisation
+      output: web
+
   - title: Command Line Interface
     output: web
     folderitems:
