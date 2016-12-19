@@ -103,7 +103,7 @@ public interface SmallTest {
 
 ### The model
 
-The test is itself is quite simple. When opened in the yEd editor, it will look like below.
+The test is itself quite simple. When opened in the yEd editor, it will look like below.
 
 <figure>
   <img src="/images/SmallTest.png" alt="Small test model">

@@ -14,5 +14,5 @@ Check and analyze model(s) for issues.
 
 Options
 
-* --model, -m<br>
+* `--model`, `-m`<br>
 Model followed by generator with stop condition. The format is GENERATOR(STOP_CONDITION) 
