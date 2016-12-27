@@ -6,13 +6,13 @@
 
 3) In the root of the folder of the cloned project, run following command:
 
-```
+```sh
 bundle update
 ```
 
 4) Then start a local preview of the site:
 
-```
+```sh
 jekyll serve
 ```
 

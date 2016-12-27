@@ -18,19 +18,19 @@ toc: false
 
 Get the latest source code from GitHub:
 
-```
+```sh
 git clone https://github.com/GraphWalker/graphwalker-project.git
 ```
 
 ## Build the GraphWalker standalone jar
 
-```
+```sh
 cd graphwalker-project
 mvn package -pl graphwalker-cli -am
 ```
 
 The location of the jar file is:
 
-```
+```sh
 graphwalker-cli/target/graphwalker-cli-3.4.2.jar
 ```

@@ -129,7 +129,7 @@ The mechanism that controls the jumping between the models is the keyword SHARED
 
 All models are loaded into ***GraphWalker***, and the first model (Model A) is where the path generation is started. Using graphwalker-cli, the command line could look something like this:
 
-```
+```sh
 gw3 offline -m src/test/resources/graphml/shared_state/Model_A.graphml "random(edge_coverage(100))" \
  -m src/test/resources/graphml/shared_state/Model_B.graphml "random(edge_coverage(100))" \
  -m src/test/resources/graphml/shared_state/Model_C.graphml "random(edge_coverage(100))" \

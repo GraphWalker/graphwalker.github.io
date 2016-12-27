@@ -20,13 +20,13 @@ This will show how to create a boilerplate GraphWalker project using the maven a
 ## Create a boilerplate project
 From the command line, run:
 
-```
+```sh
 mvn archetype:generate -B -DarchetypeGroupId=org.graphwalker -DarchetypeArtifactId=graphwalker-maven-archetype -DgroupId=com.company -DartifactId=myProject
 ```
 
 Move into the myProject folder, and test the project:
 
-```
+```sh
 cd myProject
 ```
 
@@ -53,7 +53,7 @@ Open **pom.xml** and add plugin section, so it looks like below. [It's a bug, wh
 
 Now, run a test:
 
-```
+```sh
 mvn graphwalker:test
 ```
 
@@ -158,7 +158,7 @@ public class SomeSmallTest extends ExecutionContext implements SmallTest {
 ## Running the test
 When running the the test the output might look something like this:
 
-```
+```sh
 mvn graphwalker:test
 [INFO] Scanning for projects...
 [INFO]                                                                         

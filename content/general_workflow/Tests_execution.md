@@ -125,7 +125,7 @@ The last command will automatically generate an interface of the model in Login.
 
 If you check your folder, it will contain following files and folders:
 
-```
+```sh
 %> tree
 .
 ├── pom.xml
