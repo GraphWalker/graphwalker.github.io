@@ -1,6 +1,6 @@
 ---
 title: Getting started overview
-summary: "GraphWalker is a open source Model-based testing tool for test automation. It's designed to make it easy to design your tests using graphs."
+summary: "GraphWalker is an open source Model-based testing tool for test automation. It's designed to make it easy to design your tests using graphs."
 tags: [getting_started]
 sidebar: sidebar
 type: homepage
@@ -9,7 +9,7 @@ toc: false
 
 ## Overview 
 
-GraphWalker is a [Model-Based testing](https://en.wikipedia.org/wiki/Model-based_testing) tool. It reads models in the shape of [directed graphs](https://en.wikipedia.org/wiki/Directed_graph), and generate [test] paths from these graphs.
+GraphWalker is an [Model-Based testing](https://en.wikipedia.org/wiki/Model-based_testing) tool. It reads models in the shape of [directed graphs](https://en.wikipedia.org/wiki/Directed_graph), and generate [test] paths from these graphs.
 
 A model can look like the one to the next. The model is collection of arrows and nodes and together they create a graph.
 
