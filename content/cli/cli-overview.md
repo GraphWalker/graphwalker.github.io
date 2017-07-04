@@ -39,4 +39,3 @@ Prints help text
 
 * `--version`, `-v`<br>
 Prints the version of GraphWalker
-
