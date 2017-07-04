@@ -39,7 +39,3 @@ Prints help text
 
 * `--version`, `-v`<br>
 Prints the version of GraphWalker
-
-* `--blocked`, `-b`<br>
-Use the feature [BLOCKED](/yed_model_syntax#keywords)  . Will discard all elements with property BLOCKED set to true.
-
