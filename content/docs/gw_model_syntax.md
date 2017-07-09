@@ -93,6 +93,23 @@ The name of the edge is ***e_Init***, followed by a forward slash, denoting that
 
 This illustrates how we can direct and control flows through a graph, if we need to do that.
 
+### Global attributes - Share data between models
+
+In the examples above, where `loggedIn`, `validLogin` and `rememberMe` was used as attributes to hold data in a model, they cannot be shared between models.
+
+To achive that, a global attribute is used instead. Like thís:
+
+For an action:
+```
+/global.loggedIn=false; global.rememberMe=true;
+```  
+
+For a guard:
+```
+[global.loggedIn == true]
+```  
+
+
 ### Keywords
 Keywords are used in the models to increase functionality and usability.
 
