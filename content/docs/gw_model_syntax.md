@@ -102,12 +102,12 @@ To achive that, a global attribute is used instead. Like thís:
 For an action:
 ```
 /global.loggedIn=false; global.rememberMe=true;
-```  
+```
 
 For a guard:
 ```
 [global.loggedIn == true]
-```  
+```
 
 
 ### Keywords
@@ -117,17 +117,25 @@ Keywords are used in the models to increase functionality and usability.
 
 * ***BLOCKED*** - A vertex or an edge containing this keyword, will be exclude when a path is generated. If it's an edge, it will simply be removed from the graph. If it's a vertex, the vertex will be removed with its in- and out-edges.
 
-* ***SHARED*** - This keyword is only for vertices. It means that ***GraphWalker*** can jump out of the current model, to any other model to a vertex with the same SHARED name.  
-The syntax is:  
-SHARED:SOME_NAME  
-* ***INIT*** - Only a vertex can have this keyword. When using data in a model, the data needs to be initialized. That is what this keyword does. INIT is allowed in more vertices than just one.  
-The syntax is:  
-INIT:loggedIn=false; rememberMe=true;  
+* ***SHARED*** - This keyword is only for vertices. It means that ***GraphWalker*** can jump out of the current model, to any other model to a vertex with the same SHARED name.<br>
+The syntax is:<br>
+SHARED:SOME_NAME
+
+* ***INIT*** - Only a vertex can have this keyword. When using data in a model, the data needs to be initialized. That is what this keyword does. INIT is allowed in more vertices than just one.<br>
+The syntax is:<br>
+INIT:loggedIn=false; rememberMe=true;
 
 * ***REQTAG*** - Only a vertex can have this keyword.
-Called up to mark verteces by requirements.  
-The syntax is:  
-REQTAG:String
+A comma separated list of requirements. Used to create traceability with external requirements and the models.<br>
+The syntax is:<br>
+REQTAG:String1, String2
+
+* ***weight*** - Only an edge can have this keyword.
+Used only when using the [random generator](/generators_and_stop_conditions/#weighted_random-some-stop-conditions-). It holds a real value between 0 and 1, and represents the probability that the edge should be chosen. For example, a value of 0.05, would mean a 5% chance of that edge to be selected. The image below has 2 out-edges from vertex **v_LoginPrompted** that uses the keyword *weight*.<br>
+The syntax is:<br>
+weight=*float value between 0.0 and 1.0*
+
+<a href="/images/LoginWithWeight.graphml" title="Spotify login feature on desktop"><img alt="Example of weighted model" src="/images/LoginWithWeight.png "></a>
 
 ### Multiple models
 
