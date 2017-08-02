@@ -18,6 +18,10 @@ A generator is an algorithm that decides how to traverse a model. Different gene
 
 Navigate through the model in a completely random manor. Also called "Drunkard’s walk", or "Random walk". This algorithm selects an out-edge from a vertex by random, and repeats the process in the next vertex.
 
+### weighted_random( some stop condition(s) )
+
+Same as the **random path generator** (see above), but, will use the [weight](/yed_model_syntax/#keywords) keyword when generating a path. The weight is assigned to edges only, and it represents the probability of an edge getting chosen.
+
 ### quick_random( some stop condition(s) )
 
 Tries to run the shortest path through a model, but in a fast fashion. This is how the algorithm works:
