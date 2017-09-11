@@ -11,8 +11,8 @@ toc: false
 
 ## Questions
 
-* Questions regarding GraphWalker are made to the <a href="https://groups.google.com/forum/?utm_medium=email&utm_source=footer#!forum/graphwalker-3"> GraphWalker 3 group</a>.
-* You can also mail the group directly [GraphWalker 3 Group](mailto:graphwalker-3@googlegroups.com) 
+* Questions regarding GraphWalker are made to the <a href="https://groups.google.com/forum/#!forum/graphwalker"> GraphWalker group</a>.
+* You can also mail the group directly [GraphWalker 3 Group](mailto:graphwalker@googlegroups.com) 
 
 
 ## Contribute

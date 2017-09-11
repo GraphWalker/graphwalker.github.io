@@ -8,7 +8,7 @@ topnav_dropdowns:
         - title: Github Repo
           external_url: https://github.com/GraphWalker
         - title: Forum
-          external_url: https://groups.google.com/forum/?utm_medium=email&utm_source=footer#!forum/graphwalker-3
+          external_url: https://groups.google.com/forum/#!forum/graphwalker
         - title: GraphWalker on Stack Overflow
           external_url: http://stackoverflow.com/questions/tagged/graphwalker
 
