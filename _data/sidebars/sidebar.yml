@@ -90,6 +90,10 @@ entries:
       url: /tests_parametrisation
       output: web
 
+    - title: How to create a Minimal, Working example
+      url: /minimal_working_example
+      output: web
+
   - title: Command Line Interface
     output: web
     folderitems:
