@@ -12,7 +12,7 @@ This explains how to use the pre-made GraphWalker Docker images.
 
 ## Pre-requisites
 
-* You need [Docker](https://www.docker.com/) installed. Goto [Docker - Get Started](hhttps://docs.docker.com/engine/getstarted/step_one/)
+* You need [Docker](https://www.docker.com/) installed. Goto [Docker - Get Started](https://docs.docker.com/get-started/)
 
 ## The Docker Image Library
 
