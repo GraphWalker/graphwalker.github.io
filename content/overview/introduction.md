@@ -1,6 +1,6 @@
 ---
 title: Introduction to using GraphWalker
-summary: "GraphWalker is a open source Model-based testing tool for test automation. This is an introduction to GraphWalker. It explains the work flow and process of designing a test."
+summary: "GraphWalker is an open source Model-based testing tool for test automation. This is an introduction to GraphWalker. It explains the work flow and process of designing a test."
 tags: [introduction, work flow]
 keywords: introduction, work flow
 sidebar: sidebar

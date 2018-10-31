@@ -1,6 +1,6 @@
 ---
 title: Features of GraphWalker
-summary: "GraphWalker is a open source Model-based testing tool for test automation. The features of GraphWalker are path generation both offline and online."
+summary: "GraphWalker is an open source Model-based testing tool for test automation. The features of GraphWalker are path generation both offline and online."
 tags: [introduction, work flow]
 keywords: features
 sidebar: sidebar
