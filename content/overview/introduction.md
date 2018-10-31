@@ -136,7 +136,7 @@ Using Maven and the complete model from above, we can create all the stub code n
 %> mv Login.graphml login/src/main/resources/org/myorg/testautomation
 ```
 
-3. Copy and paste the following and save it as pom.xml in **login** folder.
+3. Copy and paste the following and save it as pom.xml in the **login** folder.
 
 ```xml
 <project xmlns="http://maven.apache.org/POM/4.0.0"
