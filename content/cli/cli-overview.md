@@ -13,11 +13,11 @@ The GraphWalker command line interface is a tool for working with graphs. It has
 
 ### Creating a script facilitating command line handling on a linux machine.
 
-Create a file in `/usr/local/bin/gw3` with following content:
+Create a file in `/usr/local/bin/gw` with following content:
 
 ```
 #!/bin/bash
-java -jar /home/krikar/dev/mbt/gw3/graphwalker-cli/target/graphwalker-cli-3.4.2.jar "$@"
+java -jar /home/krikar/dev/graphwalker/graphwalker-cli/target/graphwalker-cli-4.0.0-SNAPSHOT.jar "$@"
 ```
 
 Set the execution flag
