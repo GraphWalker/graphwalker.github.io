@@ -13,7 +13,7 @@ The GraphWalker command line interface is a tool for working with graphs. It has
 
 ### Creating a script facilitating command line handling on a linux machine.
 
-Create a file in `/usr/local/bin/gw` with following content:
+Create a file called `/usr/local/bin/gw` with following content:
 
 ```
 #!/bin/bash
@@ -23,7 +23,7 @@ java -jar /home/krikar/dev/graphwalker/graphwalker-cli/target/graphwalker-cli-4.
 Set the execution flag
 
 ```
-sudo chmod +x /usr/local/bin/gw3
+sudo chmod +x /usr/local/bin/gw
 ```
 
 ## Global options
