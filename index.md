@@ -7,6 +7,13 @@ type: homepage
 toc: false
 ---
 
+## GraphWalker survey
+
+We created a questionnaire which we would love our users to fill in.
+The purpose is to help us understand how GraphWalker is used.
+
+Please go to https://goo.gl/forms/rvHWHHsWIsh4Hw9y1
+
 ## Overview 
 
 GraphWalker is an [Model-Based testing](https://en.wikipedia.org/wiki/Model-based_testing) tool. It reads models in the shape of [directed graphs](https://en.wikipedia.org/wiki/Directed_graph), and generate [test] paths from these graphs.
