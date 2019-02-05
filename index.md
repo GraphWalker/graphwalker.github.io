@@ -12,7 +12,7 @@ toc: false
 We created a questionnaire which we would love our users to fill in.
 The purpose is to help us understand how GraphWalker is used.
 
-Please go to https://goo.gl/forms/rvHWHHsWIsh4Hw9y1
+Please go to [GraphWalker Survey](https://goo.gl/forms/rvHWHHsWIsh4Hw9y1)
 
 ## Overview 
 
