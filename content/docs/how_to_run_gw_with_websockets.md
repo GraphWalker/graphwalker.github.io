@@ -4,6 +4,8 @@ keywords: websocket, example
 toc: false
 ---
 
+[comment]: <> Not used?
+
 
 The GraphWalker WebSocket Server enables a user to launch and interact with GraphWalker and implement your tests in a very dynamic way. Any programming language that has an implementation of WebSocket will be able to use this feature.
 

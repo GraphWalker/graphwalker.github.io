@@ -10,10 +10,10 @@ toc: false
 
 ## graphwalker:generate-test-sources
 
-The plugin generates interfaces from models in placed in the folder `src/test/resources`.
+The plugin generates interfaces from models that are placed in the folder `src/test/resources`.
 The models are placed in sub directories to mimic package name structure.
 
-An example of a model, that would generate an `interface SmallTest` in the package `com.company`
+An example of a model that would generate an `interface SmallTest` in the package `com.company`:
 
 ```
 src/test/resources/com/company/SmallTest.graphml
@@ -28,7 +28,7 @@ target/generated-test-sources/graphwalker/com/company/SmallTest.java
 ## Example
 
 ```
-user@host:~/graphwalker-project/graphwalker-cli$ mvn graphwalker:watch
+user@host:~/graphwalker-project/graphwalker-cli$ mvn graphwalker:generate-test-sources
 [INFO] Scanning for projects...
 [INFO]
 [INFO] ------------------------------------------------------------------------

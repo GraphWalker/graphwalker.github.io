@@ -1,5 +1,5 @@
 ---
-title: What's the difference running GraphWalker as a Restful vs. WebSocket service?
+title: What is the difference between running GraphWalker as a Restful vs. WebSocket service?
 keywords: rest, websocket
 toc: false
 ---

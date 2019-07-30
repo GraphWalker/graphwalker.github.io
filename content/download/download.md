@@ -1,6 +1,6 @@
 ---
 title: Download compiled jar packages
-summary: "GraphWalker is a open source Model-based testing tool for test automation. This pages contains links to download the GraphWalker standalone jar. Both the latest released and development version."
+tag: [download]
 keywords: download, jar, standalone, cli
 sidebar: sidebar
 permalink: /download/

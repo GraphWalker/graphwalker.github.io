@@ -1,6 +1,6 @@
 ---
 title: GraphWalker WebSocket API - hasNext
-tags: [api]
+tags: [API]
 keywords: api, websocket, hasNext
 sidebar: sidebar
 permalink: /websocket-hasnext/
@@ -9,10 +9,8 @@ toc: false
 
 
 
-
-
-## hasNext
-The Websocket message command `hasNext` is used to ask GraphWalker if there are any elements left to execute in the model. If all stop conditions for the current model are fulfilled, the response will return **false** for the **hasNext** property.
+## HasNext
+The Websocket message command `hasNext` is used to ask GraphWalker if there are any elements left to execute in the model. If all stop conditions for the current model are fulfilled, the response will return **"false"** for the **"hasNext"** property.
  
 **Request**
 

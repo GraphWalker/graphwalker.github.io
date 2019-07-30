@@ -1,6 +1,6 @@
 ---
 title: GraphWalker Restful API - load
-tags: [api]
+tags: [API]
 keywords: api, restful, rest, load
 sidebar: sidebar
 permalink: /rest-load/
@@ -9,8 +9,8 @@ toc: false
 
 
 
-## load
-The Rest call `load` uploads model(s) in JASON format and resets GraphWalker with the new test.
+## Load
+The Rest call `load` uploads model(s) in JSON format and resets GraphWalker with the new test.
  
 **POST Request**
 
@@ -28,7 +28,7 @@ If the request was successful **"result"** will be **"ok"**.
 
 ## Example
 
-Loading the Amazon shopping cart test to the REST service. All command are done from a Linux terminal.
+Loading the Amazon shopping cart test to the REST service. All commands are done from a Linux terminal.
 
 In a terminal, start the service:
 

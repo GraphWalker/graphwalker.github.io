@@ -10,7 +10,7 @@ toc: false
 
 ## graphwalker:watch
 
-The plugin will watch models in placed in the folder `src/main/resources`, and if a model
+The plugin will watch models that are placed in the folder `src/main/resources`. If a model
 is changed, it will automatically run the plugin [graphwalker:generate-sources](/maven-generate-sources/)
 
 ## Example

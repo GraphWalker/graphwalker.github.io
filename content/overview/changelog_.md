@@ -1,6 +1,5 @@
 ---
 title: Change Log for all releases
-summary: "GraphWalker is a open source Model-based testing tool for test automation. Latest release is 3.4.0, the change log and release notes is found here."
 tags: [change_log]
 keywords: change log, release, notes
 sidebar: sidebar
@@ -36,7 +35,7 @@ toc: false
 - Redirect graphwalker.org [\#50](https://github.com/GraphWalker/graphwalker-project/issues/50)
 - Create appium demo [\#41](https://github.com/GraphWalker/graphwalker-project/issues/41)
 - Update examples for 3.4.0 release [\#40](https://github.com/GraphWalker/graphwalker-project/issues/40)
-- Add detaild statistics method to org.graphwalker.java.test.Result [\#61](https://github.com/GraphWalker/graphwalker-project/issues/61)
+- Add detailed statistics method to org.graphwalker.java.test.Result [\#61](https://github.com/GraphWalker/graphwalker-project/issues/61)
 
 **Merged pull requests:**
 
@@ -63,7 +62,7 @@ toc: false
 
 **Fixed bugs:**
 
-- Fixed  jdk comparability issues [\#46](https://github.com/GraphWalker/graphwalker-project/issues/46)
+- Fixed  jdk compatability issues [\#46](https://github.com/GraphWalker/graphwalker-project/issues/46)
 - File names too long for Windows [\#20](https://github.com/GraphWalker/graphwalker-project/issues/20)
 - Swedish characters åäö [\#13](https://github.com/GraphWalker/graphwalker-project/issues/13)
 
@@ -83,7 +82,7 @@ toc: false
 - General code quality fix-1 [\#28](https://github.com/GraphWalker/graphwalker-project/pull/28) ([faisal-hameed](https://github.com/faisal-hameed))
 - Code quality fix - Utility classes should not have public constructors. [\#27](https://github.com/GraphWalker/graphwalker-project/pull/27) ([faisal-hameed](https://github.com/faisal-hameed))
 - Code quality fix - "equals\(Object obj\)" and "hashCode\(\)" should be overridden in pairs [\#26](https://github.com/GraphWalker/graphwalker-project/pull/26) ([faisal-hameed](https://github.com/faisal-hameed))
-- Code quality fix - Collapsible "if" statements should be merged.  [\#25](https://github.com/GraphWalker/graphwalker-project/pull/25) ([faisal-hameed](https://github.com/faisal-hameed))
+- Code quality fix - Collapsable "if" statements should be merged.  [\#25](https://github.com/GraphWalker/graphwalker-project/pull/25) ([faisal-hameed](https://github.com/faisal-hameed))
 - Code quality fix - Collection.isEmpty\(\) should be used to test for emptiness. [\#24](https://github.com/GraphWalker/graphwalker-project/pull/24) ([faisal-hameed](https://github.com/faisal-hameed))
 - Refactor websocket and rest into separate  modules [\#18](https://github.com/GraphWalker/graphwalker-project/pull/18) ([KristianKarl](https://github.com/KristianKarl))
 - Fixed typo in README,'Floyd-Warshall algorithm' [\#14](https://github.com/GraphWalker/graphwalker-project/pull/14) ([SH4DY](https://github.com/SH4DY))

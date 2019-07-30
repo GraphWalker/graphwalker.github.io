@@ -3,6 +3,7 @@ title: How to submit a patch to GraphWalker project
 keywords: patch
 toc: false
 ---
+[comment]: <> Not used?
 
 
 * First of all, select the appropriate repository at [GitHub](https://github.com/GraphWalker).

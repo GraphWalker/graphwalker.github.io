@@ -8,7 +8,7 @@ toc: false
 ---
 
 
-A single GraphWalker model representation in JSON
+A single GraphWalker model representation in JSON.
 
 ## Model
 
@@ -32,16 +32,16 @@ A single GraphWalker model representation in JSON
 }
 ```
 
-See the format of [EDGE IN JSON FORMAT](/json-edge/).
+See the format of [edge in JSON format](/json-edge/).
 
-See the format of [VERTEX IN JSON FORMAT](/json-vertex/).
+See the format of [vertex in JSON format](/json-vertex/).
 
-See the format of [ACTION IN JSON FORMAT](/json-action/).
+See the format of [action in JSON format](/json-action/).
 
 
 ## Example
 
-This is one of the models in the [PetClinic](/petclinic/).
+This is one of the models in the [PetClinic](/petclinic/) test.
 
 ```json
 {

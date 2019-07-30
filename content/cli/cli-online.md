@@ -8,9 +8,9 @@ toc: false
 ---
 
 
-## online
+## Online
 
-Online testing means that a model-based testing tool connects directly to an SUT and tests it dynamically. GraphWalker will start as a WebSocket (default) or a HTTP REST server.
+Online testing means that a model-based testing tool connects directly to a System Under Test (SUT) and tests it dynamically. GraphWalker will start either as a WebSocket (default) or a HTTP REST server.
 
 [Read more about the difference between using GraphWalker as a RESTFUL or a WebSocket service](/content/docs/restful_vs_websocket)
 
@@ -18,33 +18,34 @@ Options
 
 * `--json`, `-j`<br>
 Returns data formatted as json.<br>
-Default is true
+Default is true.
 
 * `--model`, `-m`<br>
-The model, as a graphml file followed by generator with stop condition.<br>
-This options can occur multiple times.<br>
+The model, as a graphml file, followed by generator with stop condition.<br>
+This option can occur multiple times.<br>
 This options is only valid for `-s RESTFUL`, it will not work with `-s WEBSOCKET`.
 
 * `--port`, `-p`<br>
-Sets the port of the service
-Default is 8887
+Sets the port of the service. <br>
+Default is 8887.
 
 * `--service`, `-s`<br>
-Selects which kind of service to start. Either WEBSOCKET [default],
-or RESTFUL<br>
-Default is WEBSOCKET. When Websocket is selected, the `-m` option is not taken into account.
+Selects which kind of service to start. Either WEBSOCKET (default),
+or RESTFUL.<br>
+Default is WEBSOCKET. When Websocket is selected, the `-m` option is disregarded.
 
 * `--start-element`, `-e`<br>
-Sets the starting element in the [first] model.
-Default is <empty string>
+Sets the starting element in the [first] model. <br>
+Default is `<empty string>`
 
 * `--unvisited`, `-u`<br>
-Will also print the remaining unvisited elements in the model.
-Default is false
+Will print the remaining unvisited elements in the model. <br>
+Default is false.
 
 * `--verbose`, `-o`<br>
-Will print more details
-Default is false
+Will print more details. <br>
+Default is false.
 
 * `--blocked`, `-b`<br>
-This option enables or disables the [BLOCKED](/yed_model_syntax#keywords) feature. When "-b true" GraphWalker will filter out elements in models with the keyword BLOCKED. When "-b false" GraphWalker will not filter out any elements in models with the keyword BLOCKED. Default: true
+This option enables or disables the [BLOCKED](/yed_model_syntax#keywords) feature. When "-b true" GraphWalker will filter out elements in models with the keyword BLOCKED. When "-b false" GraphWalker will not filter out any elements in models with the keyword BLOCKED. <br>
+Default is true.

@@ -8,7 +8,7 @@ toc: false
 ---
 
 
-Path generators together with stop conditions will decide what strategy to use when generating a path through a model, and when to stop generating that path. Path generators can be daisy chained after each other. Multiple stop conditions can be used using logical OR, AND, \|\|, &&.
+Path generators together with stop conditions will decide what strategy is used when generating a path through a model, and when to stop generating that path. Path generators can be daisy chained one after another. Multiple stop conditions can be set using logical OR, AND: \|\|, &&.
 
 ## Generators
 
@@ -16,21 +16,21 @@ A generator is an algorithm that decides how to traverse a model. Different gene
 
 ### random( some stop condition(s) )
 
-Navigate through the model in a completely random manor. Also called "Drunkard’s walk", or "Random walk". This algorithm selects an out-edge from a vertex by random, and repeats the process in the next vertex.
+Navigate through the model in a completely random manner, also called "Drunkard’s walk", or "Random walk". This algorithm selects an out-edge from a vertex by random, and repeats the process in the next vertex.
 
 ### weighted_random( some stop condition(s) )
 
-Same as the **random path generator** (see above), but, will use the [weight](/yed_model_syntax/#keywords) keyword when generating a path. The weight is assigned to edges only, and it represents the probability of an edge getting chosen.
+Same as the **random path generator** (see above), but will use the [weight](/yed_model_syntax/#keywords) keyword when generating a path. The weight is assigned to edges only, and it represents the probability of an edge getting chosen.
 
 ### quick_random( some stop condition(s) )
 
-Tries to run the shortest path through a model, but in a fast fashion. This is how the algorithm works:
+Tries to run the shortest path through a model, but in a fast way. This is how the algorithm works:
 
 1. Choose an edge not yet visited by random.
 2. Select the shortest path to that edge using Dijkstra's algorithm
-3. Walk that path, and mark all those edges being executed as visited.
-4. When reaching the selected edge in step 1, start all over, repeating steps 1->4.
-5. The algorithm works well an very large models, and generates reasonably short sequences. The downside is when used in conjunction with EFSM. The algorithm can choose a path which is blocked by a guard.
+3. Walk that path, and mark all the executed edges as visited.
+4. When reaching the selected edge in step 1, start all over, repeating steps 1-4.
+5. The algorithm works well for very large models, and generates reasonably short sequences. The downside is when used in conjunction with [EFSM], the algorithm can choose a path which is blocked by a guard.
 
 ### a_star( a stop condition that names a vertex or an edge )
 
@@ -38,50 +38,50 @@ Will generate the shortest path to a specific vertex or edge.
 
 ### shortest_all_paths ==> (Not released yet)
 
-Will calculate and generate the shortest path through the model. The cost for every edge is set to 1.  This algorithm is not recommended to use, because for larger models, and using data in the model (EFSM), it will take a considerable time to calculate.
+Will calculate and generate the shortest path through the model. The cost for every edge is set to 1.  This algorithm is not recommended because for larger models, and using data in the model [EFSM], it will take a considerable time to calculate.
 
 ## Stop conditions
 
 ### edge_coverage( an integer representing percentage of desired edge coverage )
 
-The stop criteria is a percentage number. When, during execution, the percentage of traversed edges is reached, the test is stopped. If an edge is traversed more than one time, it still counts as 1, when calculating the percentage coverage.
+The stop condition is a percentage. When, during execution, the percentage of traversed edges is reached, the test is stopped. If an edge is traversed more than once, it still counts as 1 when calculating the percentage coverage.
 
 ### vertex_coverage( an integer representing percentage of desired vertex coverage )
 
-The stop criteria is a percentage number. When, during execution, the percentage of traversed states is reached, the test is stopped. If vertex is traversed more than one time, it still counts as 1, when calculating the percentage coverage.
+The stop condition is a percentage. When, during execution, the percentage of traversed states is reached, the test is stopped. If a vertex is traversed more than once, it still counts as 1 when calculating the percentage coverage.
 
 ### requirement_coverage( an integer representing percentage of desired requirement coverage )
 
-The stop criteria is a percentage number. When, during execution, the percentage of traversed requirements is reached, the test is stopped. If requirement is traversed more than one time, it still counts as 1, when calculating the percentage coverage.
+The stop condition is a percentage. When, during execution, the percentage of traversed requirements is reached, the test is stopped. If a requirement is traversed more than once, it still counts as 1 when calculating the percentage coverage.
 
-### dependency_edge_coverage( an integer representing dependency treshold )
+### dependency_edge_coverage( an integer representing dependency threshold )
 
-The stop criteria is a percentage number. When, during execution, all of traversed edges with dependency higher or equal to the dependency treshold are reached, the test is stopped. If an edge is traversed more than one time, it still counts as 1, when calculating the percentage coverage.
+The stop condition is a percentage. When, during execution, all of the traversed edges with dependency higher or equal to the dependency threshold are reached, the test is stopped. If an edge is traversed more than once, it still counts as 1, when calculating the percentage coverage.
 
 ### reached_vertex( the name of the vertex to reach )
 
-The stop criteria is a named vertex. When, during execution, the vertex is reached, the test is stopped.
+The stop condition is a named vertex. When, during execution, the vertex is reached, the test is stopped.
 
 ### reached_edge( the name of the edge to reach )
 
-The stop criteria is a named edge. When, during execution, the edge is reached, the test is stopped.
+The stop condition is a named edge. When, during execution, the edge is reached, the test is stopped.
 
 ### time_duration( an integer representing the number of seconds to run )
 
-The stop criteria is a time, representing the number of seconds that the test generator is allowed to execute.
+The stop condition is a time, representing the number of seconds that the test generator is allowed to execute.
 
-Please note, that the time is compared with the execution for the whole test. For example, this means, that if you have:
+Please note that the time is compared with the execution for the whole test. This means that if you for example have:
 
 - 2 models
 - with common shared states
-- both having ```time_duration``` stop condition set to 60 seconds each
+- both having ```time_duration``` stop condition set to 60 seconds
 
-both models will stop executing after 60 seconds. Even if one of the models haven't been visited.
+Then both models will stop executing after 60 seconds, even if one of the models have not been visited.
 
 ### length( an integer )
 
-The condition is a number, representing the total numbers of edge-vertex pairs generated by a generator. 
-For example, if the number is 110, the test sequence would be 220 of do-check actions (including 110 pairs of edges and vertices).
+The stop condition is a number, representing the total numbers of edge-vertex pairs generated by a generator. 
+For example, if the number is 110, the test sequence would be 220 do-check actions (110 pairs of edges and vertices).
 
 ### never
 
@@ -92,45 +92,44 @@ This special stop condition will never halt the generator.
 
 ```
 /*
- * Will never stop generating a path sequence. Executes for ever in a random fashion.
+ * Will never stop generating a path sequence. Executes forever in a random fashion.
 /*
 random(never)
 
 
 /*
- * Walk randomly, until the vertex coverage has reached 100%
+ * Walk randomly until the vertex coverage has reached 100%.
 /*
 random(vertex_coverage(100))
 
 
 /*
- * Walk randomly, until the edge coverage has reached 50%
+ * Walk randomly until the edge coverage has reached 50%.
 /*
 random(edge_coverage(50))
 
 
 /*
- * Walk randomly, until the vertex v_SomeVertex is reached.
+ * Walk randomly until the vertex v_SomeVertex is reached.
 /*
 random(reached_vertex(v_SomeVertex))
 
 
 /*
- * Walk the shortest path to the edge e_SomeEdge, and the stop.
+ * Walk the shortest path to the edge e_SomeEdge and then stop.
 /*
 a_star(reached_edge(e_SomeEdge))
 
 
 /*
- * Walk randomly, until the requirement coverage has reached 100%
+ * Walk randomly until the requirement coverage has reached 100%.
 /*
 random(requirement_coverage(100))
 
 
 /*
- * Walk randomly, until the vertex coverage has reached 100%
+ * Walk randomly for 500 seconds.
 /*
-// Walk randomly for 500 seconds.
 random(time_duration(500))
 
 
@@ -141,48 +140,50 @@ random(length(24))
 
 
 /*
- * Walk randomly, until the edge coverage has reached 100%,
+ * Walk randomly until the edge coverage has reached 100%,
  * or we have executed for 500 seconds.
 /*
 random(edge_coverage(100) or time_duration(500))
 
 
 /*
- * Walk randomly, until the edge coverage has reached 100%,
- * or we have executed for 500 seconds. (same as above) random(edge_coverage(100) || time(500))
+ * Walk randomly until the edge coverage has reached 100%,
+ * or we have executed for 500 seconds (same as above).
 /*
 random(edge_coverage(100) || time_duration(500))
 
 
 /*
- * Walk randomly, until the edge coverage has reached 100%,
+ * Walk randomly until the edge coverage has reached 100%,
  * and we have reached the vertex v_SomeVertex.
-/*
-random(reached_vertex(v_SomeVertex) && edge_coverage(100))
-
-
-/*
- * Walk randomly, until the edge coverage has reached 100%,
- * and we have reached the vertex v_SomeVertex. (Same as above)
 /*
 random(reached_vertex(v_SomeVertex) and edge_coverage(100))
 
 
 /*
- * Walk randomly, until we have executed for 500 seconds,
- * or we have both reached vertex v_SomeVertex and  reached 100% vertex coverage.
+ * Walk randomly until the edge coverage has reached 100%,
+ * and we have reached the vertex v_SomeVertex (same as above).
+/*
+random(reached_vertex(v_SomeVertex) && edge_coverage(100))
+
+
+/*
+ * Walk randomly until we have executed for 500 seconds,
+ * or we have both reached vertex v_SomeVertex and reached 100% vertex coverage.
 /*
 random((reached_vertex(v_SomeVertex) and vertex_coverage(100)) || time_duration(500))
 
 
 /*
- * Walk randomly, until the edge coverage has reached 100% and we have reached the vertex v_SomeVertex.
- * Then we will start using the next strategy. Walk randomly for 1 hour
+ * Walk randomly until the edge coverage has reached 100% and we have reached the vertex v_SomeVertex.
+ * Then start using the next strategy: walk randomly for 1 hour.
 /*
 random(reached_vertex(v_SomeVertex) and edge_coverage(100)) random(time_duration(3600))
 
 /*
- * Walk randomly, until all the edges with dependency higher or equal to 85% are reached
+ * Walk randomly until all the edges with dependency higher or equal to 85% are reached.
 /*
 random(dependency_edge_coverage(85))
 ```
+
+[EFSM]:https://en.wikipedia.org/wiki/Extended_finite-state_machine

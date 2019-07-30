@@ -8,7 +8,7 @@ toc: false
 ---
 
 
-A single GraphWalker edge representation in JSON
+A single GraphWalker edge representation in JSON.
 
 ## Edge
 
@@ -26,12 +26,12 @@ A single GraphWalker edge representation in JSON
 }
 ```
 
-See the format of [ACTION IN JSON FORMAT](/json-action/).
+See the format of [action in JSON format](/json-action/).
 
 
 ## Example
 
-This is an example of an edge.
+This is an example of an edge from the [PetClinic](/petclinic/) test.
 
 ```json
 {
