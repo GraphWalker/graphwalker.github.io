@@ -1,6 +1,6 @@
 ---
 title: GraphWalker Restful API - getData
-tags: [api]
+tags: [API]
 keywords: api, restful, rest, getData
 sidebar: sidebar
 permalink: /rest-getdata/
@@ -9,9 +9,9 @@ toc: false
 
 
 
-## getData
+## GetData
 
-The call `getData` is used to ask GraphWalker for the current data values of the current model.
+The Rest call `getData` is used to ask GraphWalker for the current data values of the current model.
  
 **POST Request**
 
@@ -19,8 +19,8 @@ http://service-host:8887/graphwalker/getData
 
 **Response**
 
-If the request was successful **"result"** will be **"ok"**.
-The **data** part will hold the data as a key value elements.
+If the request was successful **"result"** will be **"ok"**. <br>
+The **"data"** part will hold the data as key value elements.
 
 ```json
 {

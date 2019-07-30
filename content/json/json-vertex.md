@@ -8,7 +8,7 @@ toc: false
 ---
 
 
-A single GraphWalker vertex representation in JSON
+A single GraphWalker vertex representation in JSON.
 
 ## Vertex
 
@@ -26,13 +26,13 @@ A single GraphWalker vertex representation in JSON
 
 ### properties
 
-The properties list is not mandatory. I can be used to store key / value data of different kinds.
+The properties list is not mandatory. It can be used to store key / value data of different kinds.
 
 ### sharedState
 
 The sharedState is a mechanism that allows GraphWalker to jump between states in different models during execution.
 During path generation, if a vertex with a `sharedState` is encountered, GraphWalker will look in all the other graphs
- and see if there is vertices with the same sharedState name. If true, GraphWalker can choose to jump over to any one
+ and see if there are vertices with the same sharedState name. If true, GraphWalker can choose to jump over to any one
  of those vertices.
 
 The sharedState is not mandatory.
@@ -40,7 +40,7 @@ The sharedState is not mandatory.
 
 ## Example
 
-This is an example of an edge.
+This is an example of a vertex from the [PetClinic](/petclinic/) test.
 
 ```json
 {

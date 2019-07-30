@@ -8,7 +8,7 @@ toc: false
 ---
 
 
-## source
+## Source
 
 Will generate source code using the provided model and a template.
 
@@ -18,7 +18,8 @@ Options
 This command requires an input model file, and an input template.
 
 * `--blocked`, `-b`<br>
-This option enables or disables the [BLOCKED](/yed_model_syntax#keywords) feature. When "-b true" GraphWalker will filter out elements in models with the keyword BLOCKED. When "-b false" GraphWalker will not filter out any elements in models with the keyword BLOCKED. Default: true
+This option enables or disables the [BLOCKED](/yed_model_syntax#keywords) feature. When "-b true" GraphWalker will filter out elements in models with the keyword BLOCKED. When "-b false" GraphWalker will not filter out any elements in models with the keyword BLOCKED. <br>
+Default is true.
 
 ## Examples
 
@@ -34,20 +35,20 @@ java -jar graphwalker-3.4.2-jar source -i Login.graphml python.template
 
 ## Template file
 
-The template file can use following parameters, they will be substituted during the
+The template file can use the following parameters. They will be substituted during the
 source generation.
 
 * The **HEADER** section. It will only be replaced once.<br>
 
-```
-HEADER<{{"{{"}}
-Any code  or comments you would like to be first onyour source here.
-{{"}}}}>HEADER
-```
+``` {% raw %}
+HEADER<{{
+Any code  or comments you would like to be first in your source code.
+}}>HEADER
+{% endraw %} ```
 
 * All code between the **HEADER** and the **FOOTER** sections are repeated with the same number
   of unique methods in the model.  The parameter used here is the **LABEL**.
-  The **LABEL** will be replace with the method name.<br>
+  The **LABEL** will be replaced with the method name.<br>
 
 ```
 {LABEL}
@@ -55,18 +56,18 @@ Any code  or comments you would like to be first onyour source here.
 
 * The **FOOTER** section. It will only be replaced once.<br>
 
-```
-FOOTER<{{"{{"}}
-Any code  or comments you need in the end of your source code.
-{{"}}}}>FOOTER
-```
+``` {% raw %}
+FOOTER<{{
+Any code  or comments you need at the end of your source code.
+}}>FOOTER
+{% endraw %} ```
 
 ## Example of templates
 
 A python template
 
-```python
-HEADER<{{"{{"}}
+``` {% raw %} python
+HEADER<{{
 import requests,json
 ##
 ## 1) Generate python stub source code:
@@ -75,16 +76,16 @@ import requests,json
 ## 2) Start graphwalker:
 ##    java -jar graphwalker-3.4.2.jar online --service RESTFUL -m model.graphml "random(edge_coverage(100))"
 ##
-## 3) Run the per program:
+## 3) Run the python program:
 ##    python model.py
 ##
-{{"}}}}>HEADER
+}}>HEADER
 
 def {LABEL}() :
     print( "{LABEL}" )
     return
 
-FOOTER<{{"{{"}}
+FOOTER<{{
 gw_url = 'http://localhost:8887/graphwalker'
 
 while requests.get(gw_url+'/hasNext').json()['hasNext'] == 'true' :
@@ -92,14 +93,14 @@ while requests.get(gw_url+'/hasNext').json()['hasNext'] == 'true' :
     step = requests.get(gw_url+'/getNext').json()['currentElementName']
     if step != '' :
         eval( step + "()" )
-{{"}}}}>FOOTER
-```
+}}>FOOTER
+{% endraw %} ```
 
 
 A perl template
 
-```perl
-HEADER<{{"{{"}}
+``` {% raw %} perl
+HEADER<{{
 use strict;
 use warnings;
 
@@ -110,7 +111,7 @@ use warnings;
 ## 2) Start graphwalker:
 ##    java -jar graphwalker-3.4.2.jar online -s RESTFUL -m model.graphml "random(edge_coverage(100))"
 ##
-## 3) Run the per program:
+## 3) Run the perl program:
 ##    perl login.perl http://localhost:8887/graphwalker
 ##
 
@@ -126,7 +127,7 @@ while ( get $host."/hasNext" eq "true"){
     eval( $step ) or die;
   }
 }
-{{"}}}}>HEADER
+}}>HEADER
 #
 # This sub routine implements: '{LABEL}'
 #
@@ -134,7 +135,7 @@ sub {LABEL}()
 {
   print "{LABEL}\n";
 }
-FOOTER<{{"{{"}}
+FOOTER<{{
 #End of generated source code
-{{"}}}}>FOOTER
-```
+}}>FOOTER
+{% endraw %} ```

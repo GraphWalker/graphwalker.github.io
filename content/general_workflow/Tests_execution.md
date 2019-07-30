@@ -1,6 +1,6 @@
 ---
-title: Introduction into tests execution
-tags: [introduction, work flow]
+title: Introduction to test execution
+tags: [introduction, work_flow]
 keywords: introduction, work flow
 sidebar: sidebar
 permalink: /Tests_execution/
@@ -10,10 +10,10 @@ toc: false
 
 ### Creating the test code
 
-The test path execution currently would be done in two ways - [step by step test](/create_a_small_test) creation or by [maven goal triggering](/create_a_test_using_maven).    
+The test path execution currently can be done in two ways: [step by step test](/create_a_small_test) creation or by [maven goal triggering](/create_a_test_using_maven).    
 
-The first way presented below.  
-Using Maven and the complete model from [model design step](/Model_design) create all the stub code needed.
+An example of step by step test creation is presented here.  
+Using Maven and the complete model from [model design step](/Model_design), create all the stub code needed.
 
 
 1\. Create the folder structure:
@@ -29,7 +29,7 @@ Using Maven and the complete model from [model design step](/Model_design) creat
 %> mv Login.graphml login/src/main/resources/org/myorg/testautomation
 ```
 
-3\. Copy and paste following and save it as pom.xml in **login** folder.
+3\. Copy and paste the following, and save it as pom.xml in *login* folder.
 
 ```xml
 <project xmlns="http://maven.apache.org/POM/4.0.0"
@@ -114,16 +114,16 @@ Using Maven and the complete model from [model design step](/Model_design) creat
 </project>
 ```
 
-4\. CD into the login folder, and run following:
+4\. cd into the login folder, and run the following:
 
 ```sh
 %> cd login
 %> mvn graphwalker:generate-sources
 ```
 
-The last command will automatically generate an interface of the model in Login.graphml.The interface is found in the folder **target/generated-sources/graphwalker/**. 
+The last command will automatically generate an interface of the model in Login.graphml. The interface is found in the folder **target/generated-sources/graphwalker/**. 
 
-If you check your folder, it will contain following files and folders:
+If you check your folder, it will contain the following files and folders:
 
 ```sh
 %> tree
@@ -154,16 +154,16 @@ If you check your folder, it will contain following files and folders:
                         └── Login.java
 ```
 
-Your job is now to implement that interface, which means filling in the missing code into the methods in the class that implements the interface. First you have to find the right tool for the job. Depending on you System Under Test(SUT) , it could typically be:
+Your job is now to implement that interface, which means filling in the missing code into the methods in the class that implements the interface. First you have to find the right tool for the job. Depending on you System Under Test (SUT) , it could be:
 
  * [Selenium Web Driver](http://www.seleniumhq.org/): if your SUT is a web browser
- * [Sikuli](http://www.sikuli.org/): if your SUT is a desktop native GUI client, where you don't have access to it's source code.
+ * [Sikuli](http://www.sikuli.org/): if your SUT is a desktop native GUI client, where you do not have access to source code.
 
 ### Implementing a test
 
-The code below is a stub. It does not interact with any real system under test. The lines containing the **System.out.println** indicates where code that interacts with a system under test should end up.
+The code below is a stub. It does not interact with any real system under test. The lines containing the **System.out.println** indicates where code that interacts with a system under test should go.
 
-Copy and paste following and save it as **src/test/java/org/myorg/testautomation/SimpleTest.java**:
+Copy and paste the following and save it as **src/test/java/org/myorg/testautomation/SimpleTest.java**:
 
 ```java
 package org.myorg.testautomation;
@@ -278,10 +278,10 @@ The test above is implemented using the JUnit framework, so you invoke it runnin
 %> mvn test
 ```
 
-All tests uses the same model, and the same code that implements the test. We have only changed the parameters passed on to GraphWalker. The parameters affects the traversing strategies and stop conditions for the tests.
+All tests use the same model and the same code that implements the test. We only change the parameters passed on to GraphWalker. The parameters affects the traversing strategies and stop conditions for the tests.
 
 ### Smoke test example
-Verifies the basic flow of the model. Using the A* algorithm, we create a straight path from the starting point, **e_Init**, in the graph, to the vertex **v_Browse**.
+This verifies the basic flow of the model. Using the [A* algorithm](generators_and_stop_conditions/#a_star-a-stop-condition-that-names-a-vertex-or-an-edge-), we create a straight path from the starting point, **e_Init** in the graph, to the vertex **v_Browse**.
 
 ```java
 @Test
@@ -293,7 +293,7 @@ public void runSmokeTest() {
 ```
 
 ### Functional test example
-This is a test where GraphWalker covers the complete graph. It will start from **e_Init**, and end as soon as the stop condition is fulfilled. Which is is 100% coverage of all edges.
+This is a test where GraphWalker covers the complete graph. It will start from **e_Init**, and ends as soon as the stop condition is fulfilled, i.e. 100% coverage of all edges.
 
 ```java
 @Test
@@ -305,7 +305,7 @@ public void runFunctionalTest() {
 ```
 
 ### Stability test example
-We ask GraphWalker to randomly walk the model, until the stop condition is fulfilled. That will happen when 30 seconds has passed. of course, in a real test, that might be 30 minutes, or why not hours.
+We ask GraphWalker to randomly walk the model until the stop condition is fulfilled. That will happen when 30 seconds has passed. Of course, in a real test, that might be 30 minutes, or why not hours.
 
 ```java
 @Test

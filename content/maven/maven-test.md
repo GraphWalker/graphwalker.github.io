@@ -10,8 +10,8 @@ toc: false
 
 ## graphwalker:test
 
-The plugin will run a GraphWalker test. It will run the `generate-sources` plugin, and the look
-for classes with `@GraphWalker` annotation, and run that class as a GraphWalker test.
+The plugin will run a GraphWalker test. It will run the `generate-sources` plugin, and then look
+for classes with the `@GraphWalker` annotation, and run that class as a GraphWalker test.
 
 ## Example
 

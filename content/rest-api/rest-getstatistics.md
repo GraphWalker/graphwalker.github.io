@@ -1,6 +1,6 @@
 ---
 title: GraphWalker API - getStatistics
-tags: [api]
+tags: [API]
 keywords: api, restful, rest, getStatistics
 sidebar: sidebar
 permalink: /rest-getstatistics/
@@ -9,9 +9,9 @@ toc: false
 
 
 
-## getStatistics
+## GetStatistics
 
-The call `getStatistics` will fetch the current statistics of the session
+The Rest call `getStatistics` will fetch the current statistics of the session.
  
 **POST Request**
 

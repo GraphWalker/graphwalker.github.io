@@ -8,7 +8,7 @@ toc: false
 ---
 
 
-GraphWalker accepts file formats in json. Multiple models and their data can be stored in one single json file.
+GraphWalker accepts file formats in JSON. Multiple models and their data can be stored in one single JSON file.
 
 ## File format
 
@@ -26,7 +26,7 @@ GraphWalker accepts file formats in json. Multiple models and their data can be 
 }
 ```
 
-See the format of [MODEL IN JSON FORMAT](/json-model/).
+See the format of [model in JSON format](/json-model/).
 
 
 ## Example

@@ -46,15 +46,15 @@ entries:
       url: /Model_design
       output: web
 
-    - title: Tests selection
+    - title: Test selection
       url: /Tests_selection
       output: web
 
-    - title: Test paths generation
+    - title: Test path generation
       url: /Test_paths_generation
       output: web
 
-    - title: Tests execution
+    - title: Test execution
       url: /Tests_execution
       output: web
 
@@ -90,7 +90,7 @@ entries:
       url: /tests_parametrisation
       output: web
 
-    - title: How to create a Minimal, Working example
+    - title: How to create a minimal working example
       url: /minimal_working_example
       output: web
 

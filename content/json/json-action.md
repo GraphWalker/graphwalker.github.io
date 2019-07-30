@@ -8,9 +8,9 @@ toc: false
 ---
 
 
-A single GraphWalker action representation in JSON
+A single GraphWalker action representation in JSON.
 
-## action
+## Action
 
 ```json
   "<JAVA SCRIPT;>"
@@ -18,11 +18,11 @@ A single GraphWalker action representation in JSON
 
 The action is a piece of java script code that you want the model to execute.
 
-It has to end with a semi colon.
+It has to end with a semicolon.
 
 ## Example
 
-This is an example of an action.
+This is an example of an action from the [PetClinic](/petclinic/) test.
 
 ```json
   "numOfPets=0;"

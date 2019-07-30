@@ -1,7 +1,12 @@
 ---
+<<<<<<< 3df8324ed70b794526edec0342c7607a65f3640d
 title: GraphWalker modeling syntax when using yEd
 summary: "GraphWalker is an open source Model-based testing tool for test automation. When modeling for GraphWalker using the yEd editor, there's a special syntax and rule set to follow, this page explains how."
 tags: [documentation]
+=======
+title: GraphWalker modeling syntax
+tags: [documentation, example]
+>>>>>>> update the website after proof reading
 keywords: documentation
 sidebar: sidebar
 permalink: /yed_model_syntax/
@@ -9,45 +14,70 @@ toc: false
 ---
 
 
+<<<<<<< 3df8324ed70b794526edec0342c7607a65f3640d
 This describes the syntax for ***GraphWalker***, and what the rules are when a model is created using the [yEd] model editor.
+=======
+This describes the syntax for GraphWalker and the rules for creating a model using the [yEd] model editor.
+>>>>>>> update the website after proof reading
 
 
 ## The model is a directed graph
 
+<<<<<<< 3df8324ed70b794526edec0342c7607a65f3640d
 The objective of the model is to express the expected behavior of the system under test. To do so, we use a [directed graph], in which a vertex (or a node) represents some desired state, and the edges (arcs, arrows, transitions) represent whatever actions we need to do in order to achieve that desired state.
 
 For example, let's take a web site that requires authentication before we can access the site's content. Designing a test, using a directed graph, might look like this:
+=======
+The objective of the model is to express the expected behavior of the system under test. To do so, we use a [directed graph](http://en.wikipedia.org/wiki/Directed_graph), in which a vertex (or a node) represents some desired state, and the edges (arcs, arrows, transitions) represents whatever actions we need to do in order to achieve that desired state.
+
+For example, let us take a web site that requires authentication before we can access the site's content. Designing a test, using a directed graph, might look like this:
+>>>>>>> update the website after proof reading
 
 ![alt text](/images/example1.jpg "Simple example 1")
 
 ## Vertex
-A vertex represents an expected state that we want to examine. In any implementing code/test, there is where you'll find the assertions, or the [oracles].
+A vertex represents an expected state that we want to examine. In any implementing code/test, this is where you will find the assertions, or the [oracles](http://en.wikipedia.org/wiki/Oracle_(software_testing)).
 
 * In [yEd] a vertex is called a node, normally depicted as a box.
+<<<<<<< 3df8324ed70b794526edec0342c7607a65f3640d
 * ***GraphWalker*** does not care what colors or shape a vertex has.
 
 ## Edge
 Represents the transition from one vertex to another. An edge is whatever action needs to be performed in order to reach the next state. This could be selecting some menu choice, clicking a button, or making a REST API call.
+=======
+* GraphWalker does not care what color or shape a vertex has.
 
-* ***GraphWalker*** only accepts one-way directed edges (arrows). 
-* ***GraphWalker*** does not care what colors or thickness an edge has.
+## Edge
+An edge represents the transition from one vertex to another. It is whatever action is needed to be made in order to reach the next state. It could be selecting some menu choice, clicking a button, or making a REST API call.
+>>>>>>> update the website after proof reading
+
+* GraphWalker only accepts one-way directed edges (arrows). 
+* GraphWalker does not care what color or thickness an edge has.
 
 ## The Rules
-This section will talk about the modeling rules using yEd with ***GraphWalker***. 
+This section will talk about the modeling rules using [yEd] with GraphWalker. 
 
 ### Start vertex
 ![alt text](/images/StartVertex.png "Start Vertex")
 
 * The **Start** vertex is not mandatory.
+<<<<<<< 3df8324ed70b794526edec0342c7607a65f3640d
 * If used, there must be 1 (and only 1) vertex with the name **Start** in a model.
+=======
+* If used, there must be 1 (and only 1) vertex with the name **Start** in the model.
+>>>>>>> update the website after proof reading
 * There can only be 1 out-edge from the Start vertex.
 * The **Start** vertex will not be included in any generated path.
  
 ### Name of a vertex or edge
+<<<<<<< 3df8324ed70b794526edec0342c7607a65f3640d
 The name is the first word on the first line in a label for an edge or vertex.
+=======
+The name is the first word, on the first line, in a label for an edge or vertex.
+>>>>>>> update the website after proof reading
 
 ### Label
-A label is all the text associated to an edge or a vertex.
+Labels are all the text associated with an edge or a vertex.
 
 <figure>
   <img src="/images/names.png" alt="Vertex and edge names">
@@ -55,7 +85,11 @@ A label is all the text associated to an edge or a vertex.
 </figure>
 
 ### Guards - Only for an edge
+<<<<<<< 3df8324ed70b794526edec0342c7607a65f3640d
 Guards are a mechanism only associated with edges. Their roles are the same as an if-statement, and they determine whether an edge is eligible or not for being walked.
+=======
+Guards are mechanisms only associated with edges. Their role is the same as an if-statement, and makes an edge eligible or not for being walked.
+>>>>>>> update the website after proof reading
 
 The guard is a conditional expression enclosed between square brackets:  
 
@@ -63,41 +97,45 @@ The guard is a conditional expression enclosed between square brackets:
 [loggedIn == true]
 ```  
 
-The above means that if the attribute loggedIn equals to true, the edge is accessible.
+This means that if the attribute loggedIn equals true, the edge is eligible.
 
 ### Action - Only for an edge
-Action is a mechanism only associated to edges. This is javascript code that we want to execute in the model. It's placed after a forward slash. Each statement must be ended with a semicolon.  
+Action is a mechanism only associated to edges. This is javascript code that we want to execute in the model. It is placed after a forward slash. Each statement must end with a semicolon.  
 
 ```
 /loggedIn=false; rememberMe=true;
 ```  
 
+<<<<<<< 3df8324ed70b794526edec0342c7607a65f3640d
 The purpose of the action code is to provide data to the guards.
+=======
+The purpose of the action code is to serve as data to the guards.
+>>>>>>> update the website after proof reading
 
 #### Example
 ![alt text](/images/GuardAndActions.png "Guards and Actions")
 
 This example illustrates how actions and guards work.
 
-**1)**  Let's start with the out-edge from the Start vertex:  
+1.  Let us start with the out-edge from the Start vertex:  
 
 ```
 e_Init/validLogin=false;rememberMe=false;
 ```  
 
-The name of the edge is ***e_Init***, followed by a forward slash, denoting that text from that point until end-of-line is [action] code. The action initializes 2 attributes: ***validLogin*** and ***rememberMe***.
+The name of the edge is ***e_Init***, followed by a forward slash, denoting that text from that point until end-of-line is *action* code. The action initializes 2 attributes: ***validLogin*** and ***rememberMe***.
 
-**2)**  When we have walked the edge above, we arrive at the ***v_ClientNotRunning*** vertex. This vertex has 2 out-edges, which both have guards. Since both ***validLogin*** and ***rememberMe*** are at this point initialized to false, only 1 edge is accessible for walking: the edge ***e_StartClient*** that has the vertex ***v_LoginPrompted*** as destination.
+2.  When we have walked the edge above, we arrive at the ***v_ClientNotRunning*** vertex. This vertex has 2 out-edges, which both have guards. Since both ***validLogin*** and ***rememberMe*** are at this point initialized to false, only 1 edge is accessible for walking: the edge ***e_Start*** that has the vertex ***v_LoginPrompted*** as destination.
 
-**3)** Now let's say that we have traversed the edges ***e_ToggleRememberMe*** and ***e_ValidPremiumCredentials*** and arrive again at the vertex ***v_ClientNotRunning***, we would now expect ***GraphWalker*** to select the other ***e_StartClient*** that has the vertex ***v_Browse*** as destination.
+3. Now let us say that we have traversed the edges ***e_ToggleRememberMe*** and ***e_ValidPremiumCredentials***, and arrive again at the vertex ***v_ClientNotRunning***. We would now expect ***GraphWalker*** to select the other edge ***e_Start*** that has the vertex ***v_Browse*** as destination.
 
-This illustrates how we can direct and control flows through a graph, if we need to do that.
+This illustrates how we can direct and control flows through a graph, if needed.
 
 ### Global attributes - Share data between models
 
-In the examples above where `loggedIn`, `validLogin` and `rememberMe` were used as attributes to hold data in a model, they couldn't be shared between models.
+In the examples above, where `loggedIn`, `validLogin` and `rememberMe` were used as attributes to hold data in the model, they cannot be shared between models.
 
-To achieve that, a global may be used instead.
+To achive that, a global attribute is used instead. Like this:
 
 For an action:
 ```
@@ -111,29 +149,35 @@ For a guard:
 
 
 ### Keywords
-Keywords are used in the models to increase functionality and usability.
+Keywords are used in the model to increase functionality and usability.
 
 * ***Start*** - This is used in a vertex to denote the Start vertex. Only one Start vertex per model.
 
-* ***BLOCKED*** - A vertex or an edge containing this keyword, will be excluded when a path is generated. If it's an edge, it will simply be removed from the graph. If it's a vertex, the vertex will be removed with its in- and out-edges.
+* ***BLOCKED*** - A vertex or an edge containing this keyword will be excluded when a path is generated. If it is an edge, it will simply be removed from the graph. If it is a vertex, the vertex will be removed with its in- and out-edges.
 
-* ***SHARED*** - This keyword is only for vertices. It means that ***GraphWalker*** can jump out of the current model, to any other model to a vertex with the same SHARED name.<br>
+* ***SHARED*** - This keyword is only for vertices. It means that GraphWalker can jump out of the current model to any other model, to a vertex with the same SHARED name.<br>
 The syntax is:<br>
+```
 SHARED:SOME_NAME
+```
 
-* ***INIT*** - Only a vertex can have this keyword. When using data in a model, the data needs to be initialized. That is what this keyword does. INIT is allowed in more vertices than just one.<br>
+* ***INIT*** - This keyword is only for vertices. When using data in a model, this data needs to be initialized which is what this keyword does. INIT is allowed in more vertices than just one.<br>
 The syntax is:<br>
+```
 INIT:loggedIn=false; rememberMe=true;
+```
 
-* ***REQTAG*** - Only a vertex can have this keyword.
-A comma separated list of requirements. Used to create traceability with external requirements and the models.<br>
+* ***REQTAG*** - This keyword is only for vertices. A comma-separated list of requirements used to create traceability with external requirements and the models.<br>
 The syntax is:<br>
+```
 REQTAG:String1, String2
+```
 
-* ***weight*** - Only an edge can have this keyword.
-Used only when using the [random generator](/generators_and_stop_conditions/#weighted_random-some-stop-conditions-). It holds a real value between 0 and 1, and represents the probability that the edge should be chosen. For example, a value of 0.05, would mean a 5% chance of that edge to be selected. The image below has 2 out-edges from vertex **v_LoginPrompted** that use the keyword *weight*.<br>
+* ***weight*** - This keyword is only for edges. Can only be used with the [random generator](/generators_and_stop_conditions/#weighted_random-some-stop-conditions-). It holds a real value between 0 and 1, and represents the probability that the edge is chosen. For example, a value of 0.05 means a 5% chance of that edge being selected. The image below has 2 out-edges from vertex **v_LoginPrompted** that uses the keyword *weight*.<br>
 The syntax is:<br>
+```
 weight=*float value between 0.0 and 1.0*
+```
 
 <a href="/images/LoginWithWeight.graphml" title="Spotify login feature on desktop"><img alt="Example of weighted model" src="/images/LoginWithWeight.png "></a>
 
@@ -145,14 +189,14 @@ weight=*float value between 0.0 and 1.0*
 When flattening models, several models are merged into one single model, which is then traversed by ***GraphWalker***. This is not the case here. ***GraphWalker*** is executing every model in its own context. The scope of the data in the models is not shared between them.
 
 #### SHARED:SOME_NAME
-The mechanism that controls the jumping between the models is the keyword SHARED. Let's look at an example. Consider these 4 models:
+The mechanism that controls the jumping between the models is the keyword SHARED. Let us look at an example. Consider these 4 models:
 
 ![alt text](/images/ModelA.png "Model A")
 ![alt text](/images/ModelB.png "Model B")
 ![alt text](/images/ModelC.png "Model C")
 ![alt text](/images/ModelD.png "Model D")
 
-All models are loaded into ***GraphWalker***, and the first model (Model A) is where the path generation is started. Using graphwalker-cli, the command line could look something like this:
+All models are loaded into GraphWalker, and the first model (Model A) is where the path generation is started. Using [graphwalker-cli](https://github.com/GraphWalker/graphwalker-cli), the command could look something like this:
 
 ```sh
 gw3 offline -m src/test/resources/graphml/shared_state/Model_A.graphml "random(edge_coverage(100))" \
@@ -161,13 +205,8 @@ gw3 offline -m src/test/resources/graphml/shared_state/Model_A.graphml "random(e
  -m src/test/resources/graphml/shared_state/Model_D.graphml "random(edge_coverage(100))"
 ```
 
-When the path generation reaches the vertex ***v_B*** in Model A, it has to consider the keyword ***SHARED:B***. This tells ***GraphWalker*** to search all other models for the same keyword using the same name: ***B***. In our case, there is only one, and it's in Model B. Now ***GraphWalker*** makes a decision whether to jump out of Model A, into the vertex ***v_B*** in Model B, or to stay in Model A. This decision is random.
+When the path generation reaches the vertex ***v_B*** in Model A, it has to consider the keyword ***SHARED:B***. This tells GraphWalker to search all other models for the same keyword using the same name: ***B***. In our case, there is only one, and it is in Model B. GraphWalker makes a decision whether to jump out of Model A to the vertex ***v_B*** in Model B, or to stay in Model A. This decision is random.
 
-Also, if the path generation is executing in Model B, and it reaches the vertex ***v_B***, ***GraphWalker*** can jump out of Model B, back to vertex ***v_B*** in Model A.
+Also, if the path generation is executing in Model B, and it reaches the vertex ***v_B***, GraphWalker can jump out of Model B, back to vertex ***v_B*** in Model A.
 
-
-[graphwalker-cli]:https://github.com/GraphWalker/graphwalker-cli
 [yEd]:http://www.yworks.com/en/products_yed_about.html
-[directed graph]:http://en.wikipedia.org/wiki/Directed_graph
-[oracles]:http://en.wikipedia.org/wiki/Oracle_(software_testing)
-[yEdModelFactory]:https://github.com/GraphWalker/graphwalker-io/blob/master/src/main/java/org/graphwalker/io/factory/yEdModelFactory.java

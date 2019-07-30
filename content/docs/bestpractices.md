@@ -3,7 +3,7 @@ title: Best practices
 keywords: prefixes, screenshot
 toc: false
 ---
-
+[comment]: <> Not used?
 
 During the years some best practices has evolved. This is a collection of them.
 

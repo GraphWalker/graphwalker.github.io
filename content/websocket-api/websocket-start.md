@@ -1,6 +1,6 @@
 ---
 title: GraphWalker WebSocket API - start
-tags: [api]
+tags: [API]
 keywords: api, websocket, start
 sidebar: sidebar
 permalink: /websocket-start/
@@ -9,7 +9,7 @@ toc: false
 
 
 
-## start
+## Start
 The Websocket message command `start` is used to load model(s) and start the service. The model must use JSON notation for a GraphWalker model.
  
 **Request**
@@ -75,6 +75,6 @@ If the request was successful **"success"** will be **"true"**.
 {
   "command": "start",
   "success": boolean,
-  "msg": "If success is false, an message will returned"
+  "msg": "If success is false, a message will be returned"
 }
 ```

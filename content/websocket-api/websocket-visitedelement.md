@@ -1,6 +1,6 @@
 ---
 title: GraphWalker WebSocket API - visitedElement
-tags: [api]
+tags: [API]
 keywords: api, websocket, visitedElement
 sidebar: sidebar
 permalink: /websocket-visitedelement/
@@ -9,10 +9,8 @@ toc: false
 
 
 
-
-
-## visitedElement
-The message **visitedElement** is sent from GraphWalker whenever a **getNext** has happened. The use case for this message is perhaps if you want to visualize the progress of the execution.
+## VisitedElement
+The message **visitedElement** is sent from GraphWalker whenever a **getNext** has happened. This message can be used to visualize the progress of the execution.
  
 **Message**
 

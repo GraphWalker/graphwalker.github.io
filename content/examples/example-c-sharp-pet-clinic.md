@@ -8,11 +8,11 @@ toc: false
 ---
 
 
-This is an example on how to implement a test using the [PetClinic Sample Application](https://github.com/spring-projects/spring-petclinic/). 
+This is an example of how to implement a test using the [PetClinic Sample Application](https://github.com/spring-projects/spring-petclinic/). 
 
 ## Pre-requisites
 
-* Download [latest GraphWalker standalone jar](http://graphwalker.github.io/content/archive/graphwalker-cli-3.4.2.jar)
+* [Latest GraphWalker standalone jar](http://graphwalker.github.io/content/archive/graphwalker-cli-3.4.2.jar) downloaded
 * Java JRE version 8 installed
 * Maven installed (version equal or greater than 3.2.3)
 * C# installed
@@ -28,7 +28,7 @@ git reset --hard 482eeb1c217789b5d772f5c15c3ab7aa89caf279
 mvn tomcat7:run
 ```
 
-To verify that the Sample Application is running, open it: [http://localhost:9966/petclinic/](http://localhost:9966/petclinic/). It should display this:
+To verify that the Sample Application is running, open: [http://localhost:9966/petclinic/](http://localhost:9966/petclinic/). It should display:
 ![alt text](/images/spring-pet-clinic.png "The Pet Clinic Sample Application")
 
 
@@ -39,7 +39,7 @@ git clone https://github.com/GraphWalker/graphwalker-example.git
 cd graphwalker-example/c-sharp-rest/PetClinic/
 ```
 
-In a terminal, start GraphWalker as a REST service
+In a terminal, start GraphWalker as a REST service:
 
 ```
 java -jar graphwalker-cli-3.4.2.jar -debug all online --verbose --service RESTFUL
@@ -53,7 +53,7 @@ Try http://localhost:8887/graphwalker/hasNext or http://localhost:8887/graphwalk
 Press Control+C to end...
 ```
 
-Build and start the test
+Build and start the test:
 
 ```
 xbuild

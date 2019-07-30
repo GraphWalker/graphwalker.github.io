@@ -1,5 +1,5 @@
 ---
-title: C-Sharp REST Example
+title: C# REST Example
 tags: [example]
 keywords: example
 sidebar: sidebar
@@ -8,11 +8,11 @@ toc: false
 ---
 
 
-This example will run simulated test using GraphWalker started as a WebSocket REST service.
+This example will run a simulated test using GraphWalker, started as a REST service.
 
 ## Pre-requisites
 
-* Download [latest GraphWalker standalone jar](http://graphwalker.github.io/content/archive/graphwalker-cli-3.4.2.jar) 
+* [Latest GraphWalker standalone jar](http://graphwalker.github.io/content/archive/graphwalker-cli-3.4.2.jar) downloaded
 * Java JRE version 8 installed
 * C# installed
 * git installed
@@ -41,13 +41,13 @@ Try http://localhost:8887/graphwalker/hasNext or http://localhost:8887/graphwalk
 Press Control+C to end...
 ```
 
-In the folder of `graphwalker-example/c-sharp-rest/SmallModel` build the C# project, on linux:
+In the folder of `graphwalker-example/c-sharp-rest/SmallModel` build the C# project, on Linux:
 
 ```
 xbuild
 ```
 
-Then run the test, on linux:
+Then run the test, on Linux:
 
 ```
 mono SmallModel/bin/Debug/SmallModel.exe
@@ -102,4 +102,3 @@ SmallModel.v_VerifySomeOtherAction
   "y": "3"
 }
 ```
-

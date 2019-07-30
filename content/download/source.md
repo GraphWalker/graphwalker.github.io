@@ -1,6 +1,6 @@
 ---
 title: The source code of GraphWalker
-summary: "GraphWalker is an open source Model-based testing tool for test automation. This pages has links to all the source code of GraphWalker."
+tags: [source]
 keywords: source, GitHub
 sidebar: sidebar
 permalink: /source_code/
@@ -18,9 +18,9 @@ toc: false
  * [cli - The command line interface for GraphWalker](https://github.com/GraphWalker/graphwalker-project/tree/master/graphwalker-cli)
  * [core -The core functionality](https://github.com/GraphWalker/graphwalker-project/tree/master/graphwalker-core)
  * [dsl - The text parsing logic](https://github.com/GraphWalker/graphwalker-project/tree/master/graphwalker-dsl)
- * [io - Handles input and output](https://github.com/GraphWalker/graphwalker-project/tree/master/graphwalker-io)
+ * [io - Input and output handling](https://github.com/GraphWalker/graphwalker-project/tree/master/graphwalker-io)
  * [java - GraphWalker annotation and source code generation](https://github.com/GraphWalker/graphwalker-project/tree/master/graphwalker-java)
- * [maven-plugin-archetype - Create graphwalker boilerplate maven projects](https://github.com/GraphWalker/graphwalker-project/tree/master/graphwalker-maven-archetype)
+ * [maven-plugin-archetype - GraphWalker boilerplate maven projects creation](https://github.com/GraphWalker/graphwalker-project/tree/master/graphwalker-maven-archetype)
  * [maven-plugin - Maven build goals for GraphWalker](https://github.com/GraphWalker/graphwalker-project/tree/master/graphwalker-maven-plugin)
  * [studio ](https://github.com/GraphWalker/graphwalker-project/tree/master/graphwalker-studio)
 

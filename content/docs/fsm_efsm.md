@@ -4,7 +4,7 @@ keywords: fsm, efsm, finite state machine
 toc: false
 ---
 
-
+[comment]: <> Not used?
 
 GraphWalker uses 2 different state machines. The **finite** and the **extended finite state machine**.
 The difference is that the EFSM has the capabilities to add "if-statements" for the edges.

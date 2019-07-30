@@ -10,10 +10,10 @@ toc: false
 
 ## graphwalker:generate-sources
 
-The plugin generates interfaces from models in placed in the folder `src/main/resources`.
+The plugin generates interfaces from models that are placed in the folder `src/main/resources`.
 The models are placed in sub directories to mimic package name structure.
 
-An example of a model, that would generate an `interface SmallTest` in the package `com.company`
+An example of a model that would generate an `interface SmallTest` in the package `com.company`:
 
 ```
 src/main/resources/com/company/SmallTest.graphml

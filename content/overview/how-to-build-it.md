@@ -12,7 +12,7 @@ toc: false
 
  * Install Java JDK 7 or 8
  * Install [Maven](http://maven.apache.org/download.cgi)
- * Git
+ * Install Git
 
 ## Get the source code
 

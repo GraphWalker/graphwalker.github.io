@@ -1,6 +1,6 @@
 ---
 title: GraphWalker is licensed under the MIT License
-summary: "GraphWalker is an open source Model-based testing tool for test automation. GraphWalker is licensed under the MIT License."
+tag: [license]
 keywords: license
 sidebar: sidebar
 permalink: /license/

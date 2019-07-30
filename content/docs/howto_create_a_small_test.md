@@ -11,7 +11,7 @@ toc: false
 ## Download and install the dependencies
 
  * Install latest Java JDK, 7 or 8
- * Install the [Maven](http://maven.apache.org/download.cgi)
+ * Install [Maven](http://maven.apache.org/download.cgi)
 
 ## Create folder structure
 From the command line, run:
@@ -21,7 +21,7 @@ mkdir -p gw_test/src/test/java/
 cd gw_test
 ```
 
-Create following file `src/test/java/ExampleTest.java` and copy and paste following into it:
+Create the following file `src/test/java/ExampleTest.java` and copy and paste the following into the file:
 
 ```java
 import org.graphwalker.core.condition.VertexCoverage;
@@ -130,7 +130,7 @@ public class ExampleTest extends ExecutionContext {
 }
 ```
 
-Also, create a file `pom.xml`, and copy the below into it:
+Create a file named `pom.xml`, and copy the following into it:
 
 ```xml
 <project xmlns="http://maven.apache.org/POM/4.0.0"
@@ -190,7 +190,7 @@ Also, create a file `pom.xml`, and copy the below into it:
 </project>
 ```
 
-Your folder and file structure will now look like this:
+Your folder and file structure should now look like this:
 
 ```
 tree
@@ -204,10 +204,15 @@ tree
 
 ## Running the test
 
-To make GraphWalker generate a path run the following on the command line:
+To make GraphWalker generate a path, run the following on the command line:
 
 ```sh
 mvn test
+```
+
+And the outcome should look like this:
+
+```
 [INFO] Scanning for projects...
 [INFO]                                                                         
 [INFO] ------------------------------------------------------------------------
@@ -216,20 +221,20 @@ mvn test
 [INFO] 
 [INFO] --- maven-resources-plugin:2.3:resources (default-resources) @ example ---
 [INFO] Using 'UTF-8' encoding to copy filtered resources.
-[INFO] skip non existing resourceDirectory /home/krikar/gw_test/src/main/resources
+[INFO] skip non existing resourceDirectory /gw_test/src/main/resources
 [INFO] 
 [INFO] --- maven-compiler-plugin:3.1:compile (default-compile) @ example ---
 [INFO] No sources to compile
 [INFO] 
 [INFO] --- maven-resources-plugin:2.3:testResources (default-testResources) @ example ---
 [INFO] Using 'UTF-8' encoding to copy filtered resources.
-[INFO] skip non existing resourceDirectory /home/krikar/gw_test/src/test/resources
+[INFO] skip non existing resourceDirectory /gw_test/src/test/resources
 [INFO] 
 [INFO] --- maven-compiler-plugin:3.1:testCompile (default-testCompile) @ example ---
 [INFO] Nothing to compile - all classes are up to date
 [INFO] 
 [INFO] --- maven-surefire-plugin:2.10:test (default-test) @ example ---
-[INFO] Surefire report directory: /home/krikar/gw_test/target/surefire-reports
+[INFO] Surefire report directory: /gw_test/target/surefire-reports
 
 -------------------------------------------------------
  T E S T S
@@ -256,7 +261,7 @@ Tests run: 3, Failures: 0, Errors: 0, Skipped: 0
 ```
 
 ## What the test(s) does
-First of all, we extend the `class ExecutionContext`, this gives us access to the execution context GraphWalker needs. The context is then passed on to the constructor of `SimpleMachine`.
+First of all, we extend the `class ExecutionContext`. This gives us access to the execution context GraphWalker needs. This context is then passed on to the constructor of `SimpleMachine`.
 
 ```
     @Test
@@ -287,18 +292,15 @@ The code explained row by row:
 2. Creating the graph, or model.
 3. Adding an edge to the model.
 4. Name the edge: **edge1**
-5. Add a guard to the edge. A guard is a conditional expression, if evaluated to true, the edge is accessible for execution, otherwise not.
+5. Add a guard to the edge. A guard is a conditional expression. If evaluated to true the edge is accessible for execution, otherwise not.
 6. Set start vertex as the source vertex of the edge.
-7. Name the start vertex to: **vertex1**.
+7. Name the start vertex: **vertex1**.
 8. Create a new vertex, and set that as the target for the edge.
 9. Name the vertex: **vertex2**.
-10. Add an action the the edge. The action is javascript code that will execute when the edge is executed.
+10. Add an action to the edge. The action is javascript code that will execute when the edge is executed.
 11. Build the model (make it immutable), and give it to the execution context.
-12. Create a path generator, and it's stop condition, and give it to the execution context.
+12. Create a path generator and stop condition, and give it to the execution context.
 13. Set the start vertex as the starting point of the execution of the model.
 14. Create the machine that will control the execution.
 15. As long as the stop condition of the path generator is not fulfilled, **hasNext** will return **true**.
 16. Execute the next step of the model.
-
-
-
