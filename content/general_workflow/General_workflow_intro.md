@@ -1,6 +1,6 @@
 ---
 title: General GraphWalker workflow
-summary: "GraphWalker is a open source Model-based testing tool for test automation. This is an introduction to GraphWalker general workflow and it explains which minimal steps would be done to achieve the main tool and the MBT approach benefits."
+summary: "GraphWalker is an open source Model-based testing tool for test automation. This is an introduction to GraphWalker general workflow and it explains which minimal steps would be done to achieve the main tool and the MBT approach benefits."
 tags: [introduction, work flow]
 keywords: introduction, work flow
 sidebar: sidebar
