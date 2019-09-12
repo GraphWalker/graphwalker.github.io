@@ -7,7 +7,6 @@ permalink: /yed_model_syntax/
 toc: false
 ---
 
-
 This describes the syntax for GraphWalker and the rules for creating a model using the [yEd] model editor.
 
 
@@ -55,7 +54,6 @@ Labels are all the text associated with an edge or a vertex.
 
 ### Guards - Only for an edge
 Guards are mechanisms only associated with edges. Their role is the same as an if-statement, and makes an edge eligible or not for being walked.
-
 The guard is a conditional expression enclosed between square brackets:  
 
 ```
@@ -78,7 +76,7 @@ The purpose of the action code is to serve as data to the guards.
 
 This example illustrates how actions and guards work.
 
-1.  Let uss start with the out-edge from the Start vertex:  
+1.  Let us start with the out-edge from the Start vertex:  
 
 ```
 e_Init/validLogin=false;rememberMe=false;

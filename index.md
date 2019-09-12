@@ -32,15 +32,15 @@ Given a model and a generator rule, GraphWalker, by mathematical algorithms, gen
 <img src="/images/LoginWithPath.png" alt="LoginWithPath">  
 
 Then this path would be provided to the tool of your choice to execute the test.  
-In another words GraphWalker is a test generation tool.  
+In other words, GraphWalker is a test generation tool.  
 
 Have a look at what features [GraphWalker offers](/features/).
 
 ## How to get it
 
-Either [download the standalone jar file](/download/), or include GraphWalker in your java project. The latest release version is 3.4.2.
+Either [download the standalone jar file](/download/), or include GraphWalker in your Java project. The latest release version is 3.4.2.
 
-In your maven project, add this to your pom.xml file:
+In your Maven project, add this to your pom.xml file:
 
 ```xml
 <dependency>
@@ -100,6 +100,6 @@ Also, add this to the pom.xml file:
 
 ## Announcements
 
-If you are a user of the project, please follow the announcements made on our [forum](https://groups.google.com/forum/?utm_medium=email&utm_source=footer#!forum/graphwalker-3)
+If you are a user of the project, please follow the announcements made on our [forum](https://groups.google.com/forum/?utm_medium=email&utm_source=footer#!forum/graphwalker-3).
 
 There will be important information regarding new upcoming versions, and deprecation of old ones, published there.

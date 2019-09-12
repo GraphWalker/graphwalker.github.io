@@ -1,6 +1,6 @@
 ---
 title: Introduction to using GraphWalker
-summary: "GraphWalker is a open source Model-based testing tool for test automation. This is an introduction to GraphWalker. It explains the work flow and process designing a test."
+summary: "GraphWalker is an open source Model-based testing tool for test automation. This is an introduction to GraphWalker. It explains the work flow and process of designing a test."
 tags: [introduction, work flow]
 keywords: introduction, work flow
 sidebar: sidebar
@@ -16,17 +16,17 @@ toc: false
  * Download [graphwalker-cli](http://graphwalker.github.io/download/)
 
 ## Test idea and design
-The purpose of the test design is to describe the **expected behavior of the system under test**. The way it works, is that you in a finite state diagram [model], express an action as a directed edge. An edge is also known as an arrow, arc or transition. The edge points to a vertex. Also known as a node or state, where the results or the consequence of the previous action is verified/asserted.
+The purpose of the test design is to describe the **expected behavior of the system under test**. The way it works is that you create a finite state diagram [model], where you express an action as a directed edge. An edge is also known as an arrow, arc or transition. Each edge points to a vertex. Vertices are also known as a nodes or states, and they're where the results or the consequence of the previous action is verified/asserted.
 
 ### Test idea
-Our test idea, is to write a regression test for the Spotify Desktop Client, more specifically, the feature **login**. (<a href="http://en.wikipedia.org/wiki/Spotify">Spotify is a music streaming business</a>)
+Our test idea is to write a regression test for the Spotify Desktop Client, more specifically, the **login** feature. (<a href="http://en.wikipedia.org/wiki/Spotify">Spotify is a music streaming business</a>)
 
-The feature is suppose to work  like this:
+The feature is supposed to work like this:
 
-* In a freshly installed client, and the client is started, the Login dialog is expected to be displayed.
-* The user enters valid credentials and the client is expected to start.
+* In a freshly installed client, after the client is started, the Login dialog is expected to be displayed.
+* The user enters valid credentials and the client is expected to navigate to the Browse screen.
 * If the user quits, or logs out, the Login dialog is displayed once again.
-* If the user checks the **Remember Me** checkbox, and logs in (using valid credentials), the client starts, and, next time the user starts the client, it will start without asking the client for credentials.
+* If the user checks the **Remember Me** checkbox, and logs in (using valid credentials), the Browse screen is shown, and the next time the user starts the client, it will navigate to the Browse screen without asking the client for credentials.
 
 Just designing a test for the 2 first steps, a model would look something like this:
 
@@ -34,7 +34,7 @@ Just designing a test for the 2 first steps, a model would look something like t
 
 1. The **Start** vertex is where the tests starts. (Duh!)
 
-2. In **e_Init**, we remove all cache, and kill any previous client processes. Since the test might be restarted, stored credentials on the disk might still lie around, so we need to get rid of it. Also, restarted tests could have stopped in a state, where the client still is running.
+2. In **e_Init**, we remove all cache, and kill any previous client processes. Since the test might be restarted, stored credentials on the disk might still lie around, so we need to get rid of them. Also, restarted tests could have stopped in a state where the client was still running.
 
 3. **v_ClientNotRunning** will assert that there is no Spotify client process running.
 
@@ -42,14 +42,14 @@ Just designing a test for the 2 first steps, a model would look something like t
 
 5. **v_LoginPrompted** asserts that the login dialog is displayed and correctly rendered.
 
-6. **e_ValidCredentials** enters a valid username and password and clicks the Sign In button.
+6. **e_ValidPremiumCredentials** enters a valid username and password and clicks the Sign In button.
 
 7. **v_Browse** asserts that the Browse view is correctly displayed.
 
-The above is a simple test. In fact, it's just one possible path through the model. It could be called the <a href="http://en.wikipedia.org/wiki/Use_case#Example">Basic flow</a> in a Use case. To make the test a better regression test, we extend the model.
+The above is a simple test. In fact, it's just one possible path through the model. It could be called the <a href="http://en.wikipedia.org/wiki/Use_case#Example">Basic flow</a> in a Use case. To make the test a better regression test, we extend the model with the following:
 
 * Logout
-* Exit the client
+* Exiting the client
 * Testing invalid credentials
 * Enabling and disabling stored credentials (Remember Me)
 * Closing/canceling the login dialog
@@ -60,7 +60,7 @@ The complete model could look something like below:
 
 ### Verifying the correctness of the model
 
-Before venturing into the test coding part, we need to verify whether the model is correct according to GraphWalker syntax rules. [See GraphWalker modeling syntax](/yed_model_syntax)
+Before venturing into the test coding part, we need to verify whether the model is correct according to GraphWalker's syntax rules. [See GraphWalker modeling syntax](/yed_model_syntax)
 
 Download the model above by right-clicking on it, then select "Save link as...". Save it as Login.graphml.
 
@@ -119,8 +119,8 @@ v_Browse
 A test sequence is generated. This is an offline generated test. No errors or other warning messages are generated, which means that the model is correct.
 
 ## Creating the test code
-Using Maven and the complete model above create all the stub code needed.
 
+Using Maven and the complete model from above, we can create all the stub code needed, with the following steps.
 
 1. Create the folder structure:
 
@@ -129,13 +129,14 @@ Using Maven and the complete model above create all the stub code needed.
 %> mkdir -p login/src/main/resources/org/myorg/testautomation
 %> mkdir -p login/src/test/java/org/myorg/testautomation
 ```
+
 2. Move the saved model:
 
 ```sh
 %> mv Login.graphml login/src/main/resources/org/myorg/testautomation
 ```
 
-3. Copy and paste following and save it as pom.xml in **login** folder.
+3. Copy and paste the following and save it as pom.xml in the **login** folder.
 
 ```xml
 <project xmlns="http://maven.apache.org/POM/4.0.0"
@@ -220,18 +221,18 @@ Using Maven and the complete model above create all the stub code needed.
 </project>
 ```
 
-4. CD into the login folder, and run following:
+4. CD into the login folder, and run the following:
 
 ```sh
 %> cd login
 %> mvn graphwalker:generate-sources
 ```
 
-The last command will automatically generate an interface of the model in Login.graphml.The interface is found in the folder **target/generated-sources/graphwalker/**. 
+This last command will automatically generate an interface of the model in Login.graphml. This interface is found in the folder **target/generated-sources/graphwalker/**. 
 
-If you check your folder, it will contain following files and folders:
+If you check your project folder, it will contain the following files and folders:
 
-```
+```sh
 %> tree
 .
 ├── pom.xml
@@ -260,16 +261,16 @@ If you check your folder, it will contain following files and folders:
                         └── Login.java
 ```
 
-Your job is now to implement that interface, which means filling in the missing code into the methods in the class that implements the interface. First you have to find the right tool for the job. Depending on you System Under Test(SUT) , it could typically be:
+Your job is now to implement that interface, which means filling in the missing code into the methods in the class that implements the interface. First you have to find the right tool for the job. Depending on your System Under Test (SUT), it could typically be:
 
- * [Selenium Web Driver](http://www.seleniumhq.org/): if your SUT is a web browser
- * [Sikuli](http://www.sikuli.org/): if your SUT is a desktop native GUI client, where you don't have access to it's source code.
+ * [Selenium Web Driver](http://www.seleniumhq.org/): if your SUT is a web browser,
+ * [Sikuli](http://www.sikuli.org/): if your SUT is a desktop native GUI client, where you don't have access to its source code.
 
 ### Implementing a test
 
-The code below is a stub. It does not interact with any real system under test. The lines containing the **System.out.println** indicates where code that interacts with a system under test should end up.
+The code below is a stub. It does not interact with any real system under test. The lines containing the **System.out.println** indicate where code that interacts with a system under test should end up in a real test.
 
-Copy and paste following and save it as **src/test/java/org/myorg/testautomation/SimpleTest.java**:
+Copy and paste the following and save it as **src/test/java/org/myorg/testautomation/SimpleTest.java**:
 
 ```java
 package org.myorg.testautomation;
@@ -378,16 +379,17 @@ public class SimpleTest extends ExecutionContext implements Login {
 
 ## Running the test
 
-The test above is implemented using the JUnit framework, so you invoke it running:
+The test above is implemented using the JUnit framework, so you can invoke it by running:
 
 ```sh
 %> mvn test
 ```
 
-All tests uses the same model, and the same code that implements the test. We have only changed the parameters passed on to GraphWalker. The parameters affects the traversing strategies and stop conditions for the tests.
+All tests use the same model, and the same code that implements the test. We only have to change the parameters passed to GraphWalker. The parameters affect the traversing strategies and stop conditions for the tests.
 
 ### Smoke test example
-Verifies the basic flow of the model. Using the A* algorithm, we create a straight path from the starting point, **e_Init**, in the graph, to the vertex **v_Browse**.
+
+Verifies the basic flow of the model. Using the A* algorithm, we create a straight path in the graph from the starting point, **e_Init** to the vertex **v_Browse**.
 
 ```java
 @Test
@@ -399,7 +401,8 @@ public void runSmokeTest() {
 ```
 
 ### Functional test example
-This is a test where GraphWalker covers the complete graph. It will start from **e_Init**, and end as soon as the stop condition is fulfilled. Which is is 100% coverage of all edges.
+
+This is a test where GraphWalker covers the complete graph. It will start from **e_Init**, and the test will end as soon as the stop condition is fulfilled. In this case, this condition is 100% coverage of all edges.
 
 ```java
 @Test
@@ -411,7 +414,8 @@ public void runFunctionalTest() {
 ```
 
 ### Stability test example
-We ask GraphWalker to randomly walk the model, until the stop condition is fulfilled. That will happen when 30 seconds has passed. Of course, in a real test, that might be 30 minutes, or why not hours.
+
+We ask GraphWalker to randomly walk the model until the stop condition is fulfilled. That will happen when 30 seconds has passed. Of course, in a real test, that might be 30 minutes, or even hours.
 
 ```java
 @Test
