@@ -17,7 +17,7 @@ Create a file called `/usr/local/bin/gw` with the following content:
 
 ```
 #!/bin/bash
-java -jar /absoulte/path/to/graphwalker/graphwalker-cli/target/graphwalker-cli-4.0.0-SNAPSHOT.jar "$@"
+java -jar /absolute/path/to/graphwalker/graphwalker-cli/target/graphwalker-cli-4.0.0-SNAPSHOT.jar "$@"
 ```
 
 Set the execution flag
