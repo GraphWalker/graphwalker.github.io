@@ -14,9 +14,11 @@ Will generate source code using the provided model and a template.
 
 Options
 
-* --input, -i<br>
+* `--input`, `-i`<br>
 This command requires an input model file, and an input template.
 
+* `--blocked`, `-b`<br>
+This option enables or disables the [BLOCKED](/yed_model_syntax#keywords) feature. When "-b true" GraphWalker will filter out elements in models with the keyword BLOCKED. When "-b false" GraphWalker will not filter out any elements in models with the keyword BLOCKED. Default: true
 
 ## Examples
 

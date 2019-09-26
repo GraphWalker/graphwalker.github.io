@@ -1,6 +1,6 @@
 ---
 title: The source code of GraphWalker
-summary: "GraphWalker is a open source Model-based testing tool for test automation. This pages has links to all the source code of GraphWalker."
+summary: "GraphWalker is an open source Model-based testing tool for test automation. This pages has links to all the source code of GraphWalker."
 keywords: source, GitHub
 sidebar: sidebar
 permalink: /source_code/

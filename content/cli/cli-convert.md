@@ -14,10 +14,11 @@ Convert a graph in file format, to some other format.
 
 Options
 
-* --input, -i<br>
+* `--input`, `-i`<br>
 This command requires an input file, and an output file.
 
-
+* `--blocked`, `-b`<br>
+This option enables or disables the [BLOCKED](/yed_model_syntax#keywords) feature. When "-b true" GraphWalker will filter out elements in models with the keyword BLOCKED. When "-b false" GraphWalker will not filter out any elements in models with the keyword BLOCKED. Default: true
 
 **Example:**
 
@@ -199,4 +200,30 @@ Printing the content of Login.gw3 (prettified using `cat Login.gw3 | python -m j
       }
    ]
 }
+```
+
+## Version 4 
+
+In version 4 new functionality changed from writing to file, into printing to stdout.
+
+Options
+
+* `--input`, `-i`<br>
+This command requires an input file.
+
+* `--format`, `-f`<br>
+Which format to convert into. Valid key words are: JSON [default],
+GRAPHML, DOT or JAVA<br>
+Default: JSON
+
+**Example:**
+
+```
+gw4 convert -i Login.graphml -f json
+```
+
+The above will result in a json string printed to the terminal:
+
+```json
+{"models":[{"name":"Login","id":"6a4aab5f-df1e-451b-a35e-f331234845c0","startElementId":"e0","vertices":[{"id":"n1","name":"v_ClientNotRunning","properties":{"x":1123.2486275337837,"description":"Start the client process","y":257.184751203258}},{"id":"n2","name":"v_LoginPrompted","properties":{"x":1083.8359375,"description":"Thus shla be prompted for user credentilas","y":376.184751203258}},{"id":"n3","name":"v_Browse","properties":{"x":1102.4111328125,"description":"A successful login is expected.\nThe user is presented with the initial view of the client.","y":514.184751203258}}],"edges":[{"id":"e0","name":"e_Init","actions":["rememberMe\u003dfalse;","validLogin\u003dtrue;"],"properties":{"description":"Remove all cache and user settings from file system."},"dependency":0,"targetVertexId":"n1"},{"id":"e1","name":"e_StartClient","guard":"!rememberMe||!validLogin","dependency":0,"sourceVertexId":"n1","targetVertexId":"n2"},{"id":"e2","name":"e_ValidPremiumCredentials","actions":["validLogin\u003dtrue;"],"properties":{"description":"Log in a s Premium user, using valid credentials"},"dependency":0,"sourceVertexId":"n2","targetVertexId":"n3"},{"id":"e3","name":"e_Logout","properties":{"description":"Logout current user from Spotify"},"dependency":0,"sourceVertexId":"n3","targetVertexId":"n2"},{"id":"e4","name":"e_Exit","properties":{"description":"Exit and shutdown the client process"},"dependency":0,"sourceVertexId":"n3","targetVertexId":"n1"},{"id":"e5","name":"e_ToggleRememberMe","actions":["rememberMe\u003d!rememberMe;"],"dependency":0,"sourceVertexId":"n2","targetVertexId":"n2"},{"id":"e6","name":"e_Close","dependency":0,"sourceVertexId":"n2","targetVertexId":"n1"},{"id":"e7","name":"e_StartClient","guard":"rememberMe\u0026\u0026validLogin","dependency":0,"sourceVertexId":"n1","targetVertexId":"n3"},{"id":"e8","name":"e_InvalidCredentials","actions":["valdiLogin\u003dfalse;"],"dependency":0,"sourceVertexId":"n2","targetVertexId":"n2"}]}]}
 ```
