@@ -51,9 +51,13 @@ toc: false
 
 ### Offline
 
+In offline mode the path generation is done once, and it is not directly connected to any test automation code. The path needs to be stored in some intermediate format. Typically, the path is generated from command line, and the output stored on file. The content of the file is then used by your test automation to drive tests.
+
 Offline mode is described in detail [here](/Test_paths_generation/#offline).
 
 ### Online
+
+In online mode the path generation is done during the execution of the test, run-time. This means that GraphWalker needs to be embedded in your test automation code. This adds a bit of complexity, but there are advantages, such as direct access to graph execution context and no need to handle intermediate storing of paths.
 
 Online mode is described in detail [here](/Test_paths_generation/#online).
 

@@ -24,4 +24,4 @@ Could be used for collecting results after test execution, like logs, reports et
 
 @AfterElement - annotated method will be triggered after any element invocation (edge or vertex) in the GraphWalker execution.
 
-[Examples of usage can be found in the Pet Clinic example](https://github.com/GraphWalker/graphwalker-example/blob/master/java-petclinic/src/main/java/com/company/modelimplementations/PetClinic.java#L55-L77).  
+[Examples of usage can be found in the Pet Clinic example](https://github.com/GraphWalker/graphwalker-example/blob/master/java-petclinic/src/main/java/com/company/modelimplementations/PetClinic.java#L62-L86).  

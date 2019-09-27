@@ -1,12 +1,6 @@
 ---
-<<<<<<< 3df8324ed70b794526edec0342c7607a65f3640d
-title: GraphWalker modeling syntax when using yEd
-summary: "GraphWalker is an open source Model-based testing tool for test automation. When modeling for GraphWalker using the yEd editor, there's a special syntax and rule set to follow, this page explains how."
-tags: [documentation]
-=======
 title: GraphWalker modeling syntax
 tags: [documentation, example]
->>>>>>> update the website after proof reading
 keywords: documentation
 sidebar: sidebar
 permalink: /yed_model_syntax/
@@ -14,24 +8,14 @@ toc: false
 ---
 
 
-<<<<<<< 3df8324ed70b794526edec0342c7607a65f3640d
-This describes the syntax for ***GraphWalker***, and what the rules are when a model is created using the [yEd] model editor.
-=======
 This describes the syntax for GraphWalker and the rules for creating a model using the [yEd] model editor.
->>>>>>> update the website after proof reading
 
 
 ## The model is a directed graph
 
-<<<<<<< 3df8324ed70b794526edec0342c7607a65f3640d
-The objective of the model is to express the expected behavior of the system under test. To do so, we use a [directed graph], in which a vertex (or a node) represents some desired state, and the edges (arcs, arrows, transitions) represent whatever actions we need to do in order to achieve that desired state.
-
-For example, let's take a web site that requires authentication before we can access the site's content. Designing a test, using a directed graph, might look like this:
-=======
 The objective of the model is to express the expected behavior of the system under test. To do so, we use a [directed graph](http://en.wikipedia.org/wiki/Directed_graph), in which a vertex (or a node) represents some desired state, and the edges (arcs, arrows, transitions) represents whatever actions we need to do in order to achieve that desired state.
 
 For example, let us take a web site that requires authentication before we can access the site's content. Designing a test, using a directed graph, might look like this:
->>>>>>> update the website after proof reading
 
 ![alt text](/images/example1.jpg "Simple example 1")
 
@@ -39,17 +23,10 @@ For example, let us take a web site that requires authentication before we can a
 A vertex represents an expected state that we want to examine. In any implementing code/test, this is where you will find the assertions, or the [oracles](http://en.wikipedia.org/wiki/Oracle_(software_testing)).
 
 * In [yEd] a vertex is called a node, normally depicted as a box.
-<<<<<<< 3df8324ed70b794526edec0342c7607a65f3640d
-* ***GraphWalker*** does not care what colors or shape a vertex has.
-
-## Edge
-Represents the transition from one vertex to another. An edge is whatever action needs to be performed in order to reach the next state. This could be selecting some menu choice, clicking a button, or making a REST API call.
-=======
 * GraphWalker does not care what color or shape a vertex has.
 
 ## Edge
 An edge represents the transition from one vertex to another. It is whatever action is needed to be made in order to reach the next state. It could be selecting some menu choice, clicking a button, or making a REST API call.
->>>>>>> update the website after proof reading
 
 * GraphWalker only accepts one-way directed edges (arrows). 
 * GraphWalker does not care what color or thickness an edge has.
@@ -61,20 +38,12 @@ This section will talk about the modeling rules using [yEd] with GraphWalker.
 ![alt text](/images/StartVertex.png "Start Vertex")
 
 * The **Start** vertex is not mandatory.
-<<<<<<< 3df8324ed70b794526edec0342c7607a65f3640d
-* If used, there must be 1 (and only 1) vertex with the name **Start** in a model.
-=======
 * If used, there must be 1 (and only 1) vertex with the name **Start** in the model.
->>>>>>> update the website after proof reading
 * There can only be 1 out-edge from the Start vertex.
 * The **Start** vertex will not be included in any generated path.
  
 ### Name of a vertex or edge
-<<<<<<< 3df8324ed70b794526edec0342c7607a65f3640d
-The name is the first word on the first line in a label for an edge or vertex.
-=======
 The name is the first word, on the first line, in a label for an edge or vertex.
->>>>>>> update the website after proof reading
 
 ### Label
 Labels are all the text associated with an edge or a vertex.
@@ -85,11 +54,7 @@ Labels are all the text associated with an edge or a vertex.
 </figure>
 
 ### Guards - Only for an edge
-<<<<<<< 3df8324ed70b794526edec0342c7607a65f3640d
-Guards are a mechanism only associated with edges. Their roles are the same as an if-statement, and they determine whether an edge is eligible or not for being walked.
-=======
 Guards are mechanisms only associated with edges. Their role is the same as an if-statement, and makes an edge eligible or not for being walked.
->>>>>>> update the website after proof reading
 
 The guard is a conditional expression enclosed between square brackets:  
 
@@ -106,11 +71,7 @@ Action is a mechanism only associated to edges. This is javascript code that we 
 /loggedIn=false; rememberMe=true;
 ```  
 
-<<<<<<< 3df8324ed70b794526edec0342c7607a65f3640d
-The purpose of the action code is to provide data to the guards.
-=======
 The purpose of the action code is to serve as data to the guards.
->>>>>>> update the website after proof reading
 
 #### Example
 ![alt text](/images/GuardAndActions.png "Guards and Actions")
