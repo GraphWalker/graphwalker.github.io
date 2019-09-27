@@ -7,7 +7,6 @@ permalink: /yed_model_syntax/
 toc: false
 ---
 
-
 This describes the syntax for GraphWalker and the rules for creating a model using the [yEd] model editor.
 
 
@@ -55,7 +54,6 @@ Labels are all the text associated with an edge or a vertex.
 
 ### Guards - Only for an edge
 Guards are mechanisms only associated with edges. Their role is the same as an if-statement, and makes an edge eligible or not for being walked.
-
 The guard is a conditional expression enclosed between square brackets:  
 
 ```
@@ -144,10 +142,10 @@ weight=*float value between 0.0 and 1.0*
 
 ### Multiple models
 
-***GraphWalker*** can work with several models in one session. This means that when generating a path, ***GraphWalker*** can choose to jump out of one model and into another one. This is very handy when separating different functionality into several models. For example, let's say you have a system that you want to test, and you would need to log in to do that. Then it might make sense to create a single model handling the log in functionality, and other models to handle whatever else you want to test. The log in model would then be reused for ever other test scenario.
+GraphWalker can work with several models in one session. It means that when generating a path, GraphWalker can choose to jump out of one model into another one. This is very useful when separating different functionality into different models. For example, if you have a system that you want to test and you would need to log in to do that, then it might make sense to create a single model handling the login functionality, and other models to handle whatever else you want to test. The login model could then be reused for every other test scenario.
 
-#### It's not the same thing as flattening
-When flattening models, several models are merged into one single model, which is then traversed by ***GraphWalker***. This is not the case here. ***GraphWalker*** is executing every model in its own context. The scope of the data in the models is not shared between them.
+#### It is not the same thing as flattening
+When flattening models, several models are merged into one single model, which is then traversed. This is not the case here. ***GraphWalker*** is executing every model in its own context. The scope of the data in the models are not shared between them.
 
 #### SHARED:SOME_NAME
 The mechanism that controls the jumping between the models is the keyword SHARED. Let us look at an example. Consider these 4 models:
