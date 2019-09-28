@@ -1,6 +1,6 @@
 ---
 title: Getting started overview
-summary: "GraphWalker is an open source Model-based testing tool for test automation. It's designed to make it easy to design your tests using graphs."
+summary: "GraphWalker is an open source Model-based testing tool for test automation. It is designed to make it easy to design your tests using graphs."
 tags: [getting_started]
 sidebar: sidebar
 type: homepage
@@ -16,9 +16,9 @@ Please go to [GraphWalker Survey](https://goo.gl/forms/rvHWHHsWIsh4Hw9y1)
 
 ## Overview 
 
-GraphWalker is an [Model-Based testing](https://en.wikipedia.org/wiki/Model-based_testing) tool. It reads models in the shape of [directed graphs](https://en.wikipedia.org/wiki/Directed_graph), and generates [test] paths from these graphs.
+GraphWalker is a [Model-Based testing](https://en.wikipedia.org/wiki/Model-based_testing) tool. It reads models in the shape of [directed graphs](https://en.wikipedia.org/wiki/Directed_graph), and generates test paths from these graphs.
 
-A model can look like the one in the following image. The model is collection of arrows and nodes and together they create a graph.
+A model can look like the image. The model is a collection of arrows and nodes, and together they create a graph.
 
 <img src="/images/Login.png" alt="Model">  
 
@@ -27,7 +27,7 @@ A model can look like the one in the following image. The model is collection of
 
 ## What GraphWalker does
 
-Given a model and a generator rule, GraphWalker by mathematical algorithms generates a path which corresponds to your test idea. This image illustrates such a result.
+Given a model and a generator rule, GraphWalker, by mathematical algorithms, generates a path that corresponds to your test idea. Next image illustrates one such result.
   
 <img src="/images/LoginWithPath.png" alt="LoginWithPath">  
 
@@ -102,4 +102,4 @@ Also, add this to the pom.xml file:
 
 If you are a user of the project, please follow the announcements made on our [forum](https://groups.google.com/forum/?utm_medium=email&utm_source=footer#!forum/graphwalker-3).
 
-There will be important information regarding new upcoming versions and deprecation of old ones published there.
+There will be important information regarding new upcoming versions, and deprecation of old ones, published there.

@@ -1,6 +1,6 @@
 ---
 title: GraphWalker API - fail
-tags: [api]
+tags: [API]
 keywords: api, restful, rest, fail
 sidebar: sidebar
 permalink: /rest-fail/
@@ -9,9 +9,9 @@ toc: false
 
 
 
-## fail
+## Fail
 
-The call `fail` terminate the path generation of the test session.
+The Rest call `fail` terminates the path generation of the test session.
  
 **PUT Request**
 
@@ -21,7 +21,7 @@ http://service-host:8887/graphwalker/fail/String%20to%20explain%20the%20failure
 
 ```json
 {
-  "result":"<Not applicable>"
+  "result":"nok"
 }
 ```
 

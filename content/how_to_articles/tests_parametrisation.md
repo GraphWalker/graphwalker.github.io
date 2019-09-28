@@ -1,29 +1,29 @@
 ---
-title: Tests parametrisation
-tags: [example]
-keywords: example
+title: Test parametrisation
+tags: [documentation]
+keywords: documentation
 sidebar: sidebar
 permalink: /tests_parametrisation/
 toc: false
 ---
 
-Tests parametrisation or data-driven testing is a design pattern which let you split test steps level from the data which you use for this steps. 
-That is a quite popular approach in test automation and provide possibility to reuse/combine/change data for each test separately. 
-It would be testing of login with different credentials, or iteration through boundary values and equivalent classes. 
+Test parametrisation, or data-driven testing, is a design pattern which lets you split test step levels from the data used for these steps. 
+It is a popular approach in test automation and provides the possibility to reuse/combine/change data for each test separately. 
+It could be testing of login with different credentials, or iteration through boundary values and equivalent classes. 
 
-Let's consider a <a download="LoginParametrized.graphml" href="/images/LoginParametrized.graphml">model</a> below which has a login test part and a reference on another model with the rest of functionality.
+Let us consider a <a download="LoginParametrized.graphml" href="/images/LoginParametrized.graphml">model</a> which has a login test part and a reference to another model with the rest of the functionality.
 
 <a download="LoginParametrized.graphml" href="/images/LoginParametrized.graphml"><img src="/images/LoginParametrized.png" alt="LoginParametrized"></a>
 
-The idea is the next:
+The idea is:
 
-1. Launch the application and set loginTested into false  
-2. Iterate through Login-Logout until loginTested is not true  
-3. Realise that loginTested is in true and go to test another functionality  
+1. Launch the application and set loginTested to false.
+2. Iterate through Login-Logout until loginTested is true.  
+3. Check that loginTested is true and go test other functionality.  
 
-The model contain [guards](/yed_model_syntax/#guards---only-for-an-edge) \[loginTested == true] and \[loginTested == false] to keep loop inside Login-Logout steps.  
-For exit from the loop you need to set loginTested variable into true from your model implementation code after end of iteration through your test data.  
-In the code below we take a test data (3 strings), iterate through it while there is any variables and set loginTested into true to let GW know that we have finished with the login functionality:
+The model contains [guards](/yed_model_syntax/#guards---only-for-an-edge) [loginTested == true] and [loginTested == false] to keep the loop inside the Login-Logout steps.  
+To exit the loop the loginTested variable needs to be set to true from your model implementation code after iteration through your test data.  
+In the code below we take test data (3 strings), iterate through it while there are any variables, and set loginTested to true to let GraphWalker know that testing the login functionality has finished:
 
 ```java
 @GraphWalker(value = "quick_random(edge_coverage(100))", start = "LaunchApplication")
@@ -74,7 +74,7 @@ public class LoginParametrizedImpl extends ExecutionContext implements LoginPara
 }
 ```
 
-As result you receive the next after execution:
+This is the result:
 
 ```sh
 o.g.c.m.ExecutionContext - Execute loginTested=false;

@@ -1,6 +1,6 @@
 ---
 title: GraphWalker Restful API - restart
-tags: [api]
+tags: [API]
 keywords: api, restful, rest, restart
 sidebar: sidebar
 permalink: /rest-restart/
@@ -9,9 +9,9 @@ toc: false
 
 
 
-## restart
+## Restart
 
-The call `restart` will reset currently load model(s) to it's initial states.
+The Rest call `restart` will reset currently loaded model(s) to their initial states.
  
 **PUT Request**
 

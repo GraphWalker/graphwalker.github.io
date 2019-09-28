@@ -13,11 +13,11 @@ The GraphWalker command line interface is a tool for working with graphs. It has
 
 ### Creating a script facilitating command line handling on a linux machine.
 
-Create a file called `/usr/local/bin/gw` with following content:
+Create a file called `/usr/local/bin/gw` with the following content:
 
 ```
 #!/bin/bash
-java -jar /home/krikar/dev/graphwalker/graphwalker-cli/target/graphwalker-cli-4.0.0-SNAPSHOT.jar "$@"
+java -jar /absoulte/path/to/graphwalker/graphwalker-cli/target/graphwalker-cli-4.0.0-SNAPSHOT.jar "$@"
 ```
 
 Set the execution flag
@@ -28,14 +28,14 @@ sudo chmod +x /usr/local/bin/gw
 
 ## Global options
 
-The global options affect all commands. Some options, like version, exits the program directly.
+The global options affects all commands. Some options, like version, exits the program immediately.
 
 * `--debug`, `-d`<br>
-Sets the log level: OFF, ERROR, WARN, INFO, DEBUG, TRACE, ALL.
-Default: OFF<br>
+Sets the log level: OFF, ERROR, WARN, INFO, DEBUG, TRACE, ALL.<br>
+Default: OFF.<br>
 
 * `--help`, `-h`<br>
-Prints help text
+Prints help text.
 
 * `--version`, `-v`<br>
-Prints the version of GraphWalker
+Prints the version of GraphWalker.

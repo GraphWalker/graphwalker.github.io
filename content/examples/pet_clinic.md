@@ -8,7 +8,7 @@ toc: false
 ---
 
 
-This is an example on how to implement a test using the [PetClinic Sample Application](https://github.com/spring-projects/spring-petclinic/). 
+This is an example of how to implement a test using the [PetClinic Sample Application](https://github.com/spring-projects/spring-petclinic/). 
 
 ## Pre-requisites
 
@@ -26,7 +26,7 @@ git reset --hard 482eeb1c217789b5d772f5c15c3ab7aa89caf279
 mvn tomcat7:run
 ```
 
-To verify that the Sample Application is running, open it: [http://localhost:9966/petclinic/](http://localhost:9966/petclinic/). It should display this:
+To verify that the Sample Application is running, open: [http://localhost:9966/petclinic/](http://localhost:9966/petclinic/). It should display:
 ![alt text](/images/spring-pet-clinic.png "The Pet Clinic Sample Application")
 
 
@@ -39,11 +39,11 @@ mvn graphwalker:test
 ```
 
 ## The test
-The tests is designed using [yEd](http://www.yworks.com/en/products/yfiles/yed/). The test design is divided between 5 models. 
+The tests are designed using [yEd](http://www.yworks.com/en/products/yfiles/yed/). The test design is divided into 5 models. 
 
-What you would expect when running the test, is that Firefox will open, and the test will start navigating around the Pet Clinic web site.
+What you should expect when running the test is that Firefox will open, and that the test will start navigating around the Pet Clinic web site.
 
-The video below runs the PetClinic test using maven from the command line:
+The video below shows the PetClinic test using maven from the command line:
 
 ```
 mvn graphwalker:test
@@ -57,8 +57,8 @@ Another video that uses [Graphstream](http://graphstream-project.org/) to visual
 
 
 ## Docker
-Another way of running the same test, is using [docker](https://www.docker.com/). The advantage is that Firefox with a specific version 47.0.1 is pre-installed, eliminating conflicts with newer versions of firefox and versions of selenium. Also, the petclinic webserver is installed and launched at startup automatically.
-You need to have docker installled on you machine. At this time, this is only confirmed to work on linux.
+Another way of running the same test is using [docker](https://www.docker.com/). The advantage is that Firefox with the specific version 47.0.1 is pre-installed, eliminating conflicts with newer versions of Firefox and versions of Selenium. Also, the petclinic webserver is installed and launched at startup automatically.
+You need to have docker installed on you machine. Currently this is only confirmed to work on Linux.
 
 ```
 docker pull graphwalker/petclinic

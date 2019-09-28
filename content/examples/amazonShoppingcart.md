@@ -1,6 +1,5 @@
 ---
 title: Amazon Shopping Cart
-summary: "GraphWalker is an open source Model-based testing tool for test automation. This page is an example where a test is designed using a Use Case document, and where requirement tracking is used. It's a working example."
 tags: [example]
 keywords: example
 sidebar: sidebar
@@ -9,7 +8,7 @@ toc: false
 ---
 
 
-This is an Model-Based test testing the shopping cart at the Amazon website. The source code of the test is [Amazon Shopping Cart test](https://github.com/GraphWalker/graphwalker-example/tree/master/java-amazon). 
+This is a Model-Based test, testing the shopping cart at the Amazon website. The source code of the test is [Amazon Shopping Cart test](https://github.com/GraphWalker/graphwalker-example/tree/master/java-amazon). 
 
 ## Pre-requisites
 
@@ -25,7 +24,6 @@ git clone https://github.com/GraphWalker/graphwalker-example.git
 cd graphwalker-example/java-amazon
 ```
 
-<a download="ShoppingCart.graphml" href="/content/resources/ShoppingCart.graphml"><img src="/images/amazonShoppingCart_small.png" alt="Model" align="right"/></a>
 
 ## Run the test
 
@@ -34,8 +32,8 @@ mvn graphwalker:test
 ```
 
 ## Docker
-Another way of running the same test, is using [docker](https://www.docker.com/). The advantage is that Firefox with a specific version 47.0.1 is pre-installed, eliminating conflicts with newer versions of firefox and versions of selenium. 
-You need to have docker installled on you machine. At this time, this is only confirmed to work on linux.
+Another way of running the same test is using [docker](https://www.docker.com/). The advantage is that Firefox with the specific version 47.0.1 is pre-installed, eliminating conflicts with newer versions of Firefox and versions of Selenium. 
+You need to have docker installed on you machine. Currently this is only confirmed to work on Linux.
 
 ```
 docker pull graphwalker/amazon
@@ -45,18 +43,19 @@ docker run -ti --rm -e DISPLAY -v /tmp/.X11-unix:/tmp/.X11-unix \
 ```
 
 ## The graph
+<a download="ShoppingCart.graphml" href="/content/resources/ShoppingCart.graphml"><img src="/images/amazonShoppingCart_small.png" alt="Model" align="right"/></a>
 
-The tests is designed using [yEd](http://www.yworks.com/en/products/yfiles/yed/). If you click on the graph to the right and save the file as ShoppingCart.graphml, you can open it in yEd and have a closer look at it.
+The test is designed using [yEd](http://www.yworks.com/en/products/yfiles/yed/). If you click on the graph to the right and save the file as ShoppingCart.graphml, you can open it in yEd and have a closer look at it.
 
 ## The test design
 
 <a download="UC01.pdf" href="/content/resources/UC01.pdf"><img src="/images/UC01_small.png" alt="PDFl" align="left"/></a>
 
-The design of the test, is based on an imaginary [Use Case document](/content/resources/UC01.pdf). In the model, there are some special tags in the vertices. They look like:<br>
+The design of the test is based on an imaginary [Use Case document](/content/resources/UC01.pdf). In the model, there are some special tags in the vertices. They look like:<br>
 `REQTAG=UC01 2.2.1`<br>
-The meaning of that keyword, is to help you track what requirement is verified at that specific vertex. So if you open the Use case document, you can verify for yourself that the test covers the requirements Use Case.
+The meaning of that keyword is to help you track what requirement is verified at that specific vertex. So if you open the Use Case document, you can verify for yourself that the test covers the requirements Use Case.
 
-Other than the Use Case, the design is made in way, so that there's no [Cul-de-Sac](https://en.wikipedia.org/wiki/Cul-de-sac) in the model. Meaning that that, given that the start point is the `Start` node, GraphWalker will never end up in a state from which it can't go any further.
+Other than the Use Case, the design is made in a way so that there is no [Cul-de-Sac](https://en.wikipedia.org/wiki/Cul-de-sac) in the model. This means that given the start point at the `Start` node, GraphWalker will never end up in a state from which it cannot go any further.
 
 
 ## The implementation
@@ -70,9 +69,9 @@ Have a look at the source code file [ShoppingCartTest.java](https://github.com/G
 public class ShoppingCartTest extends ExecutionContext implements ShoppingCart {
 ```
 
-The annotation does following 3 things:
+The annotation does the following 3 things:
 
-1. First of all, it tells GraphWalker to pick up this class as part of a test.
+1. it tells GraphWalker to pick up this class as part of a test.
 2. The attribute `value` sets the path generator and stop condition for this model.<br>{: style=""}
 
    The path generator is set to `random`, using a stop condition which requires 100% coverage of all edges in the model. Read more about generators and stop conditions at [Generators and stop conditions](/generators_and_stop_conditions/)
@@ -80,12 +79,12 @@ The annotation does following 3 things:
    
 3. Sets the starting point of the path generation using the attribute `start` set to `e_StartBrowser`.<br>{: style=""}
 
-   The model has a node called `Start`, but you don't need it. The attribute `start` overrides that. In our case with the Shopping Cart test we wanted the test to start with an edge, which is hard to do with yEd. It requires a source node for any edge.
+   The model has a node called `Start`, but you do not need it. The attribute `start` overrides that node. In our case with the Shopping Cart test we want the test to start with an edge, which is hard to do with yEd since it requires a source node for any edge.
    {: style="color:gray; font-size: 90%"}
 
-## Always dry run your models!
+## Always dry run your models
 
-You should always verify your graphs before running your tests. You need to check that they don't misbehave, and doing that is very easy. 
+You should always verify your graphs before running your tests. You need to check that they do not misbehave. 
 
 * [Download the standalone jar file](/download/)
 * From your command line, run:
@@ -107,7 +106,7 @@ java -jar graphwalker-cli-3.4.2.jar offline --start-element e_StartBrowser --mod
 {"currentElementName":"e_ShoppingCart"}
 :
 ```
-You can ask GraphWalker to be more verbose, and expose more data.
+You can ask GraphWalker to be more verbose, and expose more data:
 
 ```
 java -jar graphwalker-cli-3.4.2.jar offline --verbose --start-element e_StartBrowser --model ShoppingCart.graphml "random(edge_coverage(100))"
@@ -124,7 +123,7 @@ java -jar graphwalker-cli-3.4.2.jar offline --verbose --start-element e_StartBro
 :
 ```
 
-If you only want to see the element name, and the value of the `num_of_books`, you can try:
+If you only want to see the element name and the value of the `num_of_books`, using the [jq](https://stedolan.github.io/jq/) command:
 
 ```
 java -jar graphwalker-cli-3.4.2.jar offline --verbose --start-element e_StartBrowser --model ShoppingCart.graphml "random(edge_coverage(100)) | jq -r '.currentElementName + ", " + (.data[] | .num_of_books) | tostring'"
@@ -152,4 +151,4 @@ v_OtherBoughtBooks, 2
 ```
 
 
-When you try this on your models, and the command never stops, you have some logical problems with your test design, and you need to re-think the design. 
+If you try this on your models and the command never stops, you have some logical problem with your test design, and might need to re-think the design. 

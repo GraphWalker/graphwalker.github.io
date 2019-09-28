@@ -1,6 +1,6 @@
 ---
 title: GraphWalker WebSocket API - getNext
-tags: [api]
+tags: [API]
 keywords: api, websocket, getNext
 sidebar: sidebar
 permalink: /websocket-getnext/
@@ -9,9 +9,7 @@ toc: false
 
 
 
-
-
-## getNext
+## GetNext
 The Websocket message command `getNext` is used to get the next element from the path generation. GraphWalker will, given the path generator, calculate what the next element should be, and step one step forward in the execution of the model. The element name is returned in the response.
  
 **Request**
