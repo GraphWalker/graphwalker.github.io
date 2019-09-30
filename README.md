@@ -7,20 +7,14 @@
 3) In the root of the folder of the cloned project, run following command:
 
 ```sh
-bundle update
-```
-
-4) Then start a local preview of the site:
-
-```sh
 jekyll serve
 ```
 
-5) Do all your changes. The site uses the Jekyll Documentation Theme. See appendix below.
+1) Do all your changes.
 
-6) Commit and push
+2) Commit and push
 
-7) From your fork on GitHub, create a new pull request
+3) From your fork on GitHub, create a new pull request
 
 ## Appendix
 
