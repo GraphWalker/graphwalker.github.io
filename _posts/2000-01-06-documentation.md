@@ -9,7 +9,7 @@ fa-icon: book
 
 All documentation on how to use GraphWalker is on GitHub wiki pages.
 
-[Wiki documenattion](https://github.com/GraphWalker/graphwalker-project/wiki)
+[Wiki documentation](https://github.com/GraphWalker/graphwalker-project/wiki)
 
 ## Get help from the forum
 
