@@ -18,6 +18,7 @@
 .container .half.column  { width: 460px; }
 .container .big.column   { width: 620px; }
 .container .full.column  { width: 940px; }
+.container .halfx.column  { width: 460px; }
 
 
 /* ----- Tablet (Portrait) -- 768px ----- */
@@ -28,6 +29,8 @@
     .container .half.column  { width: 364px; }
     .container .big.column   { width: 488px; }
     .container .full.column  { width: 748px; }
+    .container .halfx.column  { width: 364px; }
+
   }
 
 
@@ -40,6 +43,8 @@
     .container .half.column  { width: 48%; }
     .container .big.column   { width: 98%; }
     .container .full.column  { width: 98%; }
+    .container .halfx.column  { width: 98%; }
+
   }
 
 
@@ -52,6 +57,7 @@
     .container .half.column  { width: 46%; }
     .container .big.column   { width: 96%; }
     .container .full.column  { width: 96%; }
+    .container .halfx.column  { width: 96%; }
   }
 
 
