@@ -30,7 +30,7 @@ fa-icon: book
                     then open <a href="http://localhost:9090/studio.html">http://localhost:9090/studio.html</a> in a web browser.</li>
                     <li>Create an empty model<br>
                     Click once on the <strong>+-button</strong>, and a model <strong>editor view</strong> will be opened.</li>
-                    <li>Cretae a vertex<br>
+                    <li>Create a vertex<br>
                     On the <strong>editor view</strong> area, while pressing the keyboard key <strong>v</strong>, click the <strong>left mouse button</strong>.</li>
                     <li>Cretae an edge<br>
                     On the <strong>editor view</strong> area, while pressing the keyboard key <strong>e</strong>
