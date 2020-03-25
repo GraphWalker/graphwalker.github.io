@@ -32,7 +32,7 @@ fa-icon: book
                     Click once on the <strong>+-button</strong>, and a model <strong>editor view</strong> will be opened.</li>
                     <li>Create a vertex<br>
                     On the <strong>editor view</strong> area, while pressing the keyboard key <strong>v</strong>, click the <strong>left mouse button</strong>.</li>
-                    <li>Cretae an edge<br>
+                    <li>Create an edge<br>
                     On the <strong>editor view</strong> area, while pressing the keyboard key <strong>e</strong>
                         <ul>
                             <li>Click and hold the <strong>left mouse button</strong> on the first vertex.</li>
