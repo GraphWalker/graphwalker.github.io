@@ -26,7 +26,7 @@ fa-icon: book
             <p>
                 <ul>
                     <li>Start the model editor<br>
-                    <strong>java -jar graphwalker-studio-4.3.0.jar</strong><br>
+                    <strong>java -jar graphwalker-studio-4.3.1.jar</strong><br>
                     then open <a href="http://localhost:9090/studio.html">http://localhost:9090/studio.html</a> in a web browser.</li>
                     <li>Create an empty model<br>
                     Click once on the <strong>+-button</strong>, and a model <strong>editor view</strong> will be opened.</li>
@@ -78,7 +78,7 @@ mvn compile exec:java -Dexec.mainClass="com.company.Runner"
 <dependency>
    <groupId>org.graphwalker</groupId>
    <artifactId>graphwalker-core</artifactId>
-   <version>4.3.0</version>
+   <version>4.3.1</version>
 </dependency>
 {% endhighlight %}
             </p>
