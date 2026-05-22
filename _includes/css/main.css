@@ -259,6 +259,27 @@ nav ul li:hover, nav ul li.active {
 
 
 
+/* ----- graphwalker-rs buttons ----- */
+.btn-rs {
+  display: inline-block;
+  padding: 12px 28px;
+  margin: 8px;
+  font-size: 17px;
+  font-weight: 700;
+  text-decoration: none;
+  border-radius: 6px;
+  background-color: #fab125;
+  color: #2a1f3d !important;
+  transition: opacity .2s;
+}
+.btn-rs:hover { opacity: .85; }
+.btn-rs-outline {
+  background-color: transparent;
+  border: 2px solid #fab125;
+  color: #fab125 !important;
+}
+.btn-rs-outline:hover { background-color: rgba(250,177,37,.15); }
+
 /* ----- fork on github banner ----- */
 #forkongithub a {
   color:#fff;
