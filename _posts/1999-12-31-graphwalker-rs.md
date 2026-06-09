@@ -17,6 +17,6 @@ A faster, leaner GraphWalker built with Rust — same model-based testing approa
 <a href="https://graphwalker.github.io/graphwalker-rs" class="btn-rs">
   Read the Documentation &rarr;
 </a>
-<a href="https://github.com/GraphWalker/graphwalker-project/tree/master/graphwalker-rs" class="btn-rs btn-rs-outline">
+<a href="https://github.com/GraphWalker/graphwalker-rs" class="btn-rs btn-rs-outline">
   View on GitHub
 </a>
