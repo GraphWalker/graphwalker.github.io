@@ -19,7 +19,6 @@ keywords:    "GraphWalker, Model based testing, mbt, testing, test, automation"
 description: "GraphWalker is an open source Model-based testing tool for test automation. It is designed to make it easy to design your tests using graphs"
 source_link: "https://github.com/GraphWalker/graphwalker-project"
 favicon:     "img/favicon.ico"
-touch_icon:  "img/apple-touch-icon.png"
 google_analytics_key: UA-67286726-1
 
 
