@@ -14,7 +14,9 @@ The site has two halves:
 The dev shell provides everything you need:
 
 ```sh
+# Only if on a nixos machine
 nix develop          # enter the dev shell (node 22, ruby, lychee)
+
 npm install          # install JS dependencies
 npm run dev          # start Astro dev server at localhost:4321
 npm run build        # build the full site to dist/
