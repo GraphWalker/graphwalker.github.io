@@ -1,0 +1,42 @@
+@import "tailwindcss";
+
+@import "@fontsource/fira-sans/400.css";
+@import "@fontsource/fira-sans/500.css";
+@import "@fontsource/fira-sans/700.css";
+@import "@fontsource/source-code-pro/400.css";
+@import "@fontsource/source-code-pro/600.css";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme {
+  --font-sans: "Fira Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-mono: "Source Code Pro", ui-monospace, SFMono-Regular, Menlo, monospace;
+
+  --color-rust-100: #fdf1ea;
+  --color-rust-200: #f6ddcb;
+  --color-rust-300: #edc4aa;
+  --color-rust-400: #dea584;
+  --color-rust-500: #cd7744;
+  --color-rust-600: #b7410e;
+  --color-rust-700: #8f3107;
+
+  --color-night-700: #2a2a2f;
+  --color-night-800: #18181c;
+  --color-night-900: #0e0e11;
+  --color-night-950: #08080a;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 4.5rem;
+  }
+
+  body {
+    text-rendering: optimizeLegibility;
+  }
+
+  ::selection {
+    @apply bg-rust-400/40;
+  }
+}

@@ -1,0 +1,68 @@
+---
+import SectionHeader from './SectionHeader.astro';
+import { LINKS } from '../constants';
+
+const pages = [
+  { href: LINKS.gettingStarted, title: 'Getting Started', desc: 'Tutorial: install, create a model, and run it.' },
+  { href: LINKS.modelBasedTesting, title: 'Model-Based Testing', desc: 'What MBT is and how GraphWalker implements it.' },
+  { href: LINKS.cli, title: 'CLI Reference', desc: 'All CLI subcommands, flags, and options.' },
+  { href: LINKS.generators, title: 'Generators', desc: 'Path generation algorithms.' },
+  { href: LINKS.stopConditions, title: 'Stop Conditions', desc: 'When to stop generating a path.' },
+  { href: LINKS.jsonFormat, title: 'JSON Model Format', desc: 'The complete model file format specification.' },
+  { href: LINKS.restApi, title: 'REST API', desc: 'HTTP API for online test execution.' },
+  { href: LINKS.websocketApi, title: 'WebSocket API', desc: 'WebSocket protocol for real-time interaction.' },
+  { href: LINKS.mcpServer, title: 'MCP Server', desc: 'Model Context Protocol server for AI-assisted model-based testing.' },
+  { href: LINKS.studio, title: 'Studio', desc: 'Visual model editor and test runner.' },
+];
+---
+
+<section id="docs" class="relative overflow-hidden bg-night-900 text-white">
+  <div
+    class="pointer-events-none absolute inset-0"
+    style="background: radial-gradient(50rem 26rem at 15% 0%, rgba(222, 165, 132, 0.12), transparent 60%)"
+    aria-hidden="true"
+  ></div>
+
+  <div class="relative mx-auto max-w-6xl px-4 py-20 md:py-24">
+    <div class="grid items-center gap-8 md:grid-cols-2">
+      <SectionHeader
+        align="left"
+        eyebrow="documentation"
+        title="Deep documentation"
+        subtitle="Reference documentation for every part of graphwalker-rs — generated straight from the graphwalker-rs repository, so the site always matches the latest docs."
+      />
+      <img
+        src="/img/create-a-model.gif"
+        alt="Creating and running a model in GraphWalker"
+        width="560"
+        height="315"
+        loading="lazy"
+        class="w-full rounded-xl border border-white/10 shadow-xl"
+      />
+    </div>
+
+    <div class="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+      {
+        pages.map((p) => (
+          <a
+            href={p.href}
+            class="group flex flex-col justify-between rounded-xl border border-white/10 bg-white/[0.03] p-6 transition hover:-translate-y-0.5 hover:border-rust-400/60 hover:bg-white/[0.06]"
+          >
+            <div>
+              <h3 class="font-semibold text-white">
+                {p.title}
+                <span
+                  class="ml-2 inline-block text-rust-400 transition group-hover:translate-x-1"
+                  aria-hidden="true"
+                >
+                  &rarr;
+                </span>
+              </h3>
+              <p class="mt-2 text-sm leading-relaxed text-white/60">{p.desc}</p>
+            </div>
+          </a>
+        ))
+      }
+    </div>
+  </div>
+</section>

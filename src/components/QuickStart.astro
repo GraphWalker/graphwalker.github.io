@@ -1,0 +1,112 @@
+---
+import SectionHeader from './SectionHeader.astro';
+import CodeBlock from './CodeBlock.astro';
+import { LINKS } from '../constants';
+
+const steps = [
+  {
+    n: '01',
+    title: 'Install',
+    desc: 'Build the binary with Cargo, or grab a prebuilt release.',
+    code: {
+      title: 'bash — build from source',
+      lang: 'bash',
+      lines: [
+        ['git clone https://github.com/GraphWalker/graphwalker-rs.git', null],
+        ['cd graphwalker-rs', null],
+        ['cargo build --release', null],
+        ['export PATH="$PWD/target/release:$PATH"', null],
+      ],
+      note: `Alternative: prebuilt binaries on ${LINKS.githubReleases.replace(
+        'https://github.com/',
+        '',
+      )}.`,
+    },
+  },
+  {
+    n: '02',
+    title: 'Create a model',
+    desc: 'A model is a directed graph of vertices and edges.',
+    code: {
+      title: 'login.json — a tiny model',
+      lang: 'json',
+      lines: [
+        ['{', null],
+        ['  "name": "login",', null],
+        ['  "start": "v_Home",', null],
+        ['  "vertices": [ { "id": "v_Home" }, { "id": "v_LoggedIn" } ],', null],
+        [
+          '  "edges": [ { "id": "e_Login", "from": "v_Home", "to": "v_LoggedIn" } ]',
+          null,
+        ],
+        ['}', null],
+      ],
+    },
+  },
+  {
+    n: '03',
+    title: 'Generate and run',
+    desc: 'Generate paths offline, or serve them online via REST or WebSocket.',
+    code: {
+      title: 'bash — offline & online',
+      lang: 'bash',
+      lines: [
+        ['# offline: print a generated path', null],
+        [
+          'graphwalker offline -m login.json "random(edge_coverage(100))"',
+          null,
+        ],
+        ['', null],
+        ['# online: expose a REST service', null],
+        [
+          'graphwalker online -s RESTFUL -p 8080 -m login.json "random(edge_coverage(100))"',
+          null,
+        ],
+      ],
+    },
+  },
+];
+---
+
+<section id="quick-start" class="bg-zinc-50 dark:bg-night-900">
+  <div class="mx-auto max-w-6xl px-4 py-20 md:py-24">
+    <SectionHeader
+      eyebrow="quick start"
+      title="Up and running in three steps"
+      subtitle="No JVM, no maven — just a single native binary and a JSON model."
+    />
+
+    <div class="mt-12 grid gap-8 lg:grid-cols-3 lg:gap-6">
+      {
+        steps.map((s) => (
+          <div class="flex flex-col">
+            <div class="mb-3 flex items-center gap-3">
+              <span
+                class="font-mono text-2xl font-bold text-rust-600 dark:text-rust-400"
+              >
+                {s.n}
+              </span>
+              <h3 class="text-lg font-semibold text-zinc-900 dark:text-white">
+                {s.title}
+              </h3>
+            </div>
+            <p class="mb-4 text-sm text-zinc-600 dark:text-zinc-300">{s.desc}</p>
+            <CodeBlock title={s.code.title} lang={s.code.lang}>
+              {
+                s.code.lines.map(([text, cls], i) => [
+                  <span class={cls ?? undefined}>{text}</span>,
+                  i < s.code.lines.length - 1 && <br />,
+                ])
+              }
+              {
+                s.code.note && (
+                  <div class="block pt-2 text-xs text-white/40">{s.code.note}</div>
+                )
+              }
+            </CodeBlock>
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</section>

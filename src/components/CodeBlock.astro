@@ -1,0 +1,25 @@
+---
+interface Props {
+  title?: string;
+  lang?: string;
+}
+
+const { title = 'terminal', lang = 'bash' } = Astro.props;
+---
+
+<div class="codeblock overflow-hidden rounded-lg border border-white/10 bg-night-900 font-mono text-[13px] leading-relaxed shadow-2xl shadow-black/30">
+  <div class="flex items-center gap-1.5 border-b border-white/10 bg-white/[0.04] px-4 py-2.5">
+    <span class="h-3 w-3 rounded-full bg-rust-600/80"></span>
+    <span class="h-3 w-3 rounded-full bg-rust-400/50"></span>
+    <span class="h-3 w-3 rounded-full bg-white/25"></span>
+    <span class="ml-2 text-xs tracking-wide text-white/45">{title}</span>
+    <button
+      type="button"
+      data-copy
+      class="ml-auto rounded-md border border-white/10 px-2 py-0.5 text-xs text-white/60 transition hover:border-rust-400/60 hover:text-rust-300"
+    >
+      Copy
+    </button>
+  </div>
+  <pre class="overflow-x-auto p-4 text-white/85"><code data-lang={lang}><slot /></code></pre>
+</div>

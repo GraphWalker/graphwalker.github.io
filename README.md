@@ -1,25 +1,71 @@
-## How to contribute to the documentation - Create a Pull request
+# graphwalker.github.io
 
-1) Fork this project
+Public website for [GraphWalker](https://graphwalker.github.io) — a model-based testing tool written in Rust.
 
-2) Clone the forked project
+The site has two halves:
 
-3) In the root of the folder of the cloned project, run following command:
+| Path | What it is | How it's built |
+|---|---|---|
+| `/` (root) | Marketing landing page | Astro + Tailwind (`src/`) |
+| `/graphwalker-rs/` | Deep documentation | Generated nightly from [`GraphWalker/graphwalker-rs/doc`](https://github.com/GraphWalker/graphwalker-rs/tree/main/doc) via Jekyll/just-the-docs |
+
+## Getting started
+
+The dev shell provides everything you need:
 
 ```sh
-jekyll serve
+nix develop          # enter the dev shell (node 22, ruby, lychee)
+npm install          # install JS dependencies
+npm run dev          # start Astro dev server at localhost:4321
+npm run build        # build the full site to dist/
+npm run preview      # preview the built site
+npm run check        # type-check Astro files
 ```
 
-1) Do all your changes.
+## Repository structure
 
-2) Commit and push
+```
+├─ src/
+│   ├─ pages/index.astro      # landing page
+│   ├─ components/             # section components (Nav, Hero, Features, …)
+│   ├─ styles/global.css       # Tailwind + font imports + theme tokens
+│   └─ constants.ts            # canonical links and articles list
+├─ public/                     # static assets copied verbatim to dist/
+│   └─ graphwalker-rs/         # generated documentation (do not edit — synced nightly)
+├─ .github/workflows/
+│   ├─ pages.yml               # builds Astro and deploys to GitHub Pages
+│   └─ sync-docs.yml           # refreshes public/graphwalker-rs from upstream nightly
+├─ flake.nix                   # NixOS dev shell
+└─ astro.config.mjs
+```
 
-3) From your fork on GitHub, create a new pull request
+## Documentation sync
 
-## Appendix
+The `public/graphwalker-rs/` folder is a static HTML site generated from the Markdown source in the upstream [`graphwalker-rs` repo's `doc/` folder](https://github.com/GraphWalker/graphwalker-rs/tree/main/doc).
 
-* [Jekyll](https://jekyllrb.com/)
-* [Jekyll on GitHub Pages](https://jekyllrb.com/docs/github-pages/)
-* [Setting up your GitHub Pages site locally with Jekyll](https://help.github.com/articles/setting-up-your-github-pages-site-locally-with-jekyll/)
-* [Jekyll Documentation Theme](http://idratherbewriting.com/documentation-theme-jekyll/)
-* [Pull Request Tutorial](https://yangsu.github.io/pull-request-tutorial/)
+The GitHub Action `.github/workflows/sync-docs.yml` runs daily at 03:00 UTC and:
+
+1. Clones `GraphWalker/graphwalker-rs`
+2. Builds the docs site with Jekyll
+3. Commits the result here
+
+**To add or edit documentation, make changes in the upstream `graphwalker-rs` repo**, not here.
+
+## Local docs rebuild (optional)
+
+```sh
+npm run docs:rebuild        # clones upstream and rebuilds public/graphwalker-rs locally
+```
+
+Requires Ruby and Bundler (available in the Nix dev shell).
+
+## Deploying
+
+Pushes to `main` trigger `.github/workflows/pages.yml`, which builds the Astro site (including the checked-in `public/graphwalker-rs/` docs, copied verbatim into the output) and deploys to GitHub Pages via `actions/deploy-pages`.
+
+## Contributing
+
+1. Fork and clone this repo.
+2. `nix develop` (or install Node 22 + npm manually).
+3. `npm install && npm run dev`.
+4. Make changes, `npm run build` to verify, then push a PR.

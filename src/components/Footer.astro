@@ -1,0 +1,85 @@
+---
+import { LINKS } from '../constants';
+---
+
+<footer class="border-t border-zinc-200 bg-white dark:border-white/10 dark:bg-night-950">
+  <div class="mx-auto max-w-6xl px-4 py-14">
+    <div class="grid gap-10 md:grid-cols-[2fr_1fr_1fr]">
+      <div>
+        <a href="/" class="flex items-center gap-2.5 font-bold text-lg tracking-tight">
+          <span
+            class="grid h-8 w-8 place-items-center rounded-lg bg-rust-600 font-mono text-sm text-white"
+          >
+            f(n)
+          </span>
+          GraphWalker
+        </a>
+        <p class="mt-4 max-w-xs text-sm leading-relaxed text-zinc-600 dark:text-zinc-300">
+          An open-source, model-based testing tool written in Rust. Generate
+          test paths from directed graphs and drive your automated tests.
+        </p>
+        <p class="mt-4 text-sm text-zinc-500 dark:text-zinc-400">
+          This site is
+          <a
+            href={LINKS.siteSource}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="text-rust-600 hover:underline dark:text-rust-400"
+          >
+            open source
+          </a>
+          .
+        </p>
+      </div>
+
+      <div>
+        <h3 class="font-semibold text-zinc-900 dark:text-white">Documentation</h3>
+        <ul class="mt-4 space-y-2 text-sm">
+          <li><a class="footer-link" href={LINKS.gettingStarted}>Getting Started</a></li>
+          <li><a class="footer-link" href={LINKS.cli}>CLI Reference</a></li>
+          <li><a class="footer-link" href={LINKS.restApi}>REST API</a></li>
+          <li><a class="footer-link" href={LINKS.websocketApi}>WebSocket API</a></li>
+          <li><a class="footer-link" href={LINKS.mcpServer}>MCP Server</a></li>
+          <li><a class="footer-link" href={LINKS.studio}>Studio</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h3 class="font-semibold text-zinc-900 dark:text-white">Legacy</h3>
+        <ul class="mt-4 space-y-2 text-sm">
+          <li>
+            <a class="footer-link" href={LINKS.legacyJava} target="_blank" rel="noopener noreferrer">
+              graphwalker-project (Java) ↗
+            </a>
+          </li>
+        </ul>
+        <p class="mt-4 text-xs leading-relaxed text-zinc-500 dark:text-zinc-400">
+          The original Java implementation remains available as a reference.
+        </p>
+      </div>
+    </div>
+
+    <div
+      class="mt-12 flex flex-col items-center justify-between gap-4 border-t border-zinc-200 pt-6 text-sm text-zinc-500 sm:flex-row dark:border-white/10 dark:text-zinc-400"
+    >
+      <p>© {new Date().getFullYear()} GraphWalker — released under the MIT license.</p>
+      <p class="font-mono text-xs">model-based testing · generated test paths</p>
+    </div>
+  </div>
+</footer>
+
+<style>
+  .footer-link {
+    color: var(--color-zinc-600);
+    transition: color 150ms;
+  }
+  .footer-link:hover {
+    color: var(--color-rust-600);
+  }
+  .dark .footer-link {
+    color: var(--color-zinc-300);
+  }
+  .dark .footer-link:hover {
+    color: var(--color-rust-300);
+  }
+</style>

@@ -1,23 +1,23 @@
-# Eclipse stuff #
-#################
-.classpath
-.project
-.settings/
+# Node / Astro
+node_modules/
+dist/
+.astro/
 
-# Intellij stuff #
-##################
+# Temp stuff
+_site/
+
+# Local dev
+.direnv/
+.devenv/
+
+# JetBrains
 *.iml
 *.ipr
 *.iws
 .idea/
 
-# Temp stuff #
-##############
-_site/
-
-# Mac stuff #
-#############
+# Editor/OS
+.classpath
+.project
+.settings/
 .DS_Store
-
-
-
