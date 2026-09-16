@@ -1,0 +1,86 @@
+---
+import SectionHeader from './SectionHeader.astro';
+import CodeBlock from './CodeBlock.astro';
+import { LINKS } from '../constants';
+
+const bullets = [
+  {
+    strong: 'Editor',
+    text: 'build and edit models visually, with guards and actions on edges.',
+  },
+  {
+    strong: 'Verification',
+    text: 'run path generation inside Studio to confirm your model is correct.',
+  },
+  {
+    strong: 'Execution',
+    text: 'drive your system under test through the generated path.',
+  },
+];
+---
+
+<section id="studio" class="bg-white dark:bg-night-950">
+  <div
+    class="mx-auto grid max-w-6xl items-center gap-12 px-4 py-20 md:grid-cols-2 md:py-24"
+  >
+    <div>
+      <SectionHeader
+        align="left"
+        eyebrow="studio"
+        title="Model visually, run instantly"
+        subtitle="GraphWalker Studio is a web-based model editor and test runner. Create vertices and edges with your mouse, set the start element, and generate test paths right from the browser — no setup beyond launching the binary."
+      />
+
+      <ul class="mt-8 space-y-3 text-sm text-zinc-600 dark:text-zinc-300">
+        {
+          bullets.map((b) => (
+            <li class="flex gap-3">
+              <svg
+                class="mt-0.5 h-4 w-4 shrink-0 text-rust-600 dark:text-rust-400"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+                stroke-width="2.5"
+                aria-hidden="true"
+              >
+                <path stroke-linecap="round" stroke-linejoin="round" d="M9 18l6-6-6-6" />
+              </svg>
+              <span>
+                <strong class="text-zinc-900 dark:text-white">{b.strong}</strong>{' '}
+                — {b.text}
+              </span>
+            </li>
+          ))
+        }
+      </ul>
+
+      <a
+        href={LINKS.studio}
+        class="mt-8 inline-block rounded-lg bg-rust-600 px-5 py-3 text-sm font-semibold text-white transition hover:bg-rust-700"
+      >
+        Read the Studio docs &rarr;
+      </a>
+    </div>
+
+    <div>
+      <CodeBlock title="bash — launch studio">
+        <span class="text-white/35">$ </span><span class="text-rust-300">graphwalker-studio</span>
+        <br />
+        <span class="text-white/35"># … serving on</span>
+        <span class="text-white/70">http://localhost:9090</span>
+        <br />
+        <span class="text-white/35"># execution engine websocket</span>
+        <span class="text-white/70">ws://localhost:9999/graphwalker</span>
+      </CodeBlock>
+
+      <img
+        src="/img/studio.png"
+        alt="GraphWalker Studio model editor"
+        width="800"
+        height="500"
+        loading="lazy"
+        class="mt-6 w-full rounded-xl border border-zinc-200 shadow-lg dark:border-white/10"
+      />
+    </div>
+  </div>
+</section>

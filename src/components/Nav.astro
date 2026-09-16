@@ -1,0 +1,113 @@
+---
+import ThemeToggle from './ThemeToggle.astro';
+import { LINKS } from '../constants';
+
+const navItems = [
+  { href: '#features', label: 'Features' },
+  { href: '#quick-start', label: 'Quick start' },
+  { href: '#docs', label: 'Documentation' },
+  { href: '#articles', label: 'Articles' },
+];
+---
+
+<header class="sticky top-0 z-50 border-b border-zinc-200/70 bg-white/85 backdrop-blur supports-[backdrop-filter]:bg-white/70 dark:border-white/10 dark:bg-night-900/85 dark:supports-[backdrop-filter]:bg-night-900/70">
+  <nav class="mx-auto flex h-16 max-w-6xl items-center gap-6 px-4" aria-label="Main">
+    <a href="/" class="flex items-center gap-2.5 font-bold text-lg tracking-tight">
+      <span class="grid h-8 w-8 place-items-center rounded-lg bg-rust-600 font-mono text-sm text-white">
+        f(n)
+      </span>
+      GraphWalker
+    </a>
+
+    <div class="hidden items-center gap-6 text-sm text-zinc-600 md:flex dark:text-zinc-300">
+      {
+        navItems.map((item) => (
+          <a
+            href={item.href}
+            class="transition hover:text-rust-600 dark:hover:text-rust-300"
+          >
+            {item.label}
+          </a>
+        ))
+      }
+      <a
+        href={LINKS.github}
+        target="_blank"
+        rel="noopener noreferrer"
+        class="transition hover:text-rust-600 dark:hover:text-rust-300"
+      >
+        GitHub
+        <span aria-hidden="true">↗</span>
+      </a>
+    </div>
+
+    <div class="ml-auto hidden md:flex">
+      <a
+        href="#quick-start"
+        class="rounded-lg bg-rust-600 px-4 py-2 text-sm font-semibold text-white transition hover:bg-rust-700"
+      >
+        Install
+      </a>
+    </div>
+
+    <div class="ml-auto flex items-center gap-2 md:ml-0">
+      <ThemeToggle />
+      <button
+        type="button"
+        id="nav-toggle"
+        aria-label="Toggle navigation"
+        aria-expanded="false"
+        aria-controls="mobile-nav"
+        class="grid h-9 w-9 place-items-center rounded-lg text-zinc-600 transition hover:bg-zinc-100 md:hidden dark:text-zinc-300 dark:hover:bg-white/10"
+      >
+        <svg class="h-5 w-5 stroke-current" fill="none" viewBox="0 0 24 24" stroke-width="2" aria-hidden="true">
+          <path stroke-linecap="round" d="M4 7h16M4 12h16M4 17h16" />
+        </svg>
+      </button>
+    </div>
+  </nav>
+
+  <div id="mobile-nav" class="hidden border-t border-zinc-200/70 dark:border-white/10 md:hidden">
+    <div class="mx-auto flex max-w-6xl flex-col gap-1 px-4 py-3">
+      {navItems.map((item) => (
+        <a
+          href={item.href}
+          class="rounded-lg px-3 py-2 text-zinc-600 transition hover:bg-rust-400/10 hover:text-rust-600 dark:text-zinc-300 dark:hover:text-rust-300"
+        >
+          {item.label}
+        </a>
+      ))}
+      <a
+        href={LINKS.github}
+        target="_blank"
+        rel="noopener noreferrer"
+        class="rounded-lg px-3 py-2 text-zinc-600 transition hover:bg-rust-400/10 hover:text-rust-600 dark:text-zinc-300 dark:hover:text-rust-300"
+      >
+        GitHub ↗
+      </a>
+      <a
+        href="#quick-start"
+        class="mt-1 rounded-lg bg-rust-600 px-3 py-2 text-center font-semibold text-white"
+      >
+        Install
+      </a>
+    </div>
+  </div>
+</header>
+
+<script>
+  const toggle = document.getElementById('nav-toggle') as HTMLButtonElement | null;
+  const panel = document.getElementById('mobile-nav');
+
+  toggle?.addEventListener('click', () => {
+    const open = panel?.classList.toggle('hidden') === false;
+    toggle.setAttribute('aria-expanded', String(open));
+  });
+
+  panel?.querySelectorAll('a').forEach((a) => {
+    a.addEventListener('click', () => {
+      panel.classList.add('hidden');
+      toggle?.setAttribute('aria-expanded', 'false');
+    });
+  });
+</script>

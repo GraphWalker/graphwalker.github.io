@@ -1,0 +1,51 @@
+---
+import SectionHeader from './SectionHeader.astro';
+import { ARTICLES, LINKS } from '../constants';
+---
+
+<section id="articles" class="bg-zinc-50 dark:bg-night-900">
+  <div class="mx-auto max-w-6xl px-4 py-20 md:py-24">
+    <SectionHeader
+      eyebrow="articles"
+      title="GraphWalker and model-based testing, in the wild"
+      subtitle="Papers, write-ups, and articles from practitioners who use GraphWalker or explain model-based testing."
+    />
+
+    <ul class="mt-12 mx-auto max-w-3xl divide-y divide-zinc-200 dark:divide-white/10">
+      {
+        ARTICLES.map((a) => (
+          <li>
+            <a
+              href={a.href}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="group flex items-baseline justify-between gap-6 py-4"
+            >
+              <span class="text-zinc-700 transition group-hover:text-rust-600 dark:text-zinc-200 dark:group-hover:text-rust-300">
+                {a.title}
+              </span>
+              <span
+                class="shrink-0 font-mono text-sm text-zinc-400 transition group-hover:text-rust-500"
+                aria-hidden="true"
+              >
+                ↗
+              </span>
+            </a>
+          </li>
+        ))
+      }
+    </ul>
+
+    <p class="mt-8 text-center text-sm text-zinc-500 dark:text-zinc-400">
+      Read more on{' '}
+      <a
+        href={LINKS.org}
+        target="_blank"
+        rel="noopener noreferrer"
+        class="font-medium text-rust-600 hover:underline dark:text-rust-400"
+      >
+        GitHub ↗
+      </a>
+    </p>
+  </div>
+</section>

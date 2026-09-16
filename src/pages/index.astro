@@ -1,0 +1,80 @@
+---
+import '../styles/global.css';
+import { SITE } from '../constants';
+import Nav from '../components/Nav.astro';
+import Hero from '../components/Hero.astro';
+import Features from '../components/Features.astro';
+import QuickStart from '../components/QuickStart.astro';
+import Studio from '../components/Studio.astro';
+import Docs from '../components/Docs.astro';
+import Articles from '../components/Articles.astro';
+import Footer from '../components/Footer.astro';
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>GraphWalker — Model-based testing in Rust</title>
+    <meta name="description" content={SITE.description} />
+    <meta name="keywords" content={SITE.keywords} />
+    <link rel="canonical" href={SITE.url} />
+    <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="GraphWalker — Model-based testing in Rust" />
+    <meta property="og:description" content={SITE.description} />
+    <meta property="og:url" content={SITE.url} />
+
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="GraphWalker — Model-based testing in Rust" />
+    <meta name="twitter:description" content={SITE.description} />
+
+    <script is:inline>
+      (function () {
+        try {
+          var t = localStorage.getItem('theme');
+          var dark =
+            t === 'dark' ||
+            (!t && window.matchMedia('(prefers-color-scheme: dark)').matches);
+          document.documentElement.classList.toggle('dark', dark);
+          document.documentElement.style.colorScheme = dark ? 'dark' : 'light';
+        } catch (e) {
+          /* ignore */
+        }
+      })();
+    </script>
+  </head>
+
+  <body class="bg-white text-zinc-900 antialiased dark:bg-night-950 dark:text-white">
+    <Nav />
+    <main>
+      <Hero />
+      <Features />
+      <QuickStart />
+      <Studio />
+      <Docs />
+      <Articles />
+    </main>
+    <Footer />
+
+    <script>
+      document.addEventListener('click', (event) => {
+        const target = event.target as HTMLElement | null;
+        const btn = target?.closest('[data-copy]') as HTMLElement | null;
+        if (!btn) return;
+        const block = btn.closest('.codeblock');
+        const text = block?.querySelector('pre code')?.textContent ?? '';
+        navigator.clipboard
+          .writeText(text.trim())
+          .then(() => {
+            const original = btn.textContent ?? '';
+            btn.textContent = 'Copied';
+            setTimeout(() => (btn.textContent = original), 1500);
+          })
+          .catch(() => {});
+      });
+    </script>
+  </body>
+</html>

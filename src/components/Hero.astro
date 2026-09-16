@@ -1,0 +1,101 @@
+---
+import CodeBlock from './CodeBlock.astro';
+import { LINKS } from '../constants';
+
+const bulletPoints = [
+  'CLI · REST · WebSocket interfaces',
+  'Seeds for deterministic replay',
+  'Visual Studio model editor',
+];
+---
+
+<section class="relative overflow-hidden bg-night-900 text-white">
+  <div
+    class="pointer-events-none absolute inset-0"
+    style="background:
+      radial-gradient(60rem 30rem at 80% -10%, rgba(222, 165, 132, 0.18), transparent 60%),
+      radial-gradient(40rem 24rem at 10% 110%, rgba(183, 65, 14, 0.18), transparent 60%)"
+    aria-hidden="true"
+  ></div>
+
+  <div class="relative mx-auto grid max-w-6xl gap-12 px-4 py-20 md:grid-cols-2 md:items-center md:py-28">
+    <div>
+      <p class="mb-4 inline-flex items-center gap-2 rounded-full border border-rust-400/40 bg-rust-400/10 px-3 py-1 text-xs font-medium tracking-wide text-rust-300">
+        <span class="h-1.5 w-1.5 rounded-full bg-rust-400"></span>
+        Open-source · Model-based testing · Rust
+      </p>
+
+      <h1 class="text-4xl font-bold leading-tight tracking-tight sm:text-5xl">
+        Model-based testing
+        <span class="text-rust-400">in Rust.</span>
+      </h1>
+
+      <p class="mt-5 max-w-md text-lg leading-relaxed text-white/70">
+        GraphWalker reads models in the shape of directed graphs and generates
+        test paths from them &mdash; driven by configurable generators and stop
+        conditions.
+      </p>
+
+      <div class="mt-8 flex flex-wrap items-center gap-3">
+        <a
+          href={LINKS.gettingStarted}
+          class="rounded-lg bg-rust-500 px-5 py-3 text-sm font-semibold text-white shadow-lg shadow-rust-600/30 transition hover:bg-rust-400"
+        >
+          Get started &rarr;
+        </a>
+        <a
+          href={LINKS.github}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="rounded-lg border border-white/15 px-5 py-3 text-sm font-semibold text-white/85 transition hover:border-rust-400/60 hover:text-rust-300"
+        >
+          View on GitHub
+        </a>
+      </div>
+
+      <ul class="mt-10 flex flex-wrap gap-x-6 gap-y-2 text-sm text-white/55">
+        {
+          bulletPoints.map((item) => (
+            <li class="flex items-center gap-2">
+              <svg
+                class="h-4 w-4 shrink-0 text-rust-400"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+                stroke-width="2.5"
+                aria-hidden="true"
+              >
+                <path stroke-linecap="round" stroke-linejoin="round" d="m5 13 4 4L19 7" />
+              </svg>
+              {item}
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+
+    <div class="relative">
+      <CodeBlock title="bash — generate a test path">
+        <span class="text-white/35">$ </span><span class="text-rust-300">graphwalker</span> offline -m login.json <span class="text-white/35">\</span>
+        <span class="pl-8"><span class="text-white/60">"</span>random(edge_coverage(100))<span class="text-white/60">"</span></span>
+        <span class="text-white/35">─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─</span>
+        <br />
+        <span class="text-emerald-300">v_Home</span>        <span class="text-white/45">::</span> <span class="text-white/70">PASS</span>  <span class="text-white/35">(&#123;user: 42&#125;)</span>
+        <br />
+        <span class="text-emerald-300">v_Products</span>     <span class="text-white/45">::</span> <span class="text-white/70">PASS</span>
+        <br />
+        <span class="text-emerald-300">v_Cart</span>         <span class="text-white/45">::</span> <span class="text-white/70">PASS</span>  <span class="text-white/35">(&#123;sum: 149.90&#125;)</span>
+        <br />
+        <span class="text-emerald-300">v_Checkout</span>     <span class="text-white/45">::</span> <span class="text-white/70">PASS</span>
+        <br />
+        <span class="text-emerald-300">v_Confirmation</span> <span class="text-white/45">::</span> <span class="text-white/70">PASS</span>
+        <br />
+        <span class="text-white/60">5 steps generated in 1.2 ms</span>
+      </CodeBlock>
+
+      <p class="mt-3 text-center font-mono text-xs text-white/35">
+        graphwalker-rs &mdash; github.com/GraphWalker/graphwalker-rs
+      </p>
+    </div>
+  </div>
+</section>
