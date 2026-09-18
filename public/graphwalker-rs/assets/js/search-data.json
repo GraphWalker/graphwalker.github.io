@@ -398,377 +398,300 @@
     
     "relUrl": "/mcp-server.html#protocol-support"
   },"57": {
-    "doc": "MCP Server Plan",
-    "title": "MCP Server Plan",
-    "content": " ",
-    "url": "/graphwalker-rs/mcp.html",
-    
-    "relUrl": "/mcp.html"
-  },"58": {
-    "doc": "MCP Server Plan",
-    "title": "Purpose",
-    "content": "Add a Model Context Protocol (MCP) server that lets AI clients validate GraphWalker models and drive model-based test executions. The first release should expose GraphWalker’s existing behavior without turning the MCP layer into a second execution engine. The initial user workflows are: . | Build a graph model incrementally by creating a draft and adding vertices and edges. | Inspect, revise, validate, and export the draft as standard GraphWalker JSON. | Validate an existing JSON model and receive actionable issues. | Convert a GraphML/yEd model to GraphWalker JSON. | Start a deterministic execution from an inline model or completed draft. | Request one model element at a time, perform that action in another system, and feed resulting data back into GraphWalker. | Inspect coverage and close or restart an execution. | . ",
-    "url": "/graphwalker-rs/mcp.html#purpose",
-    
-    "relUrl": "/mcp.html#purpose"
-  },"59": {
-    "doc": "MCP Server Plan",
-    "title": "Design decisions",
-    "content": "Use the official Rust SDK . Use the official rmcp SDK instead of implementing JSON-RPC or MCP framing in this repository. Phase 0 pins the released rmcp 3.3.0 crate in Cargo.toml and Cargo.lock, with default features disabled and only macros, server, and transport-io enabled. The workspace MSRV is Rust 1.88, matching rmcp 3.3.0. It is declared through [workspace.package] and inherited by every workspace crate. README and getting-started prerequisites carry the same version. Do not use an unpinned Git dependency for a released GraphWalker version. Start with local stdio transport . The MVP will run as a graphwalker-mcp child process over standard input/output. Stdio is the normal local MCP transport and has a substantially smaller security and deployment surface than a remotely reachable server. All protocol messages go to stdout. Diagnostics use stderr through tracing; ordinary logging must never corrupt the stdout protocol stream. Streamable HTTP is a follow-up. Adding it requires an explicit decision about binding defaults, authentication/authorization, TLS termination, request limits, rate limiting, and session storage. The obsolete standalone HTTP+SSE transport is out of scope. Expose tools first . The MVP advertises the MCP tools capability only. Prompts, resources, subscriptions, and tasks are not required for the initial workflows. Static documentation can be exposed as MCP resources later if real clients benefit from it. Tool definitions and their order are static and deterministic. Every tool has a generated JSON Schema, a concise description that states its side effects, and structured JSON output. Keep execution state explicit . Validation and conversion are stateless. Test traversal is stateful, so start_execution returns an opaque execution_id; every later execution tool requires that ID. This makes state visible to the calling model, permits several independent executions in one server process, and remains compatible with stateless HTTP if that transport is added later. Each execution owns its model, generator state, seed, variables, visit counts, and original restart configuration. Calls for the same execution are serialized. Calls for different executions may proceed independently. Model construction is also stateful. create_model returns an opaque draft_id for a mutable draft; authoring tools require that ID. This is deliberately distinct from the graph’s own model ID. A model draft is separate from an execution and can be edited until it is explicitly discarded or expires. Starting an execution takes an immutable snapshot, so later draft edits cannot change a run already in progress. Support incremental model authoring . The MCP server should do more than accept a prebuilt JSON document. It should expose GraphWalker’s existing model-builder capabilities as a safe draft workflow. This lets an AI client construct a model over several calls while the server enforces IDs, references, value ranges, and the GraphWalker JSON shape. The service stores drafts in the canonical GraphWalker data-transfer representation used by graphwalker-io; it must not invent a second model format. Exported output has the same root { \"models\": [...] } structure accepted by the CLI, REST API, and Studio. Draft mutations are atomic. A failed mutation leaves the draft unchanged. Every successful mutation increments a numeric revision, returned with the result. Mutating tools accept an optional expected_revision; a mismatch returns model_revision_conflict instead of overwriting a newer edit. This also gives clients a safe basis for retries and concurrent editing. IDs supplied by the caller must be unique across vertices and edges in a graph. If omitted, the server generates and returns a stable ID. Edge targets must refer to an existing vertex; the source is optional only for a start edge. Deleting a vertex with connected edges fails unless cascade: true is explicitly provided. Share a typed service, not transport response JSON . The current graphwalker-restful/src/actor.rs is already the common boundary used by the REST and WebSocket adapters, but it lives in a transport-named crate and returns REST-shaped serde_json::Value objects. Reusing it directly would couple MCP behavior to fields such as \"result\": \"ok\" and the string-valued REST hasNext response. Extract its model loading, checking, conversion, stepping, restart, data, and statistics behavior into a new transport-neutral graphwalker-service workspace crate. Its public API should use Rust request/response/error types. The existing REST/WebSocket actor becomes an adapter that maps those types to its current wire format, preserving existing APIs. The MCP crate maps the same types to MCP results. graphwalker-core remains the domain and traversal engine; it must not depend on I/O, the model checker, HTTP, or MCP. Keep REST additions separate . The shared-service extraction may change REST internals, but it must not add or alter REST endpoints. Existing REST and WebSocket contracts are preserved and verified before MCP authoring tools are introduced. If graph-construction operations are also exposed over REST, implement them only in a later, dedicated phase and change set. That work gets its own endpoint design, documentation, compatibility review, and REST integration tests. MCP tool handlers and REST handlers may share graphwalker-service, but neither transport may call through or depend on the other transport’s adapter types. The MCP MVP therefore does not depend on new REST endpoints. Failure or deferral of the REST graph-authoring phase must not block shipping the local MCP server. graphwalker-core / dsl / io / model-checker | graphwalker-service / \\ graphwalker-restful graphwalker-mcp | REST + WebSocket stdio . ",
-    "url": "/graphwalker-rs/mcp.html#design-decisions",
-    
-    "relUrl": "/mcp.html#design-decisions"
-  },"60": {
-    "doc": "MCP Server Plan",
-    "title": "Proposed MCP tools",
-    "content": "Names are intentionally GraphWalker-specific in their descriptions, while remaining short enough for clients that repeatedly include tool metadata in model context. Model-authoring tools . | Tool | Important input | Structured result | Side effects | . | create_model | Optional model name/ID, generator, model actions, requirements, and properties | draft_id, graph model ID, revision | Creates an empty draft | . | add_vertex | draft_id, optional vertex ID, name, shared state, actions, requirements, properties, optional expected_revision | Created vertex and new revision | Adds one vertex | . | add_edge | draft_id, optional edge ID, optional source vertex ID, required target vertex ID, name, guard, actions, requirements, weight, dependency, properties, optional expected_revision | Created edge and new revision | Adds one edge | . | update_model | draft_id, patch of generator, start element, name, actions, requirements, properties, predefined path, optional expected_revision | Updated metadata and new revision | Updates draft metadata | . | update_vertex | draft_id, vertex ID, field patch, optional expected_revision | Updated vertex and new revision | Updates one vertex | . | update_edge | draft_id, edge ID, field patch, optional expected_revision | Updated edge and new revision | Updates one edge | . | remove_element | draft_id, element ID, cascade (default false), optional expected_revision | Removed IDs and new revision | Removes an edge or vertex | . | export_model | draft_id | Complete GraphWalker JSON object, revision | None | . | discard_model | draft_id | discarded | Releases draft state | . Model-authoring rules: . | create_model creates one graph inside a GraphWalker multimodel document. Additional graphs and shared-state composition can be added later with an add_model tool; the first implementation is intentionally single-graph authoring. | generator may be set at creation or through update_model, but validation and execution report a missing generator clearly. | start_element_id must refer to an existing vertex or edge. It may be set after the referenced element is added. | add_edge rejects unknown vertex references. An omitted source_vertex_id creates a start edge, consistent with the JSON model format. | Weight must be between 0.0 and 1.0; dependency must be between 0 and 100. Full semantic validation still runs through graphwalker-model-checker. | Patch inputs distinguish an omitted field from an explicit null, allowing optional values such as guard, shared state, and source vertex to be cleared. | Removing a vertex with cascade: true also removes its incident edges and returns all removed IDs. Removing an element referenced by start_element_id or predefined_path_edge_ids either requires an explicit cleanup option or fails with a precise reference error; it must never leave silent dangling references. | export_model returns a JSON object rather than a JSON-encoded string. It can be saved verbatim, passed to validate_model, loaded through REST, or used with start_execution. | Drafts are process-local and ephemeral. The MVP does not write files automatically; persistence is the client’s responsibility. | . Validation, conversion, and execution tools . | Tool | Important input | Structured result | Side effects | . | validate_model | Exactly one of model: GraphWalker JSON object or draft_id | valid, ordered issues, draft revision when applicable | None | . | convert_graphml | graphml: XML string | model: JSON object | None | . | start_execution | Exactly one of inline model or draft_id, optional draft revision, seed, and global_data | execution_id, effective seed, source revision when applicable | Creates execution state from a snapshot | . | next_step | execution_id | completed, optional element, current data, visit count, and stop-condition fulfillment | Advances by at most one element | . | execution_status | execution_id, optional include_elements | has_next, current data, aggregate coverage, optionally per-element visit counts | None | . | set_execution_data | execution_id, script | updated data | Mutates execution variables | . | restart_execution | execution_id | effective seed and reset status | Resets using the original model, seed, and global data | . | close_execution | execution_id | closed | Releases execution state | . Detailed API rules: . | Accept a JSON value for model, not JSON encoded inside a string. Serialize it only at the existing graphwalker-io boundary. | Require each model to contain its generator expression in the same way as the existing -g/--gw CLI input. Generator overrides can be added later if needed. | When validate_model or start_execution receives a draft_id, reject a simultaneous inline model. If a revision is supplied, reject the call when it no longer matches the draft. | start_execution must validate the snapshot first and refuse invalid drafts rather than creating a partly usable execution. | Return both element ID and name, model ID, and element kind (edge or vertex) from next_step. | Make next_step return completed: true without advancing when the stop condition is already fulfilled. This removes the need for a separate has_next round trip. | Keep coverage numbers numeric and booleans boolean, even where the legacy REST API uses strings. | Return an explicit error for an unknown or closed execution ID. | Treat invalid models, invalid generator expressions, invalid data scripts, and unavailable transitions as tool execution errors with stable error codes and actionable messages. Reserve JSON-RPC protocol errors for malformed MCP requests. | Preserve deterministic replay: restarting an execution must reuse its original seed. This differs from the current REST restart implementation, which constructs an unseeded machine, and should be corrected for every transport during the service extraction. | . A bounded, stateless generate_path convenience tool may be added after the interactive API works. It must require a max_steps limit so never, unreachable coverage goals, or a problematic model cannot consume unbounded CPU or return an unbounded response. ",
-    "url": "/graphwalker-rs/mcp.html#proposed-mcp-tools",
-    
-    "relUrl": "/mcp.html#proposed-mcp-tools"
-  },"61": {
-    "doc": "MCP Server Plan",
-    "title": "Crate and code layout",
-    "content": "Add these workspace members: . graphwalker-service/ Cargo.toml src/ lib.rs # typed public API and errors draft.rs # mutable model drafts and validation execution.rs # one GraphWalker machine and restart snapshot registry.rs # draft/execution IDs, isolation, limits, cleanup graphwalker-mcp/ Cargo.toml src/ lib.rs # MCP handler and tool implementations main.rs # stdio startup and shutdown schema.rs # tool input/output types when not local to handlers tests/ stdio.rs # end-to-end MCP protocol tests . Update: . | the root Cargo.toml workspace member list; | graphwalker-restful to call graphwalker-service while preserving REST and WebSocket contracts; | graphwalker-cli only if shared dependency wiring or help text changes are required; | README.md with the new binary, a quick-start client configuration, and a link to user-facing MCP documentation; | this document, or a separate final MCP reference page, with exact schemas and client examples once implementation settles. | . Prefer the standalone graphwalker-mcp executable over adding graphwalker mcp: MCP hosts configure and launch a stable executable command, while the existing graphwalker CLI remains focused on human-facing commands. Distribution can package both binaries together. ",
-    "url": "/graphwalker-rs/mcp.html#crate-and-code-layout",
-    
-    "relUrl": "/mcp.html#crate-and-code-layout"
-  },"62": {
-    "doc": "MCP Server Plan",
-    "title": "Safety and resource limits",
-    "content": "The stdio MVP does not read arbitrary paths, make network requests, or execute operating-system commands. Models and GraphML are passed inline. This avoids ambiguous client workspace roots and prevents accidental file disclosure. Before release, define and test conservative configurable defaults for: . | maximum model/GraphML input size; | maximum vertices, edges, active drafts, and active executions; | maximum script size and Rhai operation count/call depth in addition to the existing expression-depth limit; | draft and execution idle lifetimes and cleanup on client disconnect; | per-call timeout or step budget; | maximum optional per-element status output. | . Validate every input before mutating state. Do not include secrets, full unexpected payloads, or internal backtraces in tool output. MCP tool descriptions must accurately identify state-changing calls so clients can present appropriate confirmation UI. The future HTTP transport must default to loopback unless explicitly configured otherwise and must not ship as an unauthenticated public endpoint. ",
-    "url": "/graphwalker-rs/mcp.html#safety-and-resource-limits",
-    
-    "relUrl": "/mcp.html#safety-and-resource-limits"
-  },"63": {
-    "doc": "MCP Server Plan",
-    "title": "Implementation phases",
-    "content": "Phase 0: Compatibility spike . | Record the workspace MSRV in Cargo metadata or a toolchain policy. | Select and pin a compatible rmcp version and minimal feature set. | Prove a tiny stdio server can initialize, list one tool, shut down cleanly, and keep stdout free of logs. | Confirm the SDK version against the current MCP conformance suite and document which protocol revisions it negotiates. | . Exit criterion: the dependency and MSRV decision is explicit, and an MCP client can complete the protocol lifecycle locally. Phase 0 completed on 2026-09-14: . | The workspace MSRV is Rust 1.88 and the full workspace test suite passes with Rust 1.88.0. | graphwalker-mcp is a workspace binary using exactly rmcp 3.3.0 with the minimal stdio server feature set. | The server exposes a temporary but useful structured health tool; GraphWalker domain tools remain assigned to later phases. | Stdio integration tests cover both the 2025-11-25 initialize/initialized lifecycle and the current 2026-07-28 discovery lifecycle, including tool listing, tool invocation, structured output, EOF shutdown, and protocol-only stdout. | rmcp 3.3.0 supports the stable 2026-07-28 protocol and compatibility with 2025-11-25 and earlier revisions. The official SDK repository runs the MCP conformance suites in its conformance workflow. The current conformance server harness targets URL-based servers, so GraphWalker’s stdio-only adapter is verified by its local protocol integration tests; direct server-suite execution is deferred until Streamable HTTP exists. | . Phase 1: Extract the existing execution service . This phase is an internal refactor and contains no new REST features. | Introduce typed model, step, status, statistics, and error results. | Move existing transport-neutral behavior from graphwalker-restful::actor into graphwalker-service. | Add the execution registry with opaque IDs, limits, and per-execution serialization. | Preserve seed and global-data initialization across restart. | Adapt the existing REST and WebSocket handlers to the service without adding routes or changing documented payloads. | . Exit criterion: all existing REST, WebSocket, CLI, and core tests pass unchanged, and service-level tests cover deterministic restart and isolated concurrent executions. Phase 1 completed on 2026-09-14: . | graphwalker-service is a transport-neutral workspace crate with typed model, validation, conversion, step, status, statistics, element-status, restart, data, identifier, limit, and error results. | ExecutionRegistry issues opaque random 128-bit execution IDs and defaults to at most 64 active executions. Callers can supply a different limit through ExecutionLimits. | Each execution owns a worker thread because the GraphWalker machine intentionally contains thread-local state. A channel serializes calls to one execution, while separate workers let independent executions advance concurrently. | Restart rebuilds the machine with its original model snapshot, effective seed, and global-data initialization. Data supplied later through set_data is intentionally transient. | The existing REST and WebSocket actor now maps typed service results back to the established wire formats. No routes, commands, or documented payload shapes were added or changed. | Service tests cover deterministic restart, generated-seed replay, preserved global data, same-execution serialization, isolated concurrent executions, registry limits and cleanup, stable typed errors, validation, GraphML conversion, statistics, model export, and element status. Adapter regression tests cover the legacy REST/WebSocket response conventions. | The complete workspace test suite, including all existing CLI, REST, WebSocket, core, Studio, and MCP tests, passes with Rust 1.88.0. | . Phase 2: Implement and test graph construction in the service . This phase adds transport-neutral authoring behavior, not REST endpoints or MCP protocol wiring. | Add the draft registry with opaque IDs, revisions, limits, expiry, and per-draft serialization. | Implement create_model, add_vertex, add_edge, and export_model service operations first. | Add update, remove, validate, discard, and immutable execution-snapshot operations. | Make every mutation atomic and enforce structural references and resource limits. | Complete the dedicated graph-construction test matrix below before exposing the operations through a transport. | . Exit criterion: the service can construct and export a model accepted by graphwalker-io, and all success, failure, atomicity, revision, and isolation tests pass. Phase 2 completed on 2026-09-14: . | DraftRegistry stores one canonical graphwalker-io::json::JsonModel per draft and exposes typed create, add, update, remove, export, validate, snapshot, and discard operations. No MCP tools or REST routes are added in this phase. | Draft and generated graph-element IDs use UUID v4 values; draft IDs are opaque and prefixed with draft_. Each successful mutation increments the revision, and optional expected revisions prevent stale writes. | Draft mutations clone the complete canonical document, validate IDs, endpoint references, numeric ranges, metadata references, and configured resource limits, then commit under a per-draft mutex. Any failed mutation preserves the complete document and revision. | Default limits are 64 active drafts, 10,000 vertices and 20,000 edges per draft, and 30 minutes of idle time. Expired-ID tombstones are bounded to 1,024 entries so expiry diagnostics do not create unbounded state. | Removing a connected vertex requires cascade; removing an element referenced by the start element or predefined path separately requires cleanup_references. Update patches explicitly distinguish keep, set, and clear operations. | Export and snapshot return a JSON object with the existing GraphWalker field names. Snapshots are immutable values, so an execution started from one cannot be changed by later draft edits. | The authoring suite covers minimal and fully populated models, generated and supplied IDs, concurrent uniqueness, revision conflicts, draft isolation, every configured limit boundary, expiry, discard, update/clear behavior, cascading removal, validation, export stability, graphwalker-io round trips, execution snapshots, stable errors, and complete-state atomicity after failures. | A checked-in golden fixture builds two vertices, a source-less start edge, and a normal edge, then exports, validates, snapshots, and executes the model to completion. | . Phase 3: Implement the MCP adapter . | Add graphwalker-mcp and advertise only the implemented capabilities. | Define schema-derived input/output structs for the model-authoring and execution tools. | Map service errors to MCP tool errors and structured content without REST response wrappers. | Run over stdio with graceful EOF/cancellation handling and stderr-only diagnostics. | Add MCP protocol tests for every graph-construction tool, plus the complete authoring-to-execution workflow. | . Exit criterion: an MCP client can build and revise a model, export and validate it, start an execution from its snapshot, walk it to completion, update data, inspect coverage, restart deterministically, and close both the execution and draft. Phase 3 completed on 2026-09-14: . | graphwalker-mcp exposes 18 deterministic, schema-backed tools over stdio: health, nine draft-authoring tools, validation, GraphML conversion, and six execution tools. | Tool inputs and outputs use dedicated MCP DTOs. Optional patch fields preserve the distinction between omission and explicit null, while exported models remain canonical GraphWalker JSON objects. | The adapter owns independent DraftRegistry and ExecutionRegistry instances and delegates all GraphWalker behavior to graphwalker-service; it does not route through REST or reproduce the execution engine. | Successful calls return typed structured content. Service failures return MCP tool execution errors with stable snake-case codes and actionable messages; malformed MCP requests and argument decoding are handled by the SDK. | Starting from a draft uses a revision-checked immutable snapshot and rejects invalid drafts. Inline starts are also validated before execution state is created. | Tool annotations identify read-only and destructive operations, declare that the tools do not access the open world, and keep discovery order stable. | Stdio protocol tests exercise every tool, the complete create/revise/export/validate/start/walk/data/status/restart/close/discard workflow, stale revisions, closed and discarded IDs, GraphML conversion, inline and draft execution, interleaved draft/execution isolation, cancellation notification handling, protocol-only stdout, and clean EOF shutdown. | The focused MCP checks and the complete workspace test suite pass with the workspace MSRV, Rust 1.88.0. Existing REST and WebSocket interfaces remain unchanged. | . Phase 4: Add graph construction to REST separately . This phase is a separate implementation and should be delivered in a separate pull request after the service and MCP contracts are stable. | Design resource-oriented REST routes for draft creation, vertex/edge mutation, validation, export, and deletion. | Document the REST request/response schemas independently; do not expose MCP content envelopes or copy legacy \"result\": \"ok\" conventions without a compatibility decision. | Reuse only the typed graphwalker-service API. | Add REST-specific status-code, content-type, malformed-body, concurrency/revision, and lifecycle tests. | Update doc/rest-api.md or add a dedicated model-authoring REST reference. | . Exit criterion: REST graph construction has an approved HTTP contract and passes its own integration suite without changing the MCP tools or existing execution endpoints. Phase 4 completed on 2026-09-14: . | Graph construction is implemented in dedicated REST DTO, handler, and integration-test modules. The MCP adapter is unchanged, and the existing execution and WebSocket routes retain their established response formats. | Ten resource-oriented routes under /graphwalker/drafts cover draft creation, model/vertex/edge updates, element removal, export, validation, and discard. Draft and element IDs are path parameters; optional expected revisions remain explicit mutation fields. | Authoring responses contain typed JSON without legacy \"result\" wrappers. Failures use conventional HTTP status codes and stable { \"code\", \"message\" } bodies. | JSON mutation bodies require a JSON media type and have an authoring-specific 1 MiB limit. The existing /graphwalker/load request behavior is not changed by that limit. | REST integration tests cover the complete construction workflow, exact methods and content types, malformed bodies and query values, missing and expired drafts, registry limits, service error mapping, failed-mutation atomicity, and competing writes with the same expected revision. | doc/rest-api.md documents the independent authoring contract, patch/null semantics, lifecycle, limits, schemas, status codes, and examples. | Focused REST tests and the complete workspace test suite pass with Rust 1.88.0, including the pre-existing REST, WebSocket, CLI, service, MCP, core, and Studio tests. | . Phase 5: Documentation and release integration . | Document building and launching graphwalker-mcp. | Add example configuration for at least one generic MCP client, using an absolute command path or installed binary name without client-specific secrets. | Document the draft-authoring workflow, tool inputs and outputs, limits, error behavior, and the fact that the server does not execute the system under test itself. | Add packaging/release artifacts for the new binary. | Test manually with MCP Inspector. | . Exit criterion: a new user can install the binary, configure a client, and complete the example workflow from the documentation. REST documentation may be released independently with Phase 4. Phase 5 completed on 2026-09-14: . | doc/mcp-server.md is the user-facing guide for installation, generic client configuration, the complete authoring-to-execution workflow, all 18 tools, patch and revision semantics, process-local lifecycle, limits, structured errors, safety boundaries, and protocol support. | The root README and documentation index identify the implemented MCP server and link to the guide; this implementation plan remains available separately. | A tag-driven GitHub Actions workflow builds graphwalker-mcp with Rust 1.88 for Linux x86-64, macOS Apple silicon, and Windows x86-64. It packages the binary with README and license files, publishes SHA-256 checksums, and attaches the artifacts to a generated GitHub release. | The documented cargo install --locked --path graphwalker-mcp command was verified using a clean installation root, and the Linux release archive/checksum steps were smoke-tested locally. | The official MCP Inspector CLI discovered all 18 tools and invoked health successfully. Its strict portability check exposed five bare schemas for GraphWalker JSON values; those now advertise object schemas, have protocol regression coverage, and pass the Inspector strict check with zero errors. | The complete workspace test suite passes with Rust 1.88.0. The MCP crate also passes targeted formatting and Clippy checks; existing workspace-wide formatting and Clippy findings outside the MCP crate remain unchanged. | . Later phases . | Add a bounded one-shot generate_path tool if usage shows it reduces excessive round trips. | Consider read-only resources for the JSON format, available generators, and stop conditions. | Add Streamable HTTP only with a concrete remote-deployment and authorization design. | Consider progress reporting or MCP tasks only for operations that become measurably long-running. | . ",
-    "url": "/graphwalker-rs/mcp.html#implementation-phases",
-    
-    "relUrl": "/mcp.html#implementation-phases"
-  },"64": {
-    "doc": "MCP Server Plan",
-    "title": "Test plan",
-    "content": "Graph-construction test matrix . The four foundational authoring operations are release-critical. Test each first through the typed service API and then through the MCP protocol adapter. Protocol tests must assert both behavior and the advertised JSON input/output schemas. | Operation | Required coverage | . | create_model | Minimal and fully populated inputs; generated and caller-supplied graph IDs; canonical defaults; metadata preservation; unique draft IDs; active-draft limit; invalid field types; no draft leaked after failure | . | add_vertex | Minimal and fully populated vertices; generated and supplied IDs; actions, requirements, shared state, and arbitrary properties; duplicate ID rejection across both vertices and edges; revision increment/conflict; draft isolation; unchanged draft after failure | . | add_edge | Normal, self-loop, and source-less start edges; generated and supplied IDs; all optional fields; unknown source/target rejection; missing target rejection; duplicate ID rejection; weight/dependency boundaries and out-of-range values; revision conflict; unchanged draft after failure | . | export_model | Empty, minimal valid, and fully populated drafts; JSON object rather than encoded string; stable ordering; exact GraphWalker field names; current revision; parse/export round trip through graphwalker-io; output accepted by validation, REST load, and start_execution; unknown/expired draft errors; no mutation during export | . Add an end-to-end golden fixture test that performs this exact sequence: . | create_model with a generator. | Add two vertices. | Add a source-less start edge and a normal edge between the vertices. | Set the start element. | Export and compare the semantic JSON structure with a checked-in fixture. | Validate the exported model with no issues. | Start an execution from the draft and walk it to completion. | . Avoid brittle assertions on generated UUID values: assert their format and referential consistency, or provide fixed IDs in golden tests. For generated IDs, verify uniqueness across repeated and concurrent calls. Every negative mutation test must compare the complete draft and revision before and after the call to prove atomicity. Unit and service tests . | An empty draft can be created, inspected, and discarded. | Vertices and start/normal edges produce canonical GraphWalker JSON. | Generated and caller-provided IDs are stable and unique. | Edges with unknown endpoints and out-of-range weight/dependency values are rejected atomically. | Update patches can set and clear optional fields. | Deleting a connected vertex requires explicit cascading and reports every removed ID. | Stale revisions are rejected without changing the draft. | Exporting, parsing, and exporting a draft preserves its semantics. | An execution created from a draft is unaffected by later edits to that draft. | JSON validation returns ordered issues and never creates an execution. | GraphML conversion returns a JSON object that can be loaded again. | The same model and seed produce the same sequence. | Restart reproduces the original sequence and reapplies global data. | Different execution IDs have independent data and visit counts. | Close releases state and later calls return execution_not_found. | Malformed models, missing generators, invalid scripts, and limit violations produce stable errors. | A fulfilled stop condition makes next_step idempotently return completed: true. | All configured limits have boundary tests. | . Protocol integration tests . Spawn the compiled stdio binary with an MCP client test harness and verify: . | initialization/discovery and server identity; | deterministic tools/list output and valid input/output schemas; | successful and failing tools/call responses; | structured content matches each declared output schema; | no non-protocol bytes appear on stdout; | EOF, cancellation, and process shutdown release execution state; | two interleaved execution IDs cannot affect one another; | two interleaved draft IDs cannot affect one another; | mutating authoring calls return revisions and stale expected_revision values fail predictably. | . Keep automated tests self-contained; MCP Inspector is a manual interoperability check, not a CI dependency. REST graph-construction tests . These tests belong only to Phase 4 and must not be mixed into the MCP test target. Repeat the graph-construction golden workflow over HTTP, then cover HTTP-specific behavior: route matching, methods, JSON content types, status codes, malformed bodies, request-size limits, missing/expired drafts, revision conflicts, and concurrent requests. Existing REST execution contract tests remain unchanged and run as regression coverage. Repository checks . Run the full workspace checks after each phase: . cargo fmt --all -- --check cargo clippy --workspace --all-targets -- -D warnings cargo test --workspace . ",
-    "url": "/graphwalker-rs/mcp.html#test-plan",
-    
-    "relUrl": "/mcp.html#test-plan"
-  },"65": {
-    "doc": "MCP Server Plan",
-    "title": "MVP acceptance criteria",
-    "content": "The MCP work is ready for an initial release when: . | graphwalker-mcp is a workspace binary installable with the project; | a conforming local MCP client can discover and invoke all documented tools over stdio; | a client can incrementally create, edit, validate, export, and discard a graph model; | the service and MCP test matrices for create_model, add_vertex, add_edge, and export_model pass, including negative and atomicity cases; | exported drafts conform to the existing GraphWalker JSON format and can be loaded by existing interfaces; | validation, conversion, traversal from inline models or draft snapshots, data updates, statistics, deterministic restart, and cleanup work against existing fixtures; | REST and WebSocket compatibility tests still pass; | draft and execution IDs isolate concurrent work, and resource limits prevent unbounded work; | stdout contains only MCP protocol messages; | the supported Rust and MCP versions are documented; | no filesystem, network, or remote-listening capability is enabled by default. | . New REST graph-construction endpoints are not part of these MCP acceptance criteria. They are accepted and released independently under Phase 4; only preservation of the existing REST/WebSocket contracts gates the MCP release. ",
-    "url": "/graphwalker-rs/mcp.html#mvp-acceptance-criteria",
-    
-    "relUrl": "/mcp.html#mvp-acceptance-criteria"
-  },"66": {
-    "doc": "MCP Server Plan",
-    "title": "Open questions for later phases",
-    "content": ". | Should MCP add a per-call step budget beyond the Phase 1 and Phase 2 registry and model-size limits? | Should set_execution_data remain available in the first release, given that it evaluates GraphWalker/Rhai expressions, or should the MVP initially expose traversal as read-only? | Which MCP clients and operating systems are release targets for the first interoperability matrix? | Should multi-model draft authoring and shared-state composition be part of the MVP, or follow the initial single-graph implementation? | . ",
-    "url": "/graphwalker-rs/mcp.html#open-questions-for-later-phases",
-    
-    "relUrl": "/mcp.html#open-questions-for-later-phases"
-  },"67": {
-    "doc": "MCP Server Plan",
-    "title": "References",
-    "content": ". | GraphWalker model-based testing overview | Model Context Protocol specification | Official Rust MCP SDK | MCP tools specification and security considerations | MCP Inspector | . ",
-    "url": "/graphwalker-rs/mcp.html#references",
-    
-    "relUrl": "/mcp.html#references"
-  },"68": {
     "doc": "Model-Based Testing",
     "title": "Model-Based Testing",
     "content": " ",
     "url": "/graphwalker-rs/model-based-testing.html",
     
     "relUrl": "/model-based-testing.html"
-  },"69": {
+  },"58": {
     "doc": "Model-Based Testing",
     "title": "What is Model-Based Testing?",
     "content": "Model-Based Testing (MBT) is a software testing approach where test cases are derived from a model that describes the behavior of the system under test. Instead of writing individual test cases by hand, you build a model of how the system works, and a tool automatically generates test sequences from that model. The model is typically a directed graph (also called a finite state machine) where: . | Vertices (nodes) represent states of the system — observable conditions like “logged in”, “shopping cart empty”, or “error page displayed” | Edges (transitions) represent actions that move the system from one state to another — things like “click login”, “add item to cart”, or “submit form” | . A test sequence is a path through the graph: a series of alternating edges and vertices that represents a realistic usage scenario of the system. ",
     "url": "/graphwalker-rs/model-based-testing.html#what-is-model-based-testing",
     
     "relUrl": "/model-based-testing.html#what-is-model-based-testing"
-  },"70": {
+  },"59": {
     "doc": "Model-Based Testing",
     "title": "Why use MBT?",
     "content": "Coverage guarantees. Instead of hoping your manually written tests cover all the important paths, MBT tools can mathematically ensure that every edge, every vertex, or every requirement has been exercised. Reduced maintenance. When the system changes, you update the model — a single graph — rather than dozens or hundreds of individual test scripts. Combinatorial exploration. A model with 10 vertices and 20 edges can produce thousands of distinct test paths. MBT tools explore this space systematically, finding paths that a human tester might never think to try. Separation of concerns. The model captures what to test. The generator decides how to traverse it. The test implementation maps steps to actual system interactions. Each can evolve independently. ",
     "url": "/graphwalker-rs/model-based-testing.html#why-use-mbt",
     
     "relUrl": "/model-based-testing.html#why-use-mbt"
-  },"71": {
+  },"60": {
     "doc": "Model-Based Testing",
     "title": "How GraphWalker implements MBT",
     "content": "GraphWalker takes a model (a directed graph defined in JSON or GraphML) and generates a sequence of steps by walking the graph. The walk is controlled by two things: . | A path generator — the algorithm that decides which edge to take next. Options range from pure random selection to optimal mathematical routes. | A stop condition — the rule that decides when to stop walking. Options include coverage targets (e.g., “visit every edge”), reaching a specific element, time limits, or step counts. | . The execution loop . 1. Start at the designated start element 2. While the stop condition is not fulfilled: a. If at a vertex: choose an outgoing edge (using the generator algorithm) b. If at an edge: move to the target vertex c. Execute any actions on the current element d. Check any guards on candidate edges e. Record the visit 3. Output the sequence of visited elements . Guards and actions . Edges can have guards — boolean expressions that must evaluate to true for the edge to be available. This lets you model conditional behavior: “the logout button is only available when logged in.” . Edges and vertices can have actions — scripts that execute when the element is visited. Actions modify variables in the execution context: loggedIn = true or itemCount = itemCount + 1. Guards can reference these variables, creating dynamic behavior that changes which paths are available as the walk progresses. Multi-model execution . Complex systems can be modeled as multiple graphs that share state through shared state vertices. When GraphWalker reaches a shared state vertex in one model, it can jump to the matching shared state vertex in another model, continuing the walk there. This lets you decompose a large system into manageable sub-models that coordinate through well-defined handoff points. Requirements tracking . Vertices and edges can be tagged with requirement IDs. As GraphWalker traverses the model, it tracks which requirements have been covered. The requirement_coverage stop condition can ensure that all requirements are exercised before the walk ends. ",
     "url": "/graphwalker-rs/model-based-testing.html#how-graphwalker-implements-mbt",
     
     "relUrl": "/model-based-testing.html#how-graphwalker-implements-mbt"
-  },"72": {
+  },"61": {
     "doc": "Model-Based Testing",
     "title": "Example",
     "content": "Consider testing a login flow. The model might look like this: . [Start] --e_OpenApp--&gt; [v_LoginPage] --e_EnterCredentials--&gt; [v_LoginPage] | +--e_ValidLogin--&gt; [v_Dashboard] -----+ | +--e_InvalidLogin-&gt; [v_LoginPage] | +--e_ForgotPassword--&gt; [v_ResetPage] . Running random(edge_coverage(100)) on this model produces a path that visits every edge at least once, exercising the valid login, invalid login, and forgot password flows in a single test sequence. The specific order varies with each run (unless you fix the random seed), but coverage is guaranteed. ",
     "url": "/graphwalker-rs/model-based-testing.html#example",
     
     "relUrl": "/model-based-testing.html#example"
-  },"73": {
+  },"62": {
     "doc": "REST API",
     "title": "REST API",
     "content": "Start the REST server with: . graphwalker online -s RESTFUL -p 8080 -m model.json \"random(edge_coverage(100))\" . All endpoints are under the /graphwalker path prefix. ",
     "url": "/graphwalker-rs/rest-api.html",
     
     "relUrl": "/rest-api.html"
-  },"74": {
+  },"63": {
     "doc": "REST API",
     "title": "Legacy execution response format",
     "content": "The execution endpoints documented in the next section preserve their existing wire format. Successful responses include \"result\": \"ok\". Errors include \"result\": \"nok\" with an \"error\" message. The draft-authoring API uses conventional HTTP status codes and typed JSON responses instead. It never adds a result wrapper. ",
     "url": "/graphwalker-rs/rest-api.html#legacy-execution-response-format",
     
     "relUrl": "/rest-api.html#legacy-execution-response-format"
-  },"75": {
+  },"64": {
     "doc": "REST API",
     "title": "POST /graphwalker/load",
     "content": "Load a model and initialize the execution engine. Request body: JSON model definition (the full model file content). Response: . { \"result\": \"ok\", \"seed\": 7298345612 } . The returned seed can be used later to reproduce the same traversal. Error example: . { \"result\": \"nok\", \"error\": \"Model has no generator specified\" } . ",
     "url": "/graphwalker-rs/rest-api.html#post-graphwalkerload",
     
     "relUrl": "/rest-api.html#post-graphwalkerload"
-  },"76": {
+  },"65": {
     "doc": "REST API",
     "title": "GET /graphwalker/hasNext",
     "content": "Check whether more steps are available. Response: . { \"result\": \"ok\", \"hasNext\": \"true\" } . Returns \"false\" when the stop condition is fulfilled. Error (no model loaded): . { \"result\": \"nok\", \"error\": \"No model(s) are loaded.\" } . ",
     "url": "/graphwalker-rs/rest-api.html#get-graphwalkerhasnext",
     
     "relUrl": "/rest-api.html#get-graphwalkerhasnext"
-  },"77": {
+  },"66": {
     "doc": "REST API",
     "title": "GET /graphwalker/getNext",
     "content": "Advance to the next element and return it. Response: . { \"result\": \"ok\", \"currentElementName\": \"e_Login\", \"currentElementID\": \"e1\", \"modelId\": \"853429e2-0528-48b9-97b3-7725eafbb8b5\" } . | Field | Description | . | currentElementName | Name of the current element (vertex or edge) | . | currentElementID | ID of the current element | . | modelId | ID of the model containing the element | . ",
     "url": "/graphwalker-rs/rest-api.html#get-graphwalkergetnext",
     
     "relUrl": "/rest-api.html#get-graphwalkergetnext"
-  },"78": {
+  },"67": {
     "doc": "REST API",
     "title": "GET /graphwalker/getData",
     "content": "Get the current execution data (all variables). Response: . { \"result\": \"ok\", \"data\": \"loggedIn=true; itemCount=3\" } . The data field is a string representation of all variables in the execution context. ",
     "url": "/graphwalker-rs/rest-api.html#get-graphwalkergetdata",
     
     "relUrl": "/rest-api.html#get-graphwalkergetdata"
-  },"79": {
+  },"68": {
     "doc": "REST API",
     "title": "PUT /graphwalker/setData/{script}",
     "content": "Execute a script to modify execution data. The script is passed as a URL path parameter. Example request: . PUT /graphwalker/setData/loggedIn%20%3D%20true%3B . (URL-decoded: loggedIn = true;) . Response: . { \"result\": \"ok\" } . ",
     "url": "/graphwalker-rs/rest-api.html#put-graphwalkersetdatascript",
     
     "relUrl": "/rest-api.html#put-graphwalkersetdatascript"
-  },"80": {
+  },"69": {
     "doc": "REST API",
     "title": "PUT /graphwalker/restart",
     "content": "Reset execution to the initial state. The model remains loaded but all visit counts, variables, and state are cleared. Response: . { \"result\": \"ok\" } . ",
     "url": "/graphwalker-rs/rest-api.html#put-graphwalkerrestart",
     
     "relUrl": "/rest-api.html#put-graphwalkerrestart"
-  },"81": {
+  },"70": {
     "doc": "REST API",
     "title": "GET /graphwalker/getStatistics",
     "content": "Get coverage statistics for the current execution. Response: . { \"result\": \"ok\", \"totalNumberOfVertices\": 5, \"totalNumberOfEdges\": 8, \"totalNumberOfVisitedVertices\": 3, \"totalNumberOfVisitedEdges\": 6, \"totalNumberOfUnvisitedVertices\": 2, \"totalNumberOfUnvisitedEdges\": 2, \"vertexCoverage\": 60, \"edgeCoverage\": 75 } . | Field | Description | . | totalNumberOfVertices | Total vertices in all models | . | totalNumberOfEdges | Total edges in all models | . | totalNumberOfVisitedVertices | Vertices visited at least once | . | totalNumberOfVisitedEdges | Edges visited at least once | . | totalNumberOfUnvisitedVertices | Vertices not yet visited | . | totalNumberOfUnvisitedEdges | Edges not yet visited | . | vertexCoverage | Percentage of vertices visited (0–100) | . | edgeCoverage | Percentage of edges visited (0–100) | . ",
     "url": "/graphwalker-rs/rest-api.html#get-graphwalkergetstatistics",
     
     "relUrl": "/rest-api.html#get-graphwalkergetstatistics"
-  },"82": {
+  },"71": {
     "doc": "REST API",
     "title": "Model draft authoring",
     "content": "Model authoring is an independent, resource-oriented API under /graphwalker/drafts. Drafts are process-local and ephemeral: export a completed model before the server stops. Starting or restarting the REST server discards every draft. The server can be started without preloading a model when only authoring is needed: . graphwalker online -s RESTFUL -p 8080 . Every successful mutation returns the new numeric revision. Mutation bodies accept an optional expected_revision; if it does not equal the current revision, the server returns 409 Conflict without changing the draft. Supplying revisions is recommended whenever multiple requests or clients could edit the same draft. JSON request bodies are limited to 1 MiB and must use Content-Type: application/json or a compatible application/*+json media type. Exported models retain the canonical GraphWalker field names described in the JSON format, while authoring request and response envelope fields use snake_case. Authoring routes . | Method | Route | Success | Purpose | . | POST | /graphwalker/drafts | 201 Created | Create an empty single-model draft | . | GET | /graphwalker/drafts/{draft_id} | 200 OK | Export canonical GraphWalker JSON and its revision | . | PATCH | /graphwalker/drafts/{draft_id} | 200 OK | Patch model metadata | . | DELETE | /graphwalker/drafts/{draft_id} | 200 OK | Discard the draft | . | POST | /graphwalker/drafts/{draft_id}/vertices | 201 Created | Add a vertex | . | PATCH | /graphwalker/drafts/{draft_id}/vertices/{vertex_id} | 200 OK | Patch a vertex | . | POST | /graphwalker/drafts/{draft_id}/edges | 201 Created | Add an edge | . | PATCH | /graphwalker/drafts/{draft_id}/edges/{edge_id} | 200 OK | Patch an edge | . | DELETE | /graphwalker/drafts/{draft_id}/elements/{element_id} | 200 OK | Remove a vertex or edge | . | GET | /graphwalker/drafts/{draft_id}/validation | 200 OK | Validate the current draft | . Create a draft . POST /graphwalker/drafts . All fields are optional. Omitted list and object fields default to empty values. { \"model_id\": \"checkout-model\", \"name\": \"Checkout\", \"generator\": \"random(edge_coverage(100))\", \"actions\": [\"global.started = true\"], \"requirements\": [\"REQ-1\"], \"properties\": { \"owner\": \"payments\" } } . Response (201 Created): . { \"draft_id\": \"draft_550e8400-e29b-41d4-a716-446655440000\", \"model_id\": \"checkout-model\", \"revision\": 0 } . When model_id is omitted, GraphWalker generates it. The draft_id identifies mutable server state and is deliberately different from the GraphWalker model ID. Add vertices and edges . POST /graphwalker/drafts/{draft_id}/vertices . { \"id\": \"v_cart\", \"name\": \"v_Cart\", \"shared_state\": null, \"actions\": [], \"requirements\": [\"REQ-CART\"], \"properties\": {}, \"expected_revision\": 0 } . Response (201 Created): . { \"vertex\": { \"id\": \"v_cart\", \"name\": \"v_Cart\", \"shared_state\": null, \"actions\": [], \"requirements\": [\"REQ-CART\"], \"properties\": {} }, \"revision\": 1 } . POST /graphwalker/drafts/{draft_id}/edges . { \"id\": \"e_start\", \"name\": \"e_Start\", \"source_vertex_id\": null, \"target_vertex_id\": \"v_cart\", \"guard\": null, \"actions\": [], \"requirements\": [], \"properties\": {}, \"weight\": 1.0, \"dependency\": 0, \"expected_revision\": 1 } . target_vertex_id is required and must identify an existing vertex. Omit source_vertex_id or set it to null for a start edge. Element IDs must be unique across both vertices and edges. Weight must be between 0.0 and 1.0; dependency must be between 0 and 100. Patch a model, vertex, or edge . Use PATCH with only the fields that should change. An omitted field is retained. An explicit null clears an optional field or resets a list/object field to its empty value. Set the start element: . PATCH /graphwalker/drafts/{draft_id} Content-Type: application/json . { \"start_element_id\": \"e_start\", \"expected_revision\": 2 } . Model patch fields are name, generator, start_element_id, actions, requirements, properties, and predefined_path_edge_ids. Vertex patch fields are name, shared_state, actions, requirements, and properties. Edge patch fields are name, source_vertex_id, target_vertex_id, guard, actions, requirements, properties, weight, and dependency. target_vertex_id cannot be cleared. Export and validate . GET /graphwalker/drafts/{draft_id} returns a JSON object rather than a JSON-encoded string: . { \"model\": { \"models\": [ { \"id\": \"checkout-model\", \"generator\": \"random(edge_coverage(100))\", \"vertices\": [], \"edges\": [] } ] }, \"revision\": 3 } . GET /graphwalker/drafts/{draft_id}/validation returns ordered validation messages: . { \"valid\": true, \"issues\": [], \"revision\": 3 } . Validation does not mutate the draft. A missing or invalid generator is reported as an issue. Remove elements and discard drafts . DELETE /graphwalker/drafts/{draft_id}/elements/{element_id} accepts query parameters: . | Parameter | Default | Description | . | cascade | false | Also remove edges connected to a deleted vertex | . | cleanup_references | false | Remove references from the start element and predefined path | . | expected_revision | omitted | Require the current draft revision | . Example response: . { \"removed_ids\": [\"e_checkout\", \"v_checkout\"], \"revision\": 8 } . DELETE /graphwalker/drafts/{draft_id} releases the complete draft and returns: . { \"discarded\": true } . Later requests for that ID return 404 Not Found. Authoring errors . Authoring failures always return a JSON body: . { \"code\": \"revision_conflict\", \"message\": \"Expected revision 3, but the draft is at revision 4\" } . | Status | Typical codes | . | 400 Bad Request | invalid_json, invalid_query | . | 404 Not Found | draft_not_found | . | 409 Conflict | revision_conflict, duplicate_element_id, referenced_element | . | 410 Gone | draft_expired | . | 413 Payload Too Large | payload_too_large | . | 415 Unsupported Media Type | unsupported_media_type | . | 422 Unprocessable Entity | invalid_model, unknown_vertex, missing_target_vertex, invalid_weight, invalid_dependency, invalid_element | . | 429 Too Many Requests | draft_limit_reached, model_limit_reached | . | 500 Internal Server Error | draft_unavailable, internal | . Failed mutations are atomic: neither the model nor its revision changes. ",
     "url": "/graphwalker-rs/rest-api.html#model-draft-authoring",
     
     "relUrl": "/rest-api.html#model-draft-authoring"
-  },"83": {
+  },"72": {
     "doc": "REST API",
     "title": "Typical usage pattern",
     "content": "# 1. Load a model (or start the server with -m flag to pre-load) curl -X POST http://localhost:8080/graphwalker/load -d @model.json # 2. Loop: check and step while curl -s http://localhost:8080/graphwalker/hasNext | grep -q '\"true\"'; do STEP=$(curl -s http://localhost:8080/graphwalker/getNext) echo \"$STEP\" # Execute the test step indicated by currentElementName done # 3. Check final coverage curl -s http://localhost:8080/graphwalker/getStatistics . ",
     "url": "/graphwalker-rs/rest-api.html#typical-usage-pattern",
     
     "relUrl": "/rest-api.html#typical-usage-pattern"
-  },"84": {
+  },"73": {
     "doc": "REST API",
     "title": "Seed and determinism",
     "content": "When starting with --seed &lt;value&gt;, the same seed produces identical traversal paths. The seed is also returned by the /load endpoint, so you can capture it and replay later: . # Capture the seed SEED=$(curl -s -X POST http://localhost:8080/graphwalker/load -d @model.json | jq -r '.seed') echo \"Seed: $SEED\" # Replay with the same seed later graphwalker online -s RESTFUL --seed $SEED -m model.json \"random(edge_coverage(100))\" . ",
     "url": "/graphwalker-rs/rest-api.html#seed-and-determinism",
     
     "relUrl": "/rest-api.html#seed-and-determinism"
-  },"85": {
+  },"74": {
     "doc": "Stop Conditions",
     "title": "Stop Conditions",
     "content": "A stop condition determines when a generator should stop traversing the graph. Most conditions require execution to be at a vertex to be considered fulfilled — this prevents stopping mid-transition. ",
     "url": "/graphwalker-rs/stop-conditions.html",
     
     "relUrl": "/stop-conditions.html"
-  },"86": {
+  },"75": {
     "doc": "Stop Conditions",
     "title": "DSL syntax",
     "content": "Stop conditions are specified inside generator parentheses: . generator(condition) . Conditions can be combined with and/&amp;&amp; (all must be met) or or/|| (any must be met): . generator(condition1 and condition2) generator(condition1 or condition2) . Condition names are case-insensitive. Both snake_case and camelCase forms are accepted. ",
     "url": "/graphwalker-rs/stop-conditions.html#dsl-syntax",
     
     "relUrl": "/stop-conditions.html#dsl-syntax"
-  },"87": {
+  },"76": {
     "doc": "Stop Conditions",
     "title": "edge_coverage",
     "content": "Stop when a percentage of all edges have been visited at least once. Syntax: edge_coverage(percent) or edgecoverage(percent) . Parameter: integer 0–100 . Fulfilled when: (visited_edges / total_edges) &gt;= (percent / 100) and execution is at a vertex. Example: . random(edge_coverage(100)) -- visit every edge random(edge_coverage(50)) -- visit at least half . ",
     "url": "/graphwalker-rs/stop-conditions.html#edge_coverage",
     
     "relUrl": "/stop-conditions.html#edge_coverage"
-  },"88": {
+  },"77": {
     "doc": "Stop Conditions",
     "title": "vertex_coverage",
     "content": "Stop when a percentage of all vertices have been visited at least once. Syntax: vertex_coverage(percent) or vertexcoverage(percent) . Parameter: integer 0–100 . Fulfilled when: (visited_vertices / total_vertices) &gt;= (percent / 100) and execution is at a vertex. Example: . quick_random(vertex_coverage(100)) random(vertex_coverage(80)) . ",
     "url": "/graphwalker-rs/stop-conditions.html#vertex_coverage",
     
     "relUrl": "/stop-conditions.html#vertex_coverage"
-  },"89": {
+  },"78": {
     "doc": "Stop Conditions",
     "title": "reached_vertex",
     "content": "Stop when a specific vertex (by name) has been visited. Syntax: reached_vertex(name) or reachedvertex(name) . Parameter: vertex name (string) . Fulfilled when: execution is at a vertex matching the given name. Once fulfilled, stays fulfilled even if execution moves away (“sticky”). Note: If multiple vertices share the same name, reaching any one of them is sufficient. Example: . a_star(reached_vertex(v_Checkout)) random(reached_vertex(v_ErrorPage)) . ",
     "url": "/graphwalker-rs/stop-conditions.html#reached_vertex",
     
     "relUrl": "/stop-conditions.html#reached_vertex"
-  },"90": {
+  },"79": {
     "doc": "Stop Conditions",
     "title": "reached_edge",
     "content": "Stop when a specific edge (by name) has been traversed. Syntax: reached_edge(name) or reachededge(name) . Parameter: edge name (string) . Fulfilled when: execution is at an edge matching the given name. Once fulfilled, stays fulfilled (“sticky”). Example: . a_star(reached_edge(e_SubmitOrder)) random(reached_edge(e_Login)) . ",
     "url": "/graphwalker-rs/stop-conditions.html#reached_edge",
     
     "relUrl": "/stop-conditions.html#reached_edge"
-  },"91": {
+  },"80": {
     "doc": "Stop Conditions",
     "title": "reached_shared_state",
     "content": "Stop when a vertex belonging to a specific shared state has been reached. Syntax: reached_shared_state(name) or reachedsharedstate(name) . Parameter: shared state name (string) . Fulfilled when: execution is at a vertex with a matching sharedState value. Sticky. Example: . a_star(reached_shared_state(LOGGED_IN)) . ",
     "url": "/graphwalker-rs/stop-conditions.html#reached_shared_state",
     
     "relUrl": "/stop-conditions.html#reached_shared_state"
-  },"92": {
+  },"81": {
     "doc": "Stop Conditions",
     "title": "length",
     "content": "Stop after a specified number of total element visits. Syntax: length(count) . Parameter: unsigned integer . Fulfilled when: the total number of visited elements (vertices + edges combined) reaches the count, and execution is at a vertex. Example: . random(length(100)) -- stop after 100 steps random(length(1000)) -- stop after 1000 steps . ",
     "url": "/graphwalker-rs/stop-conditions.html#length",
     
     "relUrl": "/stop-conditions.html#length"
-  },"93": {
+  },"82": {
     "doc": "Stop Conditions",
     "title": "time_duration",
     "content": "Stop after a specified duration of wall-clock time. Syntax: time_duration(seconds) or timeduration(seconds) . Parameter: integer (seconds) . Fulfilled when: the elapsed time since the condition was created exceeds the specified duration, and execution is at a vertex. Example: . random(time_duration(60)) -- run for 1 minute random(time_duration(300)) -- run for 5 minutes . ",
     "url": "/graphwalker-rs/stop-conditions.html#time_duration",
     
     "relUrl": "/stop-conditions.html#time_duration"
-  },"94": {
+  },"83": {
     "doc": "Stop Conditions",
     "title": "requirement_coverage",
     "content": "Stop when a percentage of all requirements have been tested (passed or failed). Syntax: requirement_coverage(percent) or requirementcoverage(percent) . Parameter: integer 0–100 . Fulfilled when: ((passed + failed) / total_requirements) &gt;= (percent / 100) and execution is at a vertex. If no requirements are defined, the condition is always fulfilled. Example: . random(requirement_coverage(100)) . ",
     "url": "/graphwalker-rs/stop-conditions.html#requirement_coverage",
     
     "relUrl": "/stop-conditions.html#requirement_coverage"
-  },"95": {
+  },"84": {
     "doc": "Stop Conditions",
     "title": "dependency_edge_coverage",
     "content": "Stop when all edges with a dependency value at or above a threshold have been visited. Syntax: dependency_edge_coverage(threshold) or dependencyedgecoverage(threshold) . Parameter: integer 0–100 (dependency threshold) . Fulfilled when: all edges with dependency &gt;= threshold/100 have been visited, and execution is at a vertex. Example: . random(dependency_edge_coverage(80)) -- cover all edges with dependency &gt;= 80% . ",
     "url": "/graphwalker-rs/stop-conditions.html#dependency_edge_coverage",
     
     "relUrl": "/stop-conditions.html#dependency_edge_coverage"
-  },"96": {
+  },"85": {
     "doc": "Stop Conditions",
     "title": "predefined_path",
     "content": "Stop when the predefined path has been fully traversed. Syntax: predefined_path or predefinedpath . No parameters. Used with the predefined_path generator. Fulfilled when: the predefined path index has reached the end of the sequence. Example: . predefined_path(predefined_path) . ",
     "url": "/graphwalker-rs/stop-conditions.html#predefined_path",
     
     "relUrl": "/stop-conditions.html#predefined_path"
-  },"97": {
+  },"86": {
     "doc": "Stop Conditions",
     "title": "never",
     "content": "Never stops. Used for generators that manage their own termination (like new_york_street_sweeper) or as a component in combined conditions. Syntax: never . No parameters. Example: . random(never) -- walk forever (until interrupted) . ",
     "url": "/graphwalker-rs/stop-conditions.html#never",
     
     "relUrl": "/stop-conditions.html#never"
-  },"98": {
+  },"87": {
     "doc": "Stop Conditions",
     "title": "Combining conditions",
     "content": "AND (all must be met) . Use and or &amp;&amp;: . random(edge_coverage(100) and reached_vertex(v_End)) random(length(100) &amp;&amp; vertex_coverage(80)) . The condition is fulfilled when all sub-conditions are fulfilled simultaneously. Fulfillment progress is the average of all sub-conditions. OR (any must be met) . Use or or ||: . random(edge_coverage(100) or time_duration(60)) random(reached_vertex(v_A) || reached_vertex(v_B)) . The condition is fulfilled when any sub-condition is fulfilled. Fulfillment progress is the maximum of all sub-conditions. ",
     "url": "/graphwalker-rs/stop-conditions.html#combining-conditions",
     
     "relUrl": "/stop-conditions.html#combining-conditions"
-  },"99": {
+  },"88": {
     "doc": "Stop Conditions",
     "title": "Summary table",
     "content": "| Condition | Parameter | Sticky | Description | . | edge_coverage | percent | No | Percentage of edges visited | . | vertex_coverage | percent | No | Percentage of vertices visited | . | reached_vertex | name | Yes | Specific vertex reached | . | reached_edge | name | Yes | Specific edge traversed | . | reached_shared_state | name | Yes | Shared state reached | . | length | count | No | Total element visits | . | time_duration | seconds | No | Wall-clock time elapsed | . | requirement_coverage | percent | No | Percentage of requirements tested | . | dependency_edge_coverage | threshold | No | High-dependency edges visited | . | predefined_path | none | No | Predefined path completed | . | never | none | No | Never fulfilled | . ",
     "url": "/graphwalker-rs/stop-conditions.html#summary-table",
     
     "relUrl": "/stop-conditions.html#summary-table"
-  },"100": {
+  },"89": {
     "doc": "GraphWalker Studio",
     "title": "GraphWalker Studio",
     "content": "GraphWalker Studio is a web-based visual editor and test execution environment. It lets you create models graphically, run test generation with real-time visualization, and debug execution with breakpoints and step-through controls. ",
     "url": "/graphwalker-rs/studio.html",
     
     "relUrl": "/studio.html"
-  },"101": {
+  },"90": {
     "doc": "GraphWalker Studio",
     "title": "Starting Studio",
     "content": "graphwalker-studio [OPTIONS] . | Option | Short | Long | Default | Description | . | Browser port | -b | --browser-port | 9090 | HTTP port for the web UI | . | WebSocket port | -w | --websocket-port | 9999 | WebSocket port for the execution engine | . | Static directory |   | --static-dir | static | Directory containing the frontend files | . | Debug logging |   | --debug | off | Enable debug output | . After starting, open http://localhost:9090 in your browser. ",
     "url": "/graphwalker-rs/studio.html#starting-studio",
     
     "relUrl": "/studio.html#starting-studio"
-  },"102": {
+  },"91": {
     "doc": "GraphWalker Studio",
     "title": "Architecture",
     "content": "Studio consists of two servers and a browser-based frontend: . Browser (React + Cytoscape.js) ↕ WebSocket (JSON messages) graphwalker-studio backend ├── HTTP server (port 9090) — serves the web UI └── WebSocket server (port 9999) — handles execution commands . The HTTP server serves the static frontend files. The WebSocket server handles all model operations: validation, execution, session management, and real-time event broadcasting. The frontend communicates with the backend exclusively through the WebSocket API. All commands documented in the WebSocket API reference are available through Studio. ",
     "url": "/graphwalker-rs/studio.html#architecture",
     
     "relUrl": "/studio.html#architecture"
-  },"103": {
+  },"92": {
     "doc": "GraphWalker Studio",
     "title": "Features",
     "content": "Model editing . | Create models with vertices and edges using a visual graph editor | Edit properties for any element: name, guards, actions, requirements, shared state, weight, dependency | Multiple models in a single file with tabs for each model | Import JSON and GraphML model files | Export models as JSON | . Test execution . | Play to run the generator continuously | Pause to stop execution at the current element | Step to advance exactly one element at a time | Stop to end the session | . During execution, visited elements are highlighted in the graph. The current element is visually distinct from previously visited elements. Execution settings . | Seed — set a random seed for reproducible execution | Global data — initialize variables before execution starts | Delay — set a delay between steps for visual observation | . Breakpoints . Click on any vertex or edge to set a breakpoint. When execution reaches a breakpoint element, the session automatically pauses. This allows you to inspect the current state before continuing. Session observation . Multiple Studio instances (or WebSocket clients) can connect to the same backend. One session can be observed by another: . | Client A starts a session (presses Play) | Client B opens Studio and sees the session in the session list | Client B subscribes to Client A’s session | Client B sees real-time updates as Client A’s execution progresses | . This is useful for demonstrations, collaborative debugging, or monitoring test execution from multiple views. Model validation . Studio validates models in real time as you edit. Validation checks include: . | Vertices must have non-empty names | Element IDs must be unique within a model | Edges must have target vertices | Vertex and edge names must not contain spaces | Edge weights must be non-negative | Self-loops on unnamed edges are flagged | Models must have a start element or a shared state | Models used with random(edge_coverage(100)) flag cul-de-sac vertices (vertices with no outgoing edges) | . ",
     "url": "/graphwalker-rs/studio.html#features",
     
     "relUrl": "/studio.html#features"
-  },"104": {
+  },"93": {
     "doc": "GraphWalker Studio",
     "title": "Workflow example",
     "content": "1. Create a model . Open Studio and create a new model. Add vertices for each state in your system and edges for each transition. Set names, guards, and actions on the elements. 2. Set the generator . Configure the generator string in the model properties. For example: random(edge_coverage(100)). 3. Validate . Studio shows validation issues in real time. Fix any issues before running. 4. Run . Press Play. Watch the execution traverse the graph. Visited elements change color. The status bar shows progress toward the stop condition. 5. Debug . If something unexpected happens: . | Pause execution | Set breakpoints on elements of interest | Step through one element at a time | Inspect data to see current variable values | . 6. Export . Save the model as JSON for use with the CLI or integration into your test pipeline: . graphwalker offline -g exported-model.json . ",
     "url": "/graphwalker-rs/studio.html#workflow-example",
     
     "relUrl": "/studio.html#workflow-example"
-  },"105": {
+  },"94": {
     "doc": "GraphWalker Studio",
     "title": "Keyboard shortcuts",
     "content": "The Studio frontend supports standard keyboard interactions for graph editing. Refer to the Cytoscape.js documentation for graph manipulation controls (pan, zoom, select). ",
     "url": "/graphwalker-rs/studio.html#keyboard-shortcuts",
     
     "relUrl": "/studio.html#keyboard-shortcuts"
-  },"106": {
+  },"95": {
     "doc": "GraphWalker Studio",
     "title": "Connecting programmatically",
     "content": "Since Studio uses the standard WebSocket API, you can connect to its WebSocket port from any client: . const ws = new WebSocket(\"ws://localhost:9999/graphwalker\"); ws.onopen = () =&gt; { ws.send(JSON.stringify({ command: \"start\", gw: { models: [ /* your model */ ] }, seed: 42 })); }; ws.onmessage = (event) =&gt; { const msg = JSON.parse(event.data); console.log(msg); }; . This lets you build custom test runners, dashboards, or integrations that interact with the same execution engine that powers Studio. ",
     "url": "/graphwalker-rs/studio.html#connecting-programmatically",
     
     "relUrl": "/studio.html#connecting-programmatically"
-  },"107": {
+  },"96": {
     "doc": "WebSocket API",
     "title": "WebSocket API",
     "content": "Start the WebSocket server with: . graphwalker online -s WEBSOCKET -p 8887 -m model.json \"random(edge_coverage(100))\" . Connect with any WebSocket client to ws://localhost:8887/graphwalker. All messages are JSON objects. Commands from the client include a \"command\" field. Responses include \"success\": true or \"success\": false with a \"message\" field on failure. ",
     "url": "/graphwalker-rs/websocket-api.html",
     
     "relUrl": "/websocket-api.html"
-  },"108": {
+  },"97": {
     "doc": "WebSocket API",
     "title": "Commands",
     "content": "start . Create a new execution session. Request: . { \"command\": \"start\", \"gw\": { \"models\": [ ... ] }, \"seed\": 12345, \"globalData\": \"x = 0; y = 0;\", \"name\": \"My Test Session\" } . | Field | Required | Description | . | gw | Yes | Model definition (same format as the JSON model file) | . | seed | No | Random seed for deterministic execution | . | globalData | No | Initialization script for global variables | . | name | No | Session name (defaults to the first model’s name) | . Response: . { \"command\": \"start\", \"success\": true, \"seed\": 12345, \"sessionId\": \"session-1\" } . getNext . Advance the execution by one step. Request: . { \"command\": \"getNext\" } . Response: . { \"command\": \"visitedElement\", \"success\": true, \"modelId\": \"model-id\", \"elementId\": \"e1\", \"name\": \"e_Login\", \"visitedCount\": 1, \"totalCount\": 12, \"stopConditionFulfillment\": 0.45, \"data\": \"loggedIn=false\" } . | Field | Description | . | modelId | ID of the model containing the element | . | elementId | ID of the visited element | . | name | Name of the visited element | . | visitedCount | How many times this element has been visited | . | totalCount | Total elements in the model | . | stopConditionFulfillment | Progress toward the stop condition (0.0 to 1.0) | . | data | Current variable values | . If the session is paused, getNext blocks until the session is resumed or stepped. hasNext . Check whether more steps are available. Request: . { \"command\": \"hasNext\" } . Response: . { \"command\": \"hasNext\", \"success\": true, \"hasNext\": true } . getData . Get current execution variables. Request: . { \"command\": \"getData\" } . Response: . { \"command\": \"getData\", \"success\": true, \"data\": \"loggedIn=true; count=5\" } . setData . Modify execution variables. Request: . { \"command\": \"setData\", \"action\": \"loggedIn = true;\" } . Response: . { \"command\": \"setData\", \"success\": true } . getModel . Retrieve the loaded model definition. Request: . { \"command\": \"getModel\" } . Response: . { \"command\": \"getModel\", \"success\": true, \"models\": \"{ \\\"models\\\": [ ... ] }\" } . The models field is a JSON string (not a parsed object). updateAllElements . Get visit counts for all elements. Request: . { \"command\": \"updateAllElements\" } . Response: . { \"command\": \"updateAllElements\", \"success\": true, \"elements\": [ { \"modelId\": \"model-1\", \"elementId\": \"n0\", \"visitedCount\": 3 }, { \"modelId\": \"model-1\", \"elementId\": \"e0\", \"visitedCount\": 2 } ] } . check . Validate a model without loading it. Request: . { \"command\": \"check\", \"gw\": { \"models\": [ ... ] } } . Response: . { \"command\": \"check\", \"success\": true, \"issues\": [] } . If there are issues: . { \"command\": \"check\", \"success\": true, \"issues\": [\"Name of vertex cannot be null or empty\"] } . convertGraphml . Convert a GraphML model to JSON. Request: . { \"command\": \"convertGraphml\", \"graphml\": \"&lt;graphml xmlns='...'&gt; ... &lt;/graphml&gt;\" } . Response: . { \"command\": \"convertGraphml\", \"success\": true, \"models\": \"{ \\\"models\\\": [ ... ] }\" } . ",
     "url": "/graphwalker-rs/websocket-api.html#commands",
     
     "relUrl": "/websocket-api.html#commands"
-  },"109": {
+  },"98": {
     "doc": "WebSocket API",
     "title": "Session management",
     "content": "The WebSocket API supports multiple concurrent sessions. These commands control session execution and observation. listSessions . List all active sessions. Request: . { \"command\": \"listSessions\" } . Response: . { \"command\": \"sessions\", \"success\": true, \"sessions\": [ { \"id\": \"session-1\", \"name\": \"Login Test\" }, { \"id\": \"session-2\", \"name\": \"Payment Flow\" } ] } . subscribeSession . Subscribe to execution events from another session. Request: . { \"command\": \"subscribeSession\", \"sessionId\": \"session-1\" } . Response: . { \"command\": \"subscribeSession\", \"success\": true, \"sessionId\": \"session-1\", \"name\": \"Login Test\", \"models\": { \"models\": [ ... ] }, \"elements\": [ { \"modelId\": \"model-1\", \"elementId\": \"n0\", \"visitedCount\": 2 } ], \"seed\": 12345, \"paused\": false } . After subscribing, you receive broadcast events (see below) whenever the session advances. unsubscribeSession . Stop receiving events from a subscribed session. Request: . { \"command\": \"unsubscribeSession\" } . Response: . { \"command\": \"unsubscribeSession\", \"success\": true } . pauseSession . Pause an active session. Subsequent getNext calls block until resumed. Request: . { \"command\": \"pauseSession\", \"sessionId\": \"session-1\" } . Response: . { \"command\": \"pauseSession\", \"success\": true } . resumeSession . Resume a paused session. Request: . { \"command\": \"resumeSession\", \"sessionId\": \"session-1\" } . Response: . { \"command\": \"resumeSession\", \"success\": true } . stepSession . Execute exactly one step, then pause again. Request: . { \"command\": \"stepSession\", \"sessionId\": \"session-1\" } . Response: . { \"command\": \"stepSession\", \"success\": true } . setDelay . Set a delay (in milliseconds) between execution steps. Useful for watching execution in real time. Request: . { \"command\": \"setDelay\", \"sessionId\": \"session-1\", \"value\": 500 } . Response: . { \"command\": \"setDelay\", \"success\": true } . setBreakpoints . Set breakpoints on specific elements. When execution reaches a breakpoint, the session automatically pauses. Request: . { \"command\": \"setBreakpoints\", \"sessionId\": \"session-1\", \"breakpoints\": [\"model-1,n0\", \"model-1,e2\"] } . Breakpoint format: \"modelId,elementId\". Response: . { \"command\": \"setBreakpoints\", \"success\": true } . ",
     "url": "/graphwalker-rs/websocket-api.html#session-management",
     
     "relUrl": "/websocket-api.html#session-management"
-  },"110": {
+  },"99": {
     "doc": "WebSocket API",
     "title": "Broadcast events",
     "content": "These are unsolicited messages sent to subscribed clients. visitedElement . Sent when a subscribed session traverses an element. { \"command\": \"visitedElement\", \"modelId\": \"model-1\", \"elementId\": \"e1\", \"name\": \"e_Login\", \"visitedCount\": 1, \"totalCount\": 12, \"stopConditionFulfillment\": 0.45, \"data\": \"loggedIn=false\" } . sessionCreated . Sent when a new session is created (to clients that called listSessions). { \"command\": \"sessionCreated\", \"sessionId\": \"session-2\", \"name\": \"New Session\" } . sessionEnded . Sent when a session terminates. { \"command\": \"sessionEnded\", \"sessionId\": \"session-1\" } . sessionPaused . Sent when a session is paused (manually or by breakpoint). { \"command\": \"sessionPaused\", \"sessionId\": \"session-1\" } . When triggered by a breakpoint: . { \"command\": \"sessionPaused\", \"sessionId\": \"session-1\", \"reason\": \"breakpoint\", \"modelId\": \"model-1\", \"elementId\": \"n0\" } . sessionResumed . Sent when a session resumes. { \"command\": \"sessionResumed\", \"sessionId\": \"session-1\" } . ",
