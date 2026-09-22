@@ -10,6 +10,7 @@ export const SITE = {
 export const LINKS = {
   github: 'https://github.com/GraphWalker/graphwalker-rs',
   githubReleases: 'https://github.com/GraphWalker/graphwalker-rs/releases',
+  crates: 'https://crates.io/crates/graphwalker',
   org: 'https://github.com/GraphWalker',
   siteSource: 'https://github.com/GraphWalker/graphwalker.github.io',
   legacyJava: 'https://github.com/GraphWalker/graphwalker-project',
