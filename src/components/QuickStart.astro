@@ -7,20 +7,14 @@ const steps = [
   {
     n: '01',
     title: 'Install',
-    desc: 'Build the binary with Cargo, or grab a prebuilt release.',
+    desc: 'Install the GraphWalker CLI directly from crates.io.',
     code: {
-      title: 'bash — build from source',
+      title: 'bash — install from crates.io',
       lang: 'bash',
       lines: [
-        ['git clone https://github.com/GraphWalker/graphwalker-rs.git', null],
-        ['cd graphwalker-rs', null],
-        ['cargo build --release', null],
-        ['export PATH="$PWD/target/release:$PATH"', null],
+        ['cargo install graphwalker', null],
       ],
-      note: `Alternative: prebuilt binaries on ${LINKS.githubReleases.replace(
-        'https://github.com/',
-        '',
-      )}.`,
+      note: `Requires Rust and Cargo. View the package on ${LINKS.crates.replace('https://', '')}. Build from source or download prebuilt binaries from ${LINKS.githubReleases.replace('https://github.com/', '')}.`,
     },
   },
   {
