@@ -1,14 +1,14 @@
 {"0": {
     "doc": "CLI Reference",
     "title": "CLI Reference",
-    "content": "graphwalker [--debug] &lt;subcommand&gt; . ",
+    "content": "graphwalker [--log &lt;LEVEL&gt;] &lt;subcommand&gt; . ",
     "url": "/graphwalker-rs/cli.html",
     
     "relUrl": "/cli.html"
   },"1": {
     "doc": "CLI Reference",
     "title": "Global flags",
-    "content": "| Flag | Description | . | --debug | Enable debug logging | . | --help | Show help | . | --version | Show version | . ",
+    "content": "| Flag | Description | . | --log &lt;LEVEL&gt; | Set logging verbosity: error, warn, info, debug, or trace (default: error) | . | --help | Show help | . | --version | Show version | . Log messages are written to stderr. Command output, such as the generated offline path, is written to stdout. Redirect the streams independently when needed: . # Save generated JSON and logs separately graphwalker --log trace offline --gw model.json &gt;stdout.txt 2&gt;stderr.txt # Keep generated JSON on the terminal and save logs to a file graphwalker --log trace offline --gw model.json 2&gt;stderr.txt . ",
     "url": "/graphwalker-rs/cli.html#global-flags",
     
     "relUrl": "/cli.html#global-flags"
@@ -316,7 +316,7 @@
   },"45": {
     "doc": "MCP Server",
     "title": "How the pieces fit together",
-    "content": "An MCP-based test run has three participants: . | The MCP client starts graphwalker-mcp, calls its tools, and coordinates the run. | The GraphWalker MCP server stores model drafts and execution state and chooses the next edge or vertex. | The test adapter drives the system under test. This may be browser automation, an HTTP client, a mobile driver, or code supplied by the MCP client. | . Edges normally describe actions, such as e_SubmitLogin. Vertices normally describe assertions, such as v_DashboardDisplayed. When next_step returns an edge, the client performs the action. When it returns a vertex, the client verifies the observable state. A failed action or assertion should stop the test run; calling next_step again would incorrectly record progress through behavior that did not occur. The server uses stdio and has no HTTP listener of its own: . MCP client &lt;-- stdio --&gt; graphwalker-mcp | +-- browser/API/test adapter --&gt; system under test . ",
+    "content": "An MCP-based test run has three participants: . | The MCP client starts graphwalker-mcp, calls its tools, and coordinates the run. | The GraphWalker MCP server stores model drafts and execution state and chooses the next edge or vertex. | The test adapter drives the system under test. This may be browser automation, an HTTP client, a mobile driver, or code supplied by the MCP client. | . Edges normally describe actions, such as e_SubmitLogin. Vertices normally describe assertions, such as v_DashboardDisplayed. When next_step returns an edge, the client performs the action. When it returns a vertex, the client verifies the observable state. A failed action or assertion should stop the test run; calling next_step again would incorrectly record progress through behavior that did not occur. The server uses stdio and has no HTTP listener of its own: . MCP client &lt;-- stdio --&gt; graphwalker-mcp | +-- browser/API/test adapter --&gt; system under test . MCP protocol messages use stdin and stdout. Server logs and diagnostic messages are written to stderr so they do not interfere with protocol communication. When an MCP client launches the server, leave stdout connected to the client; redirecting it would break protocol communication. Capture or display stderr separately using the client’s process logging options. ",
     "url": "/graphwalker-rs/mcp-server.html#how-the-pieces-fit-together",
     
     "relUrl": "/mcp-server.html#how-the-pieces-fit-together"
@@ -631,7 +631,7 @@
   },"90": {
     "doc": "GraphWalker Studio",
     "title": "Starting Studio",
-    "content": "graphwalker-studio [OPTIONS] . | Option | Short | Long | Default | Description | . | Browser port | -b | --browser-port | 9090 | HTTP port for the web UI | . | WebSocket port | -w | --websocket-port | 9999 | WebSocket port for the execution engine | . | Static directory |   | --static-dir | static | Directory containing the frontend files | . | Debug logging |   | --debug | off | Enable debug output | . After starting, open http://localhost:9090 in your browser. ",
+    "content": "graphwalker-studio [OPTIONS] . | Option | Short | Long | Default | Description | . | Browser port | -b | --browser-port | 9090 | HTTP port for the web UI | . | WebSocket port | -w | --websocket-port | 9999 | WebSocket port for the execution engine | . | Static directory |   | --static-dir | static | Directory containing the frontend files | . | Logging verbosity |   | --log &lt;LEVEL&gt; | error | error, warn, info, debug, or trace | . Log messages are written to stderr. Command output, such as the generated offline path, is written to stdout. Redirect the streams independently when needed: . # Save generated JSON and logs separately graphwalker-studio --log trace &gt;stdout.txt 2&gt;stderr.txt # Keep generated JSON on the terminal and save logs to a file graphwalker-studio --log trace 2&gt;stderr.txt . After starting, open http://localhost:9090 in your browser. ",
     "url": "/graphwalker-rs/studio.html#starting-studio",
     
     "relUrl": "/studio.html#starting-studio"
